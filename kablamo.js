@@ -103,7 +103,9 @@
 
         for (var deltaX = -1; deltaX < 2; deltaX++) {
             for (var deltaY = -1; deltaY < 2; deltaY++) {
-                project(x, y, deltaX, deltaY);
+                if (!(deltaX === 0 && deltaY === 0)) {
+                    project(x, y, deltaX, deltaY);
+                }
             }
         }
 

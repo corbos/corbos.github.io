@@ -5,12 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kablamo! created by David Smelser</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
         svg {
             cursor: pointer;
         }
-        h1{
+
+        h1 {
             border-bottom: 1px solid #000;
         }
+
         #msg {
             border-bottom: 1px solid #000;
         }
@@ -23,14 +29,16 @@
 
     <h3>Rules</h3>
     <ul>
-        <li>There are two players: Red and Blue.</li>
-        <li>Players take turns. Blue starts.</li>
-        <li>Each player has three shades of their color.</li>
-        <li>The darkest, the initial corner, is the player's home. The object of the game is to destroy your opponent's home.
+        <li>There are two players: Red and Blue. Blue starts.</li>
+        <li>Each player has three shades of their color:
+            <ul>
+                <li>The darkest, the initial corner, is the player's home. There's only one home square. You can't click on it.
+                </li>
+                <li>Medium shade squares are active. A player selects one active square on their turn. (More below.)
+                </li>
+                <li>Light squares are inactive. They become active on a player's turn, after an active square is selected.</li>
+            </ul>
         </li>
-        <li>Medium shade squares are active. A player selects one active square on their turn. (More below.)
-        </li>
-        <li>Light squares are inactive. They become active on a player's turn, after an active square is selected.</li>
         <li>When a player selects an active square, it "explodes". Effects:
             <ul>
                 <li>The active square becomes empty.</li>

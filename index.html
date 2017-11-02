@@ -3,16 +3,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kablamo by David Smelser</title>
+    <title>Kablamo! created by David Smelser</title>
     <style>
-        svg{
+        svg {
             cursor: pointer;
+        }
+        h1{
+            border-bottom: 1px solid #000;
+        }
+        #msg {
+            border-bottom: 1px solid #000;
         }
     </style>
 </head>
 <body>
+    <h1>Kablamo! created by David Smelser</h1>
     <svg id="svg"></svg>
     <h2 id="msg">Blue's Turn</h2>
+
+    <h3>Rules</h3>
+    <ul>
+        <li>There are two players: Red and Blue.</li>
+        <li>Players take turns. Blue starts.</li>
+        <li>Each player has three shades of their color.</li>
+        <li>The darkest, the initial corner, is the player's home. The object of the game is to destroy your opponent's home.
+        </li>
+        <li>Medium shade squares are active. A player selects one active square on their turn. (More below.)
+        </li>
+        <li>Light squares are inactive. They become active on a player's turn, after an active square is selected.</li>
+        <li>When a player selects an active square, it "explodes". Effects:
+            <ul>
+                <li>The active square becomes empty.</li>
+                <li>A ray of inactive squares shoots up, down, left, right, and in the four diagonal directions.</li>
+                <li>Inactive square-rays stop when they hit an occupied square.</li>
+                <li>If the occupied square is a barrier or the player's color, the ray stops.</li>
+                <li>If the occupied square belongs to the opponent, the opponent's square is destroyed and becomes empty.</li>
+            </ul>
+        </li>
+        <li>When a player hits their opponent's home square. They win.</li>
+    </ul>
+
     <script src="svg.min.js"></script>
     <script src="kablamo.js"></script>
 </body>

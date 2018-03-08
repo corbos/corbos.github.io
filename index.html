@@ -4,28 +4,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kablamo! created by David Smelser</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        svg {
-            cursor: pointer;
-        }
-
-        h1 {
-            border-bottom: 1px solid #000;
-        }
-
-        #msg {
-            border-bottom: 1px solid #000;
-        }
-    </style>
+    <link href="theme.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Kablamo! created by David Smelser</h1>
-    <svg id="svg"></svg>
-    <h2 id="msg">Blue's Turn</h2>
+    <h1>Kablamo!</h1>
+    <div class="subscript">
+        created by David Smelser
+    </div>
+    <div id="container">
+        <svg id="svg"></svg>
+        <div id="gameControls">
+            <div>
+                <label>Red</label>
+                <select id="redStrategy">
+                </select>
+            </div>
+            <div>
+                <label>Blue</label>
+                <select id="blueStrategy">
+                </select>
+            </div>
+            <div>
+                <button id="btnStart">Start</button>
+            </div>
+            <div>
+                <button id="btnPause" data-paused="0">Pause</button>
+            </div>
+            <div>
+                <label>Who's Turn?</label>
+                <span id="spnPlayer"></span>
+            </div>
+        </div>
+    </div>
 
     <h3>Rules</h3>
     <ul>
@@ -53,5 +63,7 @@
 
     <script src="svg.min.js"></script>
     <script src="kablamo.js"></script>
+    <script src="kablamo.strategies.js"></script>
+    <script src="kablamo.ui.js"></script>
 </body>
 </html>

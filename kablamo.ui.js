@@ -172,6 +172,7 @@
     btnStart.addEventListener("click", start);
     redStrategy.addEventListener("change", reset);
     blueStrategy.addEventListener("change", reset);
+    byId("btnReset").addEventListener("click", reset);
 
     btnPause.addEventListener("click", function () {
         if (this.getAttribute("data-paused") == "0") {

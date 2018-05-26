@@ -3,14 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kablamo! created by David Smelser</title>
+    <title>Kablamo!</title>
     <link href="theme.css" rel="stylesheet" />
 </head>
 <body>
     <h1>Kablamo!</h1>
-    <div class="subscript">
-        created by David Smelser
-    </div>
     <div id="container">
         <svg id="svg"></svg>
         <div id="gameControls">
@@ -34,12 +31,21 @@
                 <label>Who's Turn?</label>
                 <span id="spnPlayer"></span>
             </div>
+            <div>
+                <button id="btnReset">Reset</button>
+            </div>
         </div>
     </div>
 
-    <h3>Rules</h3>
-    <ul>
-        <li>There are two players: Red and Blue. Blue starts.</li>
+    <div id="rulesHeader">
+        <h3>Rules</h3>
+        <div>
+            rules by David Smelser
+        </div>
+    </div>
+    <ul id="rules">
+        <li>There are two players: Red and Blue.</li>
+        <li>Blue starts.</li>
         <li>Each player has three shades of their color:
             <ul>
                 <li>The darkest, the initial corner, is the player's home. There's only one home square. You can't click on it.

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Relational Database Concepts</h2>
+        <p>Relational databases organize data into one or more
+            <strong>tables</strong> or
+            <strong>relations</strong>.
+            <strong>Relation</strong> is the formal, academic term. In day-to-day professional work we usually say
+            <strong>table</strong>, which is the term preferred in this course.</p>
+        <p>We can imagine a table as a two dimensional grid of cells. Each cell holds one piece of data or one fact. A
+            <strong>row</strong> in a table is a horizontal layer of cells, one cell high. It holds facts about one discrete thing.
+            That thing could be anything: a person, a credit card transaction, or a professional sports mascot. A
+            <strong>column</strong> in the table is a vertical strip of cells, one cell wide. Every cell in the column holds the
+            same type of data, but each cell is a fact about a different thing.</p>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th class="pop-col" data-name="names" data-type="50 characters or less.">Name</th>
+                    <th class="pop-col" data-name="abbreviations" data-type="exactly two characters.">Abbr</th>
+                    <th class="pop-col" data-name="capitals" data-type="50 characters or less.">Capital</th>
+                    <th class="pop-col" data-name="dates of statehood" data-type="a valid date.">Established</th>
+                    <th class="pop-col" data-name="populations" data-type="a positive number.">Population</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="pop-row">
+                    <td class="pop-col">Alabama</td>
+                    <td class="pop-col">AL</td>
+                    <td class="pop-col">Montgomery</td>
+                    <td class="pop-col">Dec 14, 1819</td>
+                    <td class="pop-col">4,874,747</td>
+                </tr>
+                <tr class="pop-row">
+                    <td class="pop-col">Alaska</td>
+                    <td class="pop-col">AK</td>
+                    <td class="pop-col">Juneau</td>
+                    <td class="pop-col">Jan 3, 1959</td>
+                    <td class="pop-col">739,795</td>
+                </tr>
+                <tr class="pop-row">
+                    <td class="pop-col">Arizona</td>
+                    <td class="pop-col">AZ</td>
+                    <td class="pop-col">Phoenix</td>
+                    <td class="pop-col">Feb 14, 1912</td>
+                    <td class="pop-col">7,016,270</td>
+                </tr>
+                <tr class="pop-row">
+                    <td class="pop-col">Arkansas</td>
+                    <td class="pop-col">AR</td>
+                    <td class="pop-col">Little Rock</td>
+                    <td class="pop-col">Jun 15, 1836</td>
+                    <td class="pop-col">3,004,279</td>
+                </tr>
+                <tr class="pop-row">
+                    <td class="pop-col">California</td>
+                    <td class="pop-col">CA</td>
+                    <td class="pop-col">Sacramento</td>
+                    <td class="pop-col">Sep 9, 1850</td>
+                    <td class="pop-col">39,536,653</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>In the data above, each row represents a different state. A row is a stand-alone thing. Rows are also known as
+            <strong>records</strong> or
+            <strong>tuples</strong>.
+            <strong>Record</strong> is relatively common,
+            <strong>tuple </strong>less so -- it's an academic term. Each column represents a fact about a state: its name, abbreviation,
+            capital, data established, and current population.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>

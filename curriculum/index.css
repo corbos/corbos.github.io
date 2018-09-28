@@ -1,0 +1,24 @@
+tbody>tr:hover {
+    background-color: #cce5ff85;
+}
+
+table {
+    overflow: hidden;
+}
+
+td,
+th {
+    position: relative;
+}
+
+td:hover::after,
+th:hover::after {
+    content: "";
+    position: absolute;
+    background-color: #f8d7da83;
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+}

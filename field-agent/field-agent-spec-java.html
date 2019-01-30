@@ -11,6 +11,10 @@
         img {
             width: 95%;
         }
+
+        h2 {
+            border-bottom: 1px solid #B5362D;
+        }
       
         .container {
             padding-top: 15px;
@@ -46,18 +50,16 @@
         </p>
         <h2>Technical Requirements</h2>
         <ul>
-            <li>ASP.NET MVC</li>
-            <li>MVC Shared layout for all views</li>
-            <li>MVC built-in validation using validation attributes</li>
-            <li>Bootstrap <strong>v4.1</strong></li>
-            <li>At least three separate projects: Domain, Data, and UI</li>
-            <li>Dependency Injection framework of your choice</li>
-            <li>Field Agent and Assignment data stored in separate files</li>
-            <li>At least two repositories with appropriate interfaces</li>
-            <li>One service or manager-type class</li>
+            <li>Spring MVC/Spring Boot</li>
+            <li>Thymeleaf</li>
+            <li>Spring MVC built-in validation using validation annotations and BindingResult</li>
+            <li>Thymeleaf validation extensions are recommended, but not required.</li>
+            <li>Bootstrap <strong>v4.*</strong></li>
+            <li>Field Agent and Assignment data stored in a database</li>
+            <li>At least two DAOs or repositories with appropriate interfaces</li>
+            <li>At least one service class</li>
+            <li>Absolutely <strong>no JavaScript allowed</strong>.</li>
         </ul>
-
-        <hr />
 
         <h2>Additional Considerations</h2>
         <ul>
@@ -68,14 +70,15 @@
                 application. You'll need to get creative. It may not be possible to attach aliases to a field
                 agent until <em>after</em> they've been created.
             </li>
-            <li>Drop down values: Agencies, Clearances, Countries; should be data, though not necessarily data
-                from a file. Do not hard-code these values into a view.
+            <li>Drop down values: Agencies, Clearances, Countries; should be data, but not necessarily data in a
+                database or file.
+                Do not hard-code these values into a view.
             </li>
         </ul>
-        <hr />
 
         <h2>Data</h2>
-        <h3>Field Agent: Properties and Rules</h3>
+        <h3>Entities</h3>
+        <h4>Field Agent: Properties and Rules</h4>
         <ul>
             <li>First Name - Required</li>
             <li>Middle Name or Initial</li>
@@ -90,6 +93,25 @@
             <li>Is Active</li>
             <li>Aliases - Zero-to-many names</li>
         </ul>
+
+        <h4>Assignment: Properties and Rules</h4>
+        <ul>
+            <li>Agent Identifier - Required</li>
+            <li>Country Code - Required, from <a href="https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes">ISO
+                    3166-1</a></li>
+            <li>Start Date - Required, must be before Projected and Actual End Date</li>
+            <li>Projected End Date - Required, must be after Start Date</li>
+            <li>Actual End Date - Complete on mission completion, must be after Start Date</li>
+            <li>Notes</li>
+        </ul>
+
+        <div class="alert alert-warning">
+            Extra validation: assignment dates may <strong>not</strong> overlap for a field agent.
+            They can only be in one place at a time.
+        </div>
+
+        <h3>Supporting Data</h3>
+        <p>(not required to be database entities)</p>
         <h4>Agencies</h4>
         <ul>
             <li>CIA</li>
@@ -109,20 +131,6 @@
             <li>Top Secret</li>
             <li>Dark Matter</li>
         </ul>
-        <h3>Assignment: Properties and Rules</h3>
-        <ul>
-            <li>Agent Identifier - Required</li>
-            <li>Country Code - Required, from <a href="https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes">ISO
-                    3166-1</a></li>
-            <li>Start Date - Required, must be before Projected and Actual End Date</li>
-            <li>Projected End Date - Required, must be after Start Date</li>
-            <li>Actual End Date - Complete on mission completion, must be after Start Date</li>
-            <li>Notes</li>
-        </ul>
-        <div class="alert alert-warning">
-            Extra validation: assignment dates may <strong>not</strong> overlap for a field agent.
-            They can only be in one place at a time.
-        </div>
 
         <h2>Sample Wireframes</h2>
         <div>(Intentionally Incomplete)</div>
@@ -346,9 +354,9 @@
                             <label>Agency</label>
                             <select class="form-control">
                                 <option>- Select -</option>
-                                <option selected>CIA</option>
+                                <option>CIA</option>
                                 <option>NSA</option>
-                                <option>Southern Reach</option>
+                                <option selected>Southern Reach</option>
                             </select>
                         </div>
                         <div class="form-group col">

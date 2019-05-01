@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four-in-a-Row</title>
+    <style>
+        body {
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #C7CDD1;
+            border-radius: 5px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Four in a Row</h1>
+    <p>Known commercially as <em>Connect Four</em>.</p>
+    <p>Two players take turns dropping game pieces into a seven by six vertical game board. Pieces fall to the first
+        empty space in a column. The first player to place four of their pieces in a row horizontally, vertically,
+        or
+        diagonally wins.</p>
+    <h3>Example Game Play and UI</h3>
+    <p>1. An empty board</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+</pre>
+    <p>2. Player one chooses column 3.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ X _ _ _ _
+</pre>
+    <p>3. Player two chooses column 4.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ X 0 _ _ _
+</pre>
+    <p>4. Player one chooses column 4.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ X _ _ _
+_ _ X 0 _ _ _
+</pre>
+    <p>5. Player two chooses column 5.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ X _ _ _
+_ _ X 0 0 _ _
+</pre>
+    <p>6. Player one chooses column 5.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ X X _ _
+_ _ X 0 0 _ _
+</pre>
+    <p>7. Player two chooses column 6.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ X X _ _
+_ _ X 0 0 0 _
+</pre>
+    <p>8. Player one chooses column 5.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ X _ _
+_ _ _ X X _ _
+_ _ X 0 0 0 _
+</pre>
+    <p>9. Player two chooses column 7 and wins with four in a row!.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ X _ _
+_ _ _ X X _ _
+_ _ X 0 0 0 0
+</pre>
+    <h3>Requirements</h3>
+    <p>The game is divided into three distinct phases: set up, game play, and summary/play again. The set up phase
+        should ask users for their names. Those names should be used in prompts during the game play and summary
+        phases.
+    </p>
+    <pre>Player #1, enter your name: Nemo
+Hello, Nemo.
+
+Player #2, enter your name: Dori
+Hello, Dori.
+
+(Randomizing...)
+It's Dori's turn.
+
+1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+
+Dori, choose a column: 3
+
+1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ X _ _ _ _
+
+Nemo, choose a column: five
+That's not a valid column.
+
+Nemo, choose a column:_
+</pre>
+    <p>Game play must track who's turn it is. Since it's a two player game, a boolean is enough. Alternate making
+        moves
+        until someone wins or all moves have been exhausted. (A draw <em>is</em> possible.)</p>
+    <p>A user need only provide one number, the column, to make a move.</p>
+    <p>Validate moves. The only valid columns are 1 - 7. If a column has six pieces, it is full. It is invalid to
+        place
+        an additional piece.</p>
+    <p>On win or draw, display the result and ask if the players would like to play again.</p>
+    <pre>1 2 3 4 5 6 7
+_ _ _ _ _ _ _
+_ _ _ _ _ _ _
+_ _ _ _ _ X _
+_ _ _ 0 X X _
+_ _ 0 X 0 X 0
+_ 0 X X 0 X 0
+
+Dori Wins!
+
+Play again? [y/n]: _
+</pre>
+    <h3>Technical considerations</h3>
+    <ul>
+        <li>Game board should be a two dimensional array.</li>
+        <li>Create a method that can be called repeatedly to display the board.</li>
+        <li>Invalid input should not crash your program and should not allow the user to proceed.</li>
+    </ul>
+    <h3>Stretch Goals</h3>
+    <ul>
+        <li>Add an option for a computer player who plays randomly.</li>
+        <li>Add an option for a computer player who plays intelligently.</li>
+    </ul>
+</body>
+</html>

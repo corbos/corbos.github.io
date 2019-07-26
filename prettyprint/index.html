@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pretty Print Tests</title>
+    <style>
+        body {
+            font-size: 1.5em;
+        }
+
+        .prettyprint.linenums ol {
+            list-style: none;
+            counter-reset: py-counter;
+            padding-left: 0;
+        }
+
+        .prettyprint.linenums.lang-py li {
+            counter-increment: py-counter;
+        }
+
+        .prettyprint.linenums.lang-py li:before {
+            display: inline-block;
+            width: 50px;
+            text-align: right;
+            content: counter(py-counter) "| ";
+        }
+    </style>
+</head>
+<body>
+    <h1>Python</h1>
+    <pre class="prettyprint linenums lang-py">
+x = 1
+y = 2
+print 'x is equal to y: %s' % (x == y)
+z = 1
+print 'x is equal to z: %s' % (x == z)
+names = ['Donald', 'Jake', 'Phil']
+words = ['Random', 'Words', 'Dogs']
+if names == words:
+    print 'Names list is equal to words'
+else:
+    print "Names list isn't equal to words"
+new_names = ['Donald', 'Jake', 'Phil']
+print 'New names list is equal to names: %s' % (new_names == names)
+</pre>
+    <h1>JavaScript</h1>
+    <pre class="prettyprint lang-js">
+function sumOfRange(arr) {
+    var sum = 0;
+    arr.forEach(function (n) {
+        sum += n;
+    });
+    return sum;
+}
+</pre>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</body>
+</html>

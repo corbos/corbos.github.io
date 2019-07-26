@@ -9,27 +9,48 @@
             font-size: 1.5em;
         }
 
-        .prettyprint.linenums ol {
+        .prettyprint.lang-py {
+            background-color: #f5f5f5;
+        }
+
+        .prettyprint.linenums.jupyter ol {
             list-style: none;
             counter-reset: py-counter;
             padding-left: 0;
         }
 
-        .prettyprint.linenums.lang-py li {
+        .prettyprint.linenums.jupyter li {
             counter-increment: py-counter;
         }
 
-        .prettyprint.linenums.lang-py li:before {
+        .prettyprint.linenums.jupyter li:before {
             display: inline-block;
-            width: 50px;
+            min-width: 50px;
             text-align: right;
             content: counter(py-counter) "| ";
         }
     </style>
 </head>
 <body>
-    <h1>Python</h1>
+    <h1>Default Python</h1>
     <pre class="prettyprint linenums lang-py">
+x = 1
+y = 2
+print 'x is equal to y: %s' % (x == y)
+z = 1
+print 'x is equal to z: %s' % (x == z)
+names = ['Donald', 'Jake', 'Phil']
+words = ['Random', 'Words', 'Dogs']
+if names == words:
+    print 'Names list is equal to words'
+else:
+    print "Names list isn't equal to words"
+new_names = ['Donald', 'Jake', 'Phil']
+print 'New names list is equal to names: %s' % (new_names == names)
+</pre>
+
+    <h1>Python/Jupyter</h1>
+    <pre class="prettyprint linenums jupyter lang-py">
 x = 1
 y = 2
 print 'x is equal to y: %s' % (x == y)

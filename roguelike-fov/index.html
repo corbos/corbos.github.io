@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roguelike - Field of View</title>
+    <style>
+        body {
+            margin: 20px auto;
+            max-width: 800px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+
+        input,
+        select {
+            font-size: 18px;
+            width: 75px;
+        }
+
+        #surface {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Roguelike - Field of View</h1>
+    <p>Small prototype -- Simulates illumination radiating in a fixed radius. Our hero (the blue
+        square) can't see anything in the "fog of war" or shadows. They only see clearly within
+        the illumination radius (yellow squares). Light should be cast and flow as realistically
+        as possible in a 2D world made of little squares.
+    </p>
+    <p>Grey squares are shadow. Black squares are shadowed walls. (Only for reference, in an actual
+        game the hero may not see them.) Brown squares are illuminated wall.
+    </p>
+    <ul>
+        <li>Click an empty cell and drag to add walls.</li>
+        <li>Click a walled cell and drag to remove walls.</li>
+        <li>Arrow keys or WASD to move our hero.</li>
+        <li>Change illumination radius below.</li>
+    </ul>
+    <canvas id="surface" width="795" height="525"></canvas>
+    <div>
+        <label for="txtVisibility">Illumination Radius</label>
+        <input type="number" id="txtVisibility" min="0" max="35" value="7">
+    </div>
+    <h2>References</h2>
+    <ul>
+        <li><a href="http://www.roguebasin.com/index.php?title=Line_of_Sight">
+                http://www.roguebasin.com/index.php?title=Line_of_Sight</a>
+        </li>
+        <li><a href="http://www.roguebasin.com/index.php?title=Field_of_Vision">
+                http://www.roguebasin.com/index.php?title=Field_of_Vision</a>
+        </li>
+        <li><a href="http://journal.stuffwithstuff.com/2015/09/07/what-the-hero-sees/">
+                http://journal.stuffwithstuff.com/2015/09/07/what-the-hero-sees/</a>
+        </li>
+    </ul>
+    <p>
+        My algorithm considers "rings" in an iteratively expanded radius. If a light-blocking object is found
+        in an inner ring, an arc is added to a collection of shadow arcs. In outer rings, anything completely within a
+        shadow arc is not illuminated.
+    </p>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -10,36 +10,37 @@ const COLOR_SHADOWED_WALL = "#000";
 const COLOR_HERO = "#3337E8";
 
 const CELL_SIZE = 15;
+const HALF_CELL_SIZE = CELL_SIZE / 2;
+const ARC_OUTLINE_DISTANCE = 1000.0;
 
 var canvas = document.getElementById("surface");
 var txtVisibility = document.getElementById("txtVisibility");
+var chkDrawBoundary = document.getElementById("chkDrawBoundary");
+
 var ctx = canvas.getContext('2d');
-ctx.strokeStyle = "#000";
 var width = parseInt(canvas.getAttribute("width"), 10);
 var height = parseInt(canvas.getAttribute("height"), 10);
+var drawBoundaries = false;
 
 var gridWidth = width / CELL_SIZE;
 var gridHeight = height / CELL_SIZE;
 var heroRow = Math.floor(gridHeight / 2);
 var heroCol = Math.floor(gridWidth / 2);
-var visibilityRadius = 3;
+var visibilityRadius = 7;
 
-function Cell(type, color) {
-    this.type = type;
-    this.color = color;
-}
+var grid = [];
+var shadows;
 
 // one-time grid set-up
-var grid = [];
 for (let r = 0; r < height; r += CELL_SIZE) {
     let row = [];
     for (let c = 0; c < width; c += CELL_SIZE) {
-        row.push(new Cell(EMPTY, COLOR_SHADOW));
+        row.push({ type: EMPTY, color: COLOR_SHADOW });
     }
     grid.push(row);
 }
 
-grid[heroRow][heroCol] = new Cell(HERO, COLOR_HERO);
+grid[heroRow][heroCol] = { type: HERO, color: COLOR_HERO };
 
 function bearing(x, y) {
     let value = Math.atan2(y, x);
@@ -51,25 +52,37 @@ function bearing(x, y) {
 
 function makeArc(cell) {
 
-    var arc = {
-        min: 1000000,
-        max: -1000000
-    };
-
-    var halves = [0.5, -0.5];
-
     var relativeCol = cell.col - heroCol;
-    var relativeRow = heroRow - cell.row;
+    var relativeRow = cell.row - heroRow;
+    let deltas = [0, 0, 0, 0];
 
-    for (let x = 0; x < halves.length; x++) {
-        for (let y = 0; y < halves.length; y++) {
-            let b = bearing(relativeCol + halves[x], relativeRow + halves[y]);
-            arc.min = Math.min(arc.min, b);
-            arc.max = Math.max(arc.max, b);
+    if (relativeRow > 0) {
+        if (relativeCol > 0) {
+            deltas = [0.5, -0.5, -0.5, 0.5];
+        } else if (relativeCol < 0) {
+            deltas = [0.5, 0.5, -0.5, -0.5];
+        } else {
+            deltas = [0.5, -0.5, -0.5, -0.5];
+        }
+    } else if (relativeRow < 0) {
+        if (relativeCol > 0) {
+            deltas = [-0.5, -0.5, 0.5, 0.5];
+        } else if (relativeCol < 0) {
+            deltas = [-0.5, 0.5, 0.5, -0.5];
+        } else {
+            deltas = [-0.5, 0.5, 0.5, 0.5];
+        }
+    } else {
+        if (relativeCol > 0) {
+            deltas = [-0.5, -0.5, -0.5, 0.5];
+        } else if (relativeCol < 0) {
+            deltas = [0.5, 0.5, 0.5, -0.5];
         }
     }
-
-    return arc;
+    return {
+        min: bearing(relativeCol + deltas[0], relativeRow + deltas[1]),
+        max: bearing(relativeCol + deltas[2], relativeRow + deltas[3])
+    };
 }
 
 function Shadows() {
@@ -79,14 +92,13 @@ function Shadows() {
 Shadows.prototype = {
 
     add: function (cell) {
-        let arc = makeArc(cell);
 
+        let arc = makeArc(cell);
         // special case, straddling 0 on the unit circle,
         // break into two arcs.
-        if (arc.max - arc.min > Math.PI) {
-            let maxMin = Math.atan2(1.0, cell.col - heroCol);
-            this.merge({ min: 0.0, max: maxMin });
-            this.merge({ min: FULL_CIRCLE - maxMin, max: FULL_CIRCLE });
+        if (arc.min > arc.max) {
+            this.merge({ min: 0.0, max: arc.max });
+            this.merge({ min: arc.min, max: FULL_CIRCLE });
         } else {
             this.merge(arc);
         }
@@ -133,23 +145,26 @@ Shadows.prototype = {
         var arcs = this.arcs;
 
         // special case, straddling 0 on the unit circle.
-        if (arcs.length > 1 && arc.max - arc.min > Math.PI) {
-            if (arcs[0].min < 0.01
-                && arcs[arcs.length - 1].max > (Math.PI * 1.99)
-                && arc.min <= arcs[0].max
-                && arc.max >= arcs[arcs.length - 1].min) {
-                return true;
-            }
+        if (arc.min > arc.max) {
+            return arcs.length > 0 && arcs[0].min < 0.0001;
         }
 
         for (let i = 0; i < arcs.length; i++) {
-            if (arc.min > arcs[i].min && arc.max < arcs[i].max) {
+            if (arc.min >= arcs[i].min && arc.max <= arcs[i].max) {
                 return true;
             }
         }
         return false;
     }
 };
+
+function Point(row, col) {
+    this.row = row;
+    this.col = col;
+    let rowDelta = heroRow - row;
+    let colDelta = heroCol - col;
+    this.distance = Math.sqrt(Math.pow(rowDelta, 2) + Math.pow(colDelta, 2));
+}
 
 function generateRing(distance) {
 
@@ -163,7 +178,7 @@ function generateRing(distance) {
     var top = heroRow - distance;
     if (top >= 0) {
         for (let col = minCol; col < maxCol; col++) {
-            points.push({ row: top, col: col });
+            points.push(new Point(top, col));
         }
     }
 
@@ -171,7 +186,7 @@ function generateRing(distance) {
     var bottom = heroRow + distance;
     if (bottom < gridHeight) {
         for (let col = minCol; col < maxCol; col++) {
-            points.push({ row: bottom, col: col });
+            points.push(new Point(bottom, col));
         }
     }
 
@@ -179,7 +194,7 @@ function generateRing(distance) {
     var left = heroCol - distance;
     if (left >= 0) {
         for (let row = minRow; row < maxRow; row++) {
-            points.push({ row: row, col: left });
+            points.push(new Point(row, left));
         }
     }
 
@@ -187,13 +202,9 @@ function generateRing(distance) {
     var right = heroCol + distance;
     if (right < gridWidth) {
         for (let row = minRow; row < maxRow; row++) {
-            points.push({ row: row, col: right });
+            points.push(new Point(row, right));
         }
     }
-
-    points.forEach(pt => {
-        pt.distance = calcDistance(pt.row, pt.col);
-    });
 
     return points;
 }
@@ -223,7 +234,7 @@ function getLightColor(distance) {
 function calculate() {
 
     var points = [];
-    var shadows = new Shadows();
+    shadows = new Shadows();
 
     // queue up candidates (some may be left over each round)
     for (let distance = 1; distance <= visibilityRadius; distance++) {
@@ -253,11 +264,14 @@ function calculate() {
     }
 }
 
-function calcDistance(row, col) {
-    var rowDelta = heroRow - row;
-    var colDelta = heroCol - col;
-    var d = Math.sqrt(Math.pow(rowDelta, 2) + Math.pow(colDelta, 2));
-    return d;
+function drawArcLine(cx, cy, angle) {
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    let x = ARC_OUTLINE_DISTANCE * Math.cos(angle);
+    let y = ARC_OUTLINE_DISTANCE * Math.sin(angle);
+    ctx.lineTo(cx + x, cy + y);
+    ctx.closePath();
+    ctx.stroke();
 }
 
 function draw() {
@@ -265,6 +279,7 @@ function draw() {
     colorize();
     calculate();
 
+    ctx.strokeStyle = "#000";
     for (let row = 0; row < gridHeight; row++) {
         for (let col = 0; col < gridWidth; col++) {
             ctx.fillStyle = grid[row][col].color;
@@ -272,31 +287,46 @@ function draw() {
             ctx.strokeRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
     }
+
+    if (drawBoundaries) {
+
+        let cx = heroCol * CELL_SIZE + HALF_CELL_SIZE;
+        let cy = heroRow * CELL_SIZE + HALF_CELL_SIZE;
+
+        ctx.strokeStyle = "#F00";
+        shadows.arcs.forEach(arc => {
+            drawArcLine(cx, cy, arc.min);
+            drawArcLine(cx, cy, arc.max);
+        });
+    }
 }
 
 // event handling
 var cellType = WALL;
-function handleWalls(e) {
+
+function getCell(e) {
     var x = e.clientX - this.offsetLeft + (window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft);
     var y = e.clientY - this.offsetTop + (window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop);
     var row = Math.floor(y / CELL_SIZE);
     var col = Math.floor(x / CELL_SIZE);
-    if (grid[row][col].type !== HERO) {
-        grid[row][col].type = cellType;
+    return grid[row][col];
+}
+
+function handleWalls(e) {
+    let cell = getCell.call(this, e);
+    if (cell.type !== HERO) {
+        cell.type = cellType;
         draw();
     }
 }
 
 canvas.addEventListener('mousedown', function (e) {
-    var x = e.clientX - this.offsetLeft + (window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft);
-    var y = e.clientY - this.offsetTop + (window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop);
-    var row = Math.floor(y / CELL_SIZE);
-    var col = Math.floor(x / CELL_SIZE);
-    if (grid[row][col].type === EMPTY) {
+    let cell = getCell.call(this, e);
+    if (cell.type === EMPTY) {
         cellType = WALL;
         canvas.addEventListener("mousemove", handleWalls);
         handleWalls.call(this, e);
-    } else if (grid[row][col].type === WALL) {
+    } else if (cell.type === WALL) {
         cellType = EMPTY;
         canvas.addEventListener("mousemove", handleWalls);
         handleWalls.call(this, e);
@@ -372,5 +402,12 @@ txtVisibility.addEventListener("change", function () {
     }
 });
 
+chkDrawBoundary.addEventListener("change", function () {
+    drawBoundaries = chkDrawBoundary.checked;
+    draw();
+});
+
+// initial state
 visibilityRadius = parseInt(txtVisibility.value, 10);
+drawBoundaries = chkDrawBoundary.checked;
 draw();

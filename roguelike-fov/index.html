@@ -29,6 +29,10 @@
         #surface {
             border: 1px solid #000;
         }
+
+        #controls {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -48,10 +52,19 @@
         <li>Change illumination radius below.</li>
     </ul>
     <canvas id="surface" width="795" height="525"></canvas>
-    <div>
-        <label for="txtVisibility">Illumination Radius</label>
-        <input type="number" id="txtVisibility" min="0" max="35" value="7">
+    <div id="controls">
+        <div>
+            <label for="txtVisibility">Illumination Radius</label>
+            <input type="number" id="txtVisibility" min="0" max="35" value="7">
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" id="chkDrawBoundary">
+                <span>Outline Shadow Boundaries</span>
+            </label>
+        </div>
     </div>
+
     <h2>References</h2>
     <ul>
         <li><a href="http://www.roguebasin.com/index.php?title=Line_of_Sight">

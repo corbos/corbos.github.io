@@ -1,0 +1,339 @@
+.ic-app-main-content {
+    font-size: 16px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#lesson-content {
+    max-width: 100ch;
+    background-color: #FDFDFD;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 10px 10px 5px #888888;
+    border: 1px solid #888888;
+    margin-bottom: 20px;
+}
+
+@media print {
+    @page {
+        margin: 25mm;
+        font-size: 12px;
+    }
+
+    #lesson-content {
+        max-width: 100%;
+        background-color: #FFF;
+        padding: 0px 0px 0px 0px;
+        box-shadow: 0px 0px 0px #888888;
+        border: 0px solid #888888;
+    }
+
+    .videoWrapper {
+        display: none;
+    }
+
+    .printnote {
+        display: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #B22222;
+    padding-top: 12px;
+    padding-bottom: 0px;
+}
+
+h2 {
+    border-bottom: 1px solid #DCDCDC;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+tr:nth-child(even) {
+    background: #F5F5F5
+}
+
+tr:nth-child(odd) {
+    background: #FFF
+}
+
+th {
+    color: white;
+    background-color: #871a1a;
+    text-align: left;
+}
+
+td,
+th {
+    font-size: 14px;
+    padding: 5px;
+}
+
+caption {
+    background-color: #fafafb;
+    caption-side: bottom;
+    text-align: left;
+    color: #222;
+    font-size: 1em;
+    line-height: 1.2em;
+}
+
+img.lesson {
+    max-width: 100%;
+    width: auto;
+    max-height: 400px;
+}
+
+img.hor {
+    width: 100%;
+}
+
+img.vert {
+    max-height: 660px;
+}
+
+img.decor {
+    width: 50%;
+}
+
+img {
+    margin-bottom: 10px;
+}
+
+.figcaption {
+    font-size: .9em;
+}
+
+.androidfile,
+.snippet-filename {
+    font-weight: bold;
+    font-size: small;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.fineprint {
+    font-size: .9em;
+    padding-top: 5px;
+    border-top: 1px solid #DCDCDC;
+}
+
+blockquote {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: #DCDCDC;
+}
+
+blockquote p {
+    padding-bottom: 14px;
+}
+
+blockquote h3,
+blockquote h4 {
+    color: white;
+    background-color: #B22222;
+    padding: 0px 10px 0px 10px;
+}
+
+hr {
+    margin: 0px;
+}
+
+.sg-code {
+    font-family: "Courier New", Courier, monospace;
+}
+
+.userInput {
+    color: #000;
+    font-weight: 900;
+}
+
+.ui-dialog {
+    min-width: 100ch;
+}
+
+iframe {
+    border: 1px solid black;
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+img.printshow {
+    display: none;
+}
+
+.quoteblock {
+    padding: 10px 20px 10px 20px;
+    background-color: #F8F8F8;
+    border: 1px solid #A8A8A8;
+}
+
+p.quote {
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 18px;
+}
+
+p.qsource {
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 16px;
+    text-align: right;
+}
+
+/* prettyprint */
+.pln {
+    color: #000
+}
+
+@media screen {
+    .str {
+        color: #080
+    }
+
+    .kwd {
+        color: #008
+    }
+
+    .com {
+        color: #800
+    }
+
+    .typ {
+        color: #606
+    }
+
+    .lit {
+        color: #066
+    }
+
+    .clo,
+    .opn,
+    .pun {
+        color: #660
+    }
+
+    .tag {
+        color: #008
+    }
+
+    .atn {
+        color: #606
+    }
+
+    .atv {
+        color: #080
+    }
+
+    .dec,
+    .var {
+        color: #606
+    }
+
+    .fun {
+        color: red
+    }
+}
+
+@media print,
+projection {
+
+    .kwd,
+    .tag,
+    .typ {
+        font-weight: 700
+    }
+
+    .str {
+        color: #060
+    }
+
+    .kwd {
+        color: #006
+    }
+
+    .com {
+        color: #600;
+        font-style: italic
+    }
+
+    .typ {
+        color: #404
+    }
+
+    .lit {
+        color: #044
+    }
+
+    .clo,
+    .opn,
+    .pun {
+        color: #440
+    }
+
+    .tag {
+        color: #006
+    }
+
+    .atn {
+        color: #404
+    }
+
+    .atv {
+        color: #060
+    }
+}
+
+/* gotta make this a _bit_ more specific than the standard prettyprint
+styles since they're inserted last via JavaScript.*/
+.ic-app-main-content pre.prettyprint {
+    background-color: white;
+    padding: 9px;
+    font-size: 1rem;
+}
+
+/* Python Line Numbers */
+.prettyprint.linenums.lang-py ol {
+    list-style: none;
+    counter-reset: py;
+    padding-left: 0;
+}
+
+.prettyprint.linenums.lang-py li {
+    counter-increment: py;
+}
+
+.prettyprint.linenums.lang-py li:before {
+    display: inline-block;
+    min-width: 50px;
+    text-align: right;
+    background-color: #f5f5f5;
+    content: counter(py) "| ";
+}

@@ -4,7 +4,7 @@ const HERO = 1;
 const WALL = 2;
 
 const COLOR_SHADOW = "#555";
-// 654321 brown
+// 654321 == brown
 const COLOR_WALL = "#654321";
 const COLOR_SHADOWED_WALL = "#000";
 const COLOR_HERO = "#3337E8";

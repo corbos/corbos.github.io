@@ -4,35 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pretty Print Tests</title>
-    <style>
-        body {
-            font-size: 1.5em;
-        }
-
-        .prettyprint.lang-py {
-            background-color: #f5f5f5;
-        }
-
-        .prettyprint.linenums.jupyter ol {
-            list-style: none;
-            counter-reset: py;
-            padding-left: 0;
-        }
-
-        .prettyprint.linenums.jupyter li {
-            counter-increment: py;
-        }
-
-        .prettyprint.linenums.jupyter li:before {
-            display: inline-block;
-            min-width: 50px;
-            text-align: right;
-            background-color: #f5f5f5;
-            content: counter(py) "| ";
-        }
-    </style>
+    <link href="common.css" rel="stylesheet">
+    <link href="sg-style.css" rel="stylesheet">
 </head>
 <body>
+    <div id="lesson-content" class="ic-app-main-content">
+        <h2>Requirements</h2>
+        <p>Your task in this lab is to change the implementation of the first version of DVD Library to take advantage
+            of the new Lambda, Stream, and Aggregate features of Java 8.</p>
+        <h3>Features</h3>
+        <p>You will add the following features to your program:</p>
+        <ul>
+            <li>Find all movies released in the last N years</li>
+            <li>Find all the movies with a given MPAA rating</li>
+            <li>Find all the movies by a given director</li>
+            <li>When searching by director, the movies should be sorted into separate data structures by MPAA rating.
+            </li>
+            <li>Find all the movies released by a particular studio</li>
+            <li>Find the average age of the movies in the collection</li>
+            <li>Find the newest movie in your collection</li>
+            <li>Find the oldest movie in your collection</li>
+            <li>Find the average number of notes associated with movies in your collection</li>
+        </ul>
+        <h3>Your implementation must include:</h3>
+        <ul>
+            <li>An Interface for your DAO that contains all the methods specified here plus all the methods in Version 1
+                of your DAO.</li>
+            <li>An implementation class that implements the DVDLibrary interface using Lambdas, Streams, and Aggregates.
+            </li>
+            <li>All necessary changes to the Controller, View, and App classes</li>
+        </ul>
+        <div class="fineprint">This is a practice exercise and is not part of your grade. If you need help or feedback
+            on this exercise, please visit open office hours.</div>
+
+        <blockquote>
+            <h4>Header</h4>
+            Lot's and lot's of content.
+            <p>
+                Paragraph
+            </p>
+        </blockquote>
+        <table>
+            <caption>Fruits and things</caption>
+            <thead>
+                <tr>
+                    <th>Fruit</th>
+                    <th>Family</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apple</td>
+                    <td>
+                        <ul>
+                            <li>One</li>
+                            <li>Two</li>
+                            <li>Three</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Orange</td>
+                    <td>Citrus</td>
+                </tr>
+                <tr>
+                    <td>Banana</td>
+                    <td>Tropical</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <h1>Default Python</h1>
     <pre class="prettyprint linenums lang-py">
 x = 1
@@ -51,7 +92,7 @@ print 'New names list is equal to names: %s' % (new_names == names)
 </pre>
 
     <h1>Python/Jupyter</h1>
-    <pre class="prettyprint linenums jupyter lang-py">
+    <pre class="prettyprint linenums lang-py">
 x = 1
 y = 2
 print 'x is equal to y: %s' % (x == y)
@@ -68,6 +109,17 @@ print 'New names list is equal to names: %s' % (new_names == names)
 </pre>
     <h1>JavaScript</h1>
     <pre class="prettyprint lang-js">
+function sumOfRange(arr) {
+    var sum = 0;
+    arr.forEach(function (n) {
+        sum += n;
+    });
+    return sum;
+}
+</pre>
+
+    <h1>JavaScript LineNums</h1>
+    <pre class="prettyprint linenums lang-js">
 function sumOfRange(arr) {
     var sum = 0;
     arr.forEach(function (n) {

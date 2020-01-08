@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Assignment: Field Agent</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         img {
             width: 95%;
@@ -15,7 +15,7 @@
         h2 {
             border-bottom: 1px solid #B5362D;
         }
-      
+
         .container {
             padding-top: 15px;
             padding-bottom: 50px;
@@ -28,14 +28,17 @@
         .margin-bottom {
             margin-bottom: 25px;
         }
+
         .wireframe {
             margin: 25px 0px;
             padding: 25px;
             border: 1px solid rgb(90, 89, 89);
         }
-        .validation-summary{
+
+        .validation-summary {
             color: #dc3545;
         }
+
         #notes {
             height: 200px;
         }
@@ -66,12 +69,7 @@
             <li>If a field agent is deleted, all of their assignments must be deleted as well.</li>
             <li>Assignment dates must never overlap.
                 This holds even if you change agents on an assignment.</li>
-            <li>Agents can have zero-to-many aliases. This can be tricky to handle in a post-back-based web
-                application. You'll need to get creative. It may not be possible to attach aliases to a field
-                agent until <em>after</em> they've been created.
-            </li>
-            <li>Drop down values: Agencies, Clearances, Countries; should be data, but not necessarily data in a
-                database or file.
+            <li>Drop down values: Agencies, Clearances, Countries; should be data.
                 Do not hard-code these values into a view.
             </li>
         </ul>
@@ -91,7 +89,6 @@
             <li>Activation Date - Required</li>
             <li>Security Clearance - Required, See Below</li>
             <li>Is Active</li>
-            <li>Aliases - Zero-to-many names</li>
         </ul>
 
         <h4>Assignment: Properties and Rules</h4>
@@ -282,15 +279,6 @@
                     <input class="form-control" type="url">
                 </div>
 
-                <fieldset>
-                    <legend>Aliases</legend>
-                    <div class="form-group">
-                        <div class="alert alert-warning">
-                            TODO: Determine how to handle zero-to-many aliases!
-                        </div>
-                    </div>
-                </fieldset>
-
                 <button class="btn btn-primary">Save</button>
                 <button class="btn btn-secondary">Cancel</button>
             </form>
@@ -389,21 +377,14 @@
                 </div>
                 <div class="form-group">
                     <label>Picture Url</label>
-                    <input class="form-control" type="url" value="http://corbos.github.com/field-agent/psychologist.jpg">
+                    <input class="form-control" type="url"
+                        value="http://corbos.github.com/field-agent/psychologist.jpg">
                 </div>
 
-                <fieldset>
-                    <legend>Aliases</legend>
-                    <div class="form-group">
-                        <div class="alert alert-warning">
-                            TODO: Determine how to handle zero-to-many aliases!
-                        </div>
-                    </div>
-                </fieldset>
                 <button class="btn btn-primary">Save</button>
                 <button class="btn btn-secondary">Cancel</button>
             </form>
-
+            <hr />
             <div class="row margin-bottom">
                 <div class="col">
                     <h3>Assignments</h3>

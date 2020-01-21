@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment: Field Agent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        img {
+            width: 95%;
+        }
+
+        h2 {
+            border-bottom: 1px solid #B5362D;
+        }
+
+        .container {
+            padding-top: 15px;
+            padding-bottom: 50px;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .margin-bottom {
+            margin-bottom: 25px;
+        }
+
+        .wireframe {
+            margin: 25px 0px;
+            padding: 25px;
+            border: 1px solid rgb(90, 89, 89);
+        }
+
+        .validation-summary {
+            color: #dc3545;
+        }
+
+        #notes {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Field Agent</h1>
+        <p>Create a web application to track field agents from government, private, and secret agencies.
+            In addition, track their assignments. The application allows users to add, edit, and delete
+            both field agents and assignments.
+        </p>
+
+        <h2>Technical Requirements</h2>
+        <ul>
+            <li>Spring MVC/Spring Boot</li>
+            <li>Thymeleaf</li>
+            <li>Spring MVC built-in validation using validation annotations and BindingResult</li>
+            <li>Thymeleaf validation extensions</li>
+            <li>Bootstrap <strong>v4.*</strong></li>
+            <li>Absolutely <strong>no JavaScript allowed</strong>.</li>
+            <li>A database schema, initial data, and a set of Jpa repositories are provided (more below).</li>
+            <li>You must complete a full set of service components.</li>
+        </ul>
+
+        <h3>Additional Considerations</h3>
+        <ul>
+            <li>If a field agent is deleted, all of their assignments must be deleted as well.</li>
+            <li>Assignment dates must never overlap.
+                This holds even if you change agents on an assignment.</li>
+            <li>Do not inject repositories into controllers. Only service components are allowed in controllers.</li>
+        </ul>
+
+        <h2>What is provided</h2>
+        <ul>
+            <li>The <em>FieldAgent</em> project in your class repository... Pull down the latest. Move it
+                to your personal repository. Then work on it.</li>
+            <li>A database schema with intial data.</li>
+            <li>5 database entities (Java classes, database models)</li>
+            <li>5 Jpa repositories</li>
+        </ul>
+        <p>You should not need to edit the existing entities and repositories. If you feel it is necessary, ask
+            first. You will need to create a set of robust service components that manage domain rules. Validate
+            incoming data and requests.
+        </p>
+
+        <h2>Data</h2>
+        <h3>Main Entities</h3>
+        <p>Can add, update, and delete.</p>
+        <h4>Field Agent</h4>
+        <ul>
+            <li>First Name - Required</li>
+            <li>Middle Name or Initial</li>
+            <li>Last Name - Required</li>
+            <li>Picture Url</li>
+            <li>Birth Date - Between 1/1/1900 and ten years from the current day.</li>
+            <li>Height in inches - Required, between 36 and 96</li>
+            <li>Identifier - User-entered, Required, must be globally unique</li>
+            <li>Agency - Required, See Below</li>
+            <li>Activation Date - Required</li>
+            <li>Security Clearance - Required, See Below</li>
+            <li>Is Active</li>
+        </ul>
+
+        <h4>Assignment</h4>
+        <ul>
+            <li>Agent Identifier - Required</li>
+            <li>Country Code - Required, from <a href="https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes">ISO
+                    3166-1</a></li>
+            <li>Start Date - Required, must be before Projected and Actual End Date</li>
+            <li>Projected End Date - Required, must be after Start Date</li>
+            <li>Actual End Date - Complete on mission completion, must be after Start Date</li>
+            <li>Notes</li>
+        </ul>
+
+        <div class="alert alert-warning">
+            Extra validation: assignment dates may <strong>not</strong> overlap for a field agent.
+            They can only be in one place at a time.
+        </div>
+
+        <h3>Supporting Data</h3>
+
+        <ul>
+            <li>9 Agencies</li>
+            <li>4 Security Clearances</li>
+            <li>249 Countries</li>
+        </ul>
+
+        <p>Supporting data is read-only unless you want to extend your application as a stretch goal.
+            Feel free to add, update, or remove data to give your application the required "flavor".
+        </p>
+
+        <h2>Sample Wireframes</h2>
+        <ul>
+            <li>Intentionally Incomplete</li>
+            <li>Most notes in parenthesis are <em>not</em> part of the UI.</li>
+        </ul>
+
+        <div class="wireframe">
+            <div class="row margin-bottom">
+                <div class="col">
+                    <h3>Home</h3>
+                </div>
+                <div class="col right">
+                    <button class="btn btn-primary">Add An Agent</button>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Field Agent</th>
+                        <th>Agency</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">Fulvia Scandwright</a>
+                            <br />(Click to edit agent)
+                        </td>
+                        <td>CIA</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">Add an Assignment</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Hugh Skillicorn</a></td>
+                        <td>ODIN</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">Add an Assignment</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Odey De la Yglesia</a></td>
+                        <td>NSA</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">Add an Assignment</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Chrotoem Whyberd</a></td>
+                        <td>CIA</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">Add an Assignment</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="wireframe">
+
+            <h3 class="margin-bottom">Add a Field Agent</h3>
+            <div class="validation-summary">
+                <ul>
+                    <li>First Name is required.</li>
+                    <li>Last Name is required.</li>
+                    <li>Birth Date is too recent.</li>
+                </ul>
+            </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>First Name</label>
+                        <input class="form-control is-invalid">
+                        <div class="invalid-feedback">
+                            First Name is required.
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label>Middle Name</label>
+                        <input class="form-control">
+                    </div>
+                    <div class="form-group col">
+                        <label>Last Name</label>
+                        <input class="form-control is-invalid">
+                        <div class="invalid-feedback">
+                            Last Name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Birth Date</label>
+                        <input class="form-control is-invalid" type="date" value="2017-06-22">
+                        <div class="invalid-feedback">
+                            Birth Date is too recent.
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label>Height</label>
+                        <input class="form-control" type="number">
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Agency</legend>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Identifier</label>
+                            <input class="form-control">
+                        </div>
+                        <div class="form-group col">
+                            <label>Agency</label>
+                            <select class="form-control">
+                                <option>- Select -</option>
+                                <option>CIA</option>
+                                <option>NSA</option>
+                                <option>Southern Reach</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Security Clearance</label>
+                            <select class="form-control">
+                                <option>- Select -</option>
+                                <option>Confidential</option>
+                                <option>Secret</option>
+                                <option>Top Secret</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col ">
+                            <label>Activation Date</label>
+                            <input class="form-control" type="date">
+                        </div>
+
+                        <div class="form-group col align-self-end">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" checked>
+                                <label class="form-check-label">Is Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label>Picture Url</label>
+                    <input class="form-control" type="url">
+                </div>
+
+                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-secondary">Cancel</button>
+            </form>
+
+        </div>
+
+        <div class="wireframe">
+            <h3 class="margin-bottom">Delete Fulvia Scandwright?</h3>
+            <div>
+                Assignments: 9
+            </div>
+            <div>
+                Deletions are permanent.
+            </div>
+            <div class="margin-bottom">
+                Both Fuliva and her 9 assignments will be deleted forever.
+            </div>
+            <p>
+                Continue?
+            </p>
+            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-secondary">Cancel</button>
+        </div>
+
+        <div class="wireframe">
+
+            <h3 class="margin-bottom">Field Agent</h3>
+            <form class="margin-bottom">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>First Name</label>
+                        <input class="form-control" value="Fulvia ">
+                    </div>
+                    <div class="form-group col">
+                        <label>Middle Name</label>
+                        <input class="form-control" value="M">
+                    </div>
+                    <div class="form-group col">
+                        <label>Last Name</label>
+                        <input class="form-control" value="Scandwright">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Birth Date</label>
+                        <input class="form-control" type="date" value="1982-11-23">
+                    </div>
+                    <div class="form-group col">
+                        <label>Height</label>
+                        <input class="form-control" type="number" value="68">
+                    </div>
+                </div>
+                <fieldset>
+                    <legend>Agency</legend>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Identifier</label>
+                            <input class="form-control" value="SC-123-REX9">
+                        </div>
+                        <div class="form-group col">
+                            <label>Agency</label>
+                            <select class="form-control">
+                                <option>- Select -</option>
+                                <option>CIA</option>
+                                <option>NSA</option>
+                                <option selected>Southern Reach</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Security Clearance</label>
+                            <select class="form-control">
+                                <option>- Select -</option>
+                                <option>Confidential</option>
+                                <option selected>Secret</option>
+                                <option>Top Secret</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group col">
+                            <label>Activation Date</label>
+                            <input class="form-control" type="date" value="2002-04-12">
+                        </div>
+
+                        <div class="form-group col align-self-end">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" checked>
+                                <label class="form-check-label">Is Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <img src="psychologist.jpg">
+                </div>
+                <div class="form-group">
+                    <label>Picture Url</label>
+                    <input class="form-control" type="url"
+                        value="http://corbos.github.com/field-agent/psychologist.jpg">
+                </div>
+
+                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-secondary">Cancel</button>
+            </form>
+            <hr />
+            <div class="row margin-bottom">
+                <div class="col">
+                    <h3>Assignments</h3>
+                </div>
+                <div class="col right">
+                    <button class="btn btn-primary">Add An Assignment</button>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <caption>
+                    (Sort Assignments by Date)
+                </caption>
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Belarus</td>
+                        <td>2/6/2005</td>
+                        <td>1/28/2006</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">View/Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Belgium</td>
+                        <td>12/17/2006</td>
+                        <td>8/30/2007</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">View/Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Barbados</td>
+                        <td>2/26/2008</td>
+                        <td>11/2/2008</td>
+                        <td>
+                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-secondary">View/Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="wireframe">
+            <h3 class="margin-bottom">Assignment</h3>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Field Agent</label>
+                        <select class="form-control">
+                            <option selected>Fulvia Scandwright </option>
+                            <option>Hugh Skillicorn</option>
+                            <option>Odey De la Yglesia</option>
+                            <option>Chrotoem Whyberd</option>
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label>Country</label>
+                        <select class="form-control">
+                            <option>Ecuador </option>
+                            <option>Egypt</option>
+                            <option>El Salvador</option>
+                            <option>Equatorial Guinea</option>
+                            <option selected>Eritrea</option>
+                            <option>Estonia</option>
+                            <option>Eswatini</option>
+                            <option>Ethiopia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Start</label>
+                        <input class="form-control" type="date" value="2002-04-12">
+                    </div>
+                    <div class="form-group col">
+                        <label>Projected End</label>
+                        <input class="form-control" type="date" value="2002-08-21">
+                    </div>
+                    <div class="form-group col">
+                        <label>Actual End</label>
+                        <input class="form-control" type="date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea class="form-control" id="notes">Boat arrival.
+Meet local contact and exchange objectives.
+Blend in.</textarea>
+                </div>
+                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

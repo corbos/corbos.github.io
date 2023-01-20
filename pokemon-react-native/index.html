@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon - React Native</title>
+    <style>
+        body {
+            margin: 20px auto;
+            margin-bottom: 150px;
+            max-width: 900px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #C7CDD1;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        dt {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Pokémon - React Native</h1>
+
+    <h2>Goal</h2>
+    <p>
+        Build a React Native app that uses a Pokémon API as its data source and tracks favorite Pokémon with React
+        Context or Redux. The app should use React Navigation.
+    </p>
+
+    <h2>Screens</h2>
+    <figure>
+        <img src="./screens.png" alt="React Native app screens: home, detail, and favorite.">
+        <figcaption>Home Screen, Detail Screen, and Favorite Screen</figcaption>
+    </figure>
+
+    <dl>
+        <dt>Home Screen</dt>
+        <dd>
+            <p>
+                Should list Pokémon with the ability to page through them in sets of 20. (Start with an initial set of
+                20 with no paging.) Use the Poké API to fetch Pokémon
+                (<a href="https://pokeapi.co/docs/v2#pokemon">https://pokeapi.co/docs/v2#pokemon</a>.)
+                See also examples from <a href="https://pokeapi.co/">https://pokeapi.co/</a> to limit results to
+                specific pages with <code>limit</code> and <code>offset</code>.
+            </p>
+            <p>
+                The Home Screen should navigate to the Detail Screen.
+            </p>
+            <p>
+                The Home Screen can also navigate to the Favorite Screen.
+            </p>
+        </dd>
+        <dt>Detail Screen</dt>
+        <dd>
+            <p>
+                Should display a single Pokémon with details including type and images.
+                (Go as crazy with details as you like: movement, abilities, forms, evolutions...)
+                Use <a href="https://pokeapi.co/docs/v2#pokemon">https://pokeapi.co/docs/v2#pokemon</a> with an id (Dex
+                number) to fetch the full details of a Pokémon.
+            </p>
+            <p>
+                The Detail Screen should allow a user to mark that specific Pokémon as a "favorite" or remove that
+                specific Pokémon as a favorite. (Toggle favorite.)
+            </p>
+        </dd>
+        <dt>Favorite Screen</dt>
+        <dd>
+            <p>
+                Should display favorite Pokémon in a quick summary format along with an image. Favorites are tracked
+                with React Context or Redux.
+            </p>
+            <p>
+                The Favorite Screen should navigate to the Detail Screen.
+            </p>
+            <p>
+                Optionally, the Favorite Screen should have a way to remove a favorite.
+            </p>
+        </dd>
+    </dl>
+
+    <h2>Libraries</h2>
+    <ul>
+        <li><a href="https://reactnavigation.org/">React Navigation</a></li>
+        <li><a href="https://reactjs.org/docs/context.html">React Context</a></li>
+        <li><a href="https://redux.js.org/">Redux</a></li>
+        <li><a href="https://redux-toolkit.js.org/">Redux Toolkit</a></li>
+    </ul>
+
+    <h2>Steps</h2>
+    <ol>
+        <li>Create an expo app: <code>npx create-expo-app pokemon</code>.</li>
+        <li>Add React Navigation:
+            <a
+                href="https://reactnavigation.org/docs/getting-started">https://reactnavigation.org/docs/getting-started</a>
+        </li>
+        <li>Start with the Home Screen. Don't worry about paging for now.</li>
+        <li>Keep it simple. Don't go crazy with styles.</li>
+        <li>Add the Detail Screen and navigate from the Home Screen, passing the Dex number as a parameter. Keep the
+            Detail Screen relatively simple.</li>
+        <li>Add paging to the Home Screen.</li>
+        <li>Implement the favorite toggle with either React Context or Redux (Toolkit).</li>
+        <li>Create a Favorite Screen.</li>
+        <li>Navigate from the Home Screen to the Favorite Screen.</li>
+        <li>Add more details: enrich the Details Screen, remove a favorite from the Favorite Screen, etc.</li>
+        <li>Add more styling.</li>
+    </ol>
+
+    <h2>Stretch Goals</h2>
+    <ul>
+        <li>Add additional screens that include abilities, moves, locations, berries, etc,
+            based on the <a href="https://pokeapi.co/docs/v2">PokéAPI</a>.</li>
+        <li>Persist favorites permanently with a solution like Sqlite or some other local data store.</li>
+        <li>Persist favorites permanently using an API!</li>
+    </ul>
+</body>
+
+</html>

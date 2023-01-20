@@ -55,10 +55,10 @@
         <dt>Home Screen</dt>
         <dd>
             <p>
-                Should list Pokémon with the ability to page through them in sets of 20. (Start with an initial set of
+                Lists Pokémon with the ability to page through them in sets of 20. (Start with an initial set of
                 20 with no paging.) Use the PokéAPI to fetch Pokémon
                 (<a href="https://pokeapi.co/docs/v2#pokemon">https://pokeapi.co/docs/v2#pokemon</a>.)
-                See also examples from <a href="https://pokeapi.co/">https://pokeapi.co/</a> to limit results to
+                See examples from <a href="https://pokeapi.co/">https://pokeapi.co/</a> to limit results to
                 specific pages with <code>limit</code> and <code>offset</code>.
             </p>
             <p>
@@ -71,20 +71,20 @@
         <dt>Detail Screen</dt>
         <dd>
             <p>
-                Should display a single Pokémon with details including type and images.
+                Displays a single Pokémon with details including type and images.
                 (Go as crazy with details as you like: movement, abilities, forms, evolutions...)
                 Use <a href="https://pokeapi.co/docs/v2#pokemon">https://pokeapi.co/docs/v2#pokemon</a> with an id (Dex
                 number) to fetch the full details of a Pokémon.
             </p>
             <p>
-                The Detail Screen should allow a user to mark that specific Pokémon as a "favorite" or remove that
-                specific Pokémon as a favorite. (Toggle favorite.)
+                The Detail Screen should allow a user to mark the Pokémon as a "favorite"
+                or remove the Pokémon as a favorite. (Toggle favorite.)
             </p>
         </dd>
         <dt>Favorite Screen</dt>
         <dd>
             <p>
-                Should display favorite Pokémon in a quick summary format along with an image. Favorites are tracked
+                Displays favorite Pokémon in a quick summary format along with an image. Favorites are tracked
                 with React Context or Redux.
             </p>
             <p>
@@ -114,7 +114,7 @@
         </li>
         <li>Start with the Home Screen. Don't worry about paging for now.</li>
         <li>Keep it simple. Don't go crazy with styles.</li>
-        <li>Add the Detail Screen and navigate from the Home Screen, passing the Dex number as a parameter. Keep the
+        <li>Add the Detail Screen and navigate from the Home Screen, passing the Dex number as an argument. Keep the
             Detail Screen relatively simple.</li>
         <li>Add paging to the Home Screen.</li>
         <li>Implement the favorite toggle with either React Context or Redux (Toolkit).</li>

@@ -1,0 +1,192 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: auto;
+    padding-bottom: 5em;
+}
+
+@media (max-width: 850px) {
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin: 1rem 1.5rem;
+        padding-bottom: 5em;
+    }
+}
+
+blockquote {
+    margin: 1.25rem;
+    border-top: 1px solid #E36F1E;
+    border-bottom: 1px solid #E36F1E;
+    padding: 1rem 2rem 1rem 2rem;
+    background-color: #E5E6E6;
+}
+
+blockquote p {
+    margin-top: 1rem;
+}
+
+h1,
+h2,
+h4,
+h5,
+h6 {
+    color: #2F74A6;
+}
+
+h2 {
+    margin: 3rem 0 1.5rem 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #8E999B;
+}
+
+h3 {
+    margin: 3rem 0 1.5rem 0;
+    color: #2D3C3E
+}
+
+li {
+    padding: 0.5rem;
+}
+
+figure {
+    margin: 1.5rem;
+}
+
+figcaption {
+    margin: 1.25rem;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+img {
+    max-width: 100%;
+}
+
+video {
+    max-width: 100%;
+    margin: 1.5rem;
+}
+
+pre {
+    background-color: #f5f2f0;
+    padding: 1em;
+    font-size: 0.9rem;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+}
+
+:not(pre)>code {
+    padding: 2px 5px 2px 5px;
+    background-color: #f5f2f0;
+    color: black;
+}
+
+/* console */
+
+section.console>header {
+    font-size: 1.4rem;
+    margin-bottom: 1.1rem;
+}
+
+pre.console {
+    background-color: #3b3b3b;
+    color: #E5E6E6;
+}
+
+.fas {
+    color: #E36F1E;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 0 5px 10px 0;
+}
+
+i.callout {
+    display: block;
+}
+
+/* replace Bootstrap tables stuff */
+
+table {
+    border-collapse: collapse;
+}
+
+caption {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    color: #6c757d;
+    text-align: left;
+    caption-side: bottom;
+    font-size: 1rem;
+}
+
+th {
+    text-align: inherit;
+    white-space: nowrap;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+
+/* fit more in tables */
+.table-responsive th {
+    font-size: 0.9em;
+}
+
+.table-responsive td {
+    white-space: nowrap;
+    font-size: 0.8em;
+}
+
+/* teachable specific */
+li>p {
+    margin-bottom: 0%;
+}
+
+.lecture-attachment p,
+.lecture-attachment li,
+.lecture-attachment blockquote {
+    font-size: 20px !important;
+}
+
+@media screen and (min-width: 768px) {
+    section.lecture-page-layout div.course-mainbar.lecture-content {
+        width: calc(100vw - 350px);
+    }
+}

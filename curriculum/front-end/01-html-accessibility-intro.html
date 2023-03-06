@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lesson: HTML and Web Accessibility</title>
+    <meta name="markdown-src" content="/M08-front-end-dev/01-html-accessibility-intro.md">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="base.css">
+    <base target="_blank">
+</head>
+<body>
+    <h1 id="lesson-html-and-web-accessibility">Lesson: HTML and Web Accessibility</h1>
+<h2 id="introduction">Introduction</h2>
+<p><strong>Hypertext Markup Language</strong> (<strong>HTML</strong>) is the language used by web browsers to display content, include external resources, and embed metadata. HTML is code. The browser interprets this code to present media, format text, and position content. HTML is a structured language. It has hierarchy. For example, a small image can be included inside a link, which can be included inside a navigation dropdown, which can be included inside a navigation bar.</p>
+<p>HTML represents <strong>elements</strong>. Elements may be nested. Elements are structured with <strong>tags</strong>. A tag is a bit of code with a name. Elements that support nesting have an opening tag and a closing tag. Elements that don't support nesting have a single opening tag. Tags may include <strong>attributes</strong>.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-editable="true" data-slug-hash="yLEPKxq" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/yLEPKxq">
+  HTML Intro</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>But before we dive into HTML, we cover <strong>web accessibility</strong>. Web accessibility is the goal and practice of making the web usable for every person in the world. It's an important and lofty goal. Web accessibility strategies vary from reducing bandwidth requirements to making web content easy to navigate with our eyes, ears, and touch.</p>
+<p>A bare minimum web accessibility strategy uses <strong>semantic HTML</strong> and <strong>WAI-ARIA</strong> (<strong>Web Accessibility Initiative - Accessible Rich Internet Applications</strong>) attributes. Semantic HTML is a subset of elements with meaningful names. Names like "address", "article", "footer", and "figure" are meaningful. Names like "div" and "span" are not. Semantic HTML allows <a href="https://en.wikipedia.org/wiki/Screen_reader">screen readers</a> to communicate the context of the content they're announcing. WAI-ARIA attributes give even more context to HTML elements.</p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>When you've finished this lesson and its exercises, you should be able to:</p>
+<ul>
+<li>Create an HTML document.</li>
+<li>Use HTML tags and attributes to render elements.</li>
+<li>Explain the difference between block and inline elements.</li>
+<li>Use block and inline elements.</li>
+<li>Differentiate between semantic and non-semantic HTML.</li>
+<li>List three HTML best practices.</li>
+<li>Make good HTML web accessibility choices.</li>
+</ul>
+<h2 id="web-accessibility">Web Accessibility</h2>
+<p>Web accessibility is the practice of making the web usable for all people. In the Convention on the Rights of Persons with Disabilities (CRPD), the United Nations <a href="https://www.un.org/development/desa/disabilities/convention-on-the-rights-of-persons-with-disabilities/article-9-accessibility.html">ratified web accessibility as a fundamental human right</a>. Many countries have web accessibility laws, especially related to content used for education, health care, and government. Since the web is increasingly used for essential services, everyone has the right to access those services.</p>
+<p>Web accessibility creates ease-of-use for people with disabilities that include:</p>
+<ul>
+<li>vision</li>
+<li>hearing</li>
+<li>cognition</li>
+<li>physical</li>
+<li>neurological</li>
+<li>speech</li>
+</ul>
+<p>But web accessibility is important for everyone. </p>
+<p>Remember back to a time when you had a spotty internet connection and a resource-intensive web site wouldn't load. Web accessibility standards would help with that. An accessible website pushes web trackers to the background and limits the data downloaded at one time. Now think of all the people in the world who don't have broadband internet or no internet at all. This is especially prevalent in rural areas.</p>
+<p>What about a time when you injured your finger, wrist, elbow, or shoulder? That injury makes it difficult to use a mouse or trackpad. Web accessibility standards would help with that. An accessible website provides alternative navigation strategies. Everyone will have physical limitations during their lifetime.</p>
+<p>What if you forgot your headphones at work and need to watch a training video? Web accessibility standards would help with that. An accessible website offers video captions so we don't miss the audio or interrupt our coworkers.</p>
+<p>Web accessibility benefits everyone. It makes the web easier to navigate, easier to understand, and easier to use on a variety of devices and in different environments.</p>
+<blockquote class=""><i class="callout fas fa-exclamation-circle"></i> 
+  <p>
+    <b>26%</b> of <a href="https://www.cdc.gov/ncbddd/disabilityandhealth/infographic-disability-impacts-all.html">adults in the United States have a disability.</a>
+  </p>
+</blockquote>
+
+<p>We start with web accessibility before HTML because we have lots of accessibility tips embedded in the HTML content. Let's get to it!</p>
+<h2 id="set-up">Set Up</h2>
+<ol>
+<li><p>If you haven't already, <a href="https://code.visualstudio.com/">download and install VS Code</a>.</p>
+</li>
+<li><p>If you haven't already, <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">install the Live Server extension</a> in VS Code.</p>
+<p> If you're unfamiliar with installing VS Code extensions, review the <a href="https://code.visualstudio.com/learn/get-started/extensions">Install Visual Studio Code extensions documentation</a>.</p>
+</li>
+<li><p>Add a <code>[your-dev10-classwork-directory]/week-08/work/</code> directory (or create an alternative directory anywhere on your machine).</p>
+</li>
+<li><p>Add an <code>html-accessibility</code> directory to <code>week-08/work</code>.</p>
+</li>
+<li><p>Open the <code>html-accessibility</code> directory with the "Open Folder" option in VS Code.</p>
+</li>
+</ol>
+<h2 id="html">HTML</h2>
+<p>HTML is a markup language. Markup languages provide structure. They don't provide common programming language features like conditional statements, looping statements, and functions. In markup documents, content is "marked up" to accentuate text, embed media, and create a layout.</p>
+<p>Consider the following text content.</p>
+<pre><code class="language-html">Chapter 1
+
+It was a dark and stormy night.
+</code></pre>
+<p>In a text editor, we might format the chapter line as a heading and give the remaining content some breathing room. In HTML, we must add formatting explicitly with tags.</p>
+<pre><code class="language-html">&lt;h1&gt;Chapter 1&lt;/h1&gt;
+&lt;p&gt;It was a dark and stormy night.&lt;/p&gt;
+</code></pre>
+<p>The chapter line is marked up with an <code>&lt;h1&gt;</code>, which creates a level 1 header element, and the remaining content is marked up with a <code>&lt;p&gt;</code>, which creates a paragraph element.</p>
+<h3 id="elements">Elements</h3>
+<p>HTML represents elements. Elements are defined with named tags. </p>
+<p>Elements that can contain content are defined with an <strong>open tag</strong> and a <strong>close tag</strong>. The open tag is a less than symbol (<code>&lt;</code>), the element name, and the greater than symbol (<code>&gt;</code>). The close tag is the less than symbol, a forward slash (<code>/</code>), the element name, and the greater than symbol.</p>
+<p>Generically: <code>&lt;tag&gt;Content&lt;/tag&gt;</code>.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-html">&lt;p&gt;Rapini is also called broccoli rabe.&lt;/p&gt;
+</code></pre>
+<figure>
+            <img src="assets/html-basic-tag.png" alt="A paragraph element." class="figure">
+            <figcaption>
+                A paragraph element.
+            </figcaption>
+        </figure>
+
+<p>Elements that cannot contain content, called <a href="https://developer.mozilla.org/en-US/docs/Glossary/Void_element">void elements</a>, are defined by a stand-alone open tag.</p>
+<p>Generically: <code>&lt;tag&gt;</code></p>
+<p><strong>Examples</strong></p>
+<pre><code class="language-html">&lt;img&gt;
+&lt;hr&gt;
+&lt;input&gt;
+&lt;br&gt;
+</code></pre>
+<h3 id="attributes">Attributes</h3>
+<p>HTML elements may contain zero to many attributes. Some elements are useless without them. Attributes are defined before the greater than symbol in the open tag (<code>&lt;tag *attributes-go-here*&gt;Content&lt;/tag&gt;</code>). An attribute has a name and a value. Its syntax is: name, the equals symbol (<code>=</code>), a quote (single or double), a value, and another quote (must match the previous single or double).</p>
+<p>Generically: <code>&lt;tag attr="value" pi="3.14"&gt;Content&lt;/tag&gt;</code>.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-html">&lt;a href="https://xkcd.com/" title="xkcd"&gt;xkcd&lt;/a&gt;
+</code></pre>
+<figure>
+            <img src="assets/html-attributes.png" alt="A anchor element with attributes." class="figure">
+            <figcaption>
+                A anchor element with attributes.
+            </figcaption>
+        </figure>
+
+<blockquote class=""><i class="callout fas fa-exclamation-triangle"></i> 
+  <div>
+    Do not add whitespace to attribute assignments: <code>attr = "value"</code>.
+  </div>
+  <div>
+    The browser will likely interpret it correctly, but it's not idiomatic HTML.
+  </div>
+  <div>
+    Tighten it up with: <code>attr="value"</code>.
+  </div>
+</blockquote>
+
+<h4 id="boolean-attributes">Boolean Attributes</h4>
+<p>A boolean attribute is an attribute that is either present (<code>true</code>) or not (<code>false</code>). A boolean attribute's name and value must match.</p>
+<pre><code class="language-html">&lt;!-- required is a boolean attribute. 
+    By including it, we make this input's value required.
+    If we didn't include it, the input's value is not required. --&gt;
+&lt;input id="name" required="required"&gt;
+&lt;!-- disabled is a boolean attribute. 
+    By including it, we make the button un-clickable.
+    If we didn't include it, the button is clickable. --&gt;
+&lt;button type="submit" disabled="disabled"&gt;Save&lt;/button&gt;
+</code></pre>
+<p>Alternatively, omit the value all together. Some coding standards prefer this. The browser interprets <code>required="required"</code> and <code>required</code> as exactly the same thing.</p>
+<pre><code class="language-html">&lt;input id="name" required&gt;
+&lt;button type="submit" disabled&gt;Save&lt;/button&gt;
+</code></pre>
+<h3 id="nested-elements">Nested Elements</h3>
+<p>If an element can contain content, it may include zero to many child elements. If a child element can contain content, it may also include zero to many child elements. In this way, we build up complex user interfaces represented as a hierarchy or tree.</p>
+<p><strong>Simple Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="QWxzgBq" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/QWxzgBq">
+  Mithridatism</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<figure>
+            <img src="assets/html-simple-nested.png" alt="Simple nested HTML elements." class="figure">
+            <figcaption>
+                Simple nested HTML elements.
+            </figcaption>
+        </figure>
+
+<p><strong>A More Complex Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="YzvdQJX" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/YzvdQJX">
+  HTML - Add a Task</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<figure>
+            <img src="assets/html-complex-nested.png" alt="More complex nested HTML elements." class="figure">
+            <figcaption>
+                More complex nested HTML elements.
+            </figcaption>
+        </figure>
+
+<h2 id="html-documents">HTML Documents</h2>
+<p>Now that we have some context for elements, attributes, and nested elements, let's explore the basic structure of an HTML document. Browsers are incredibly forgiving. They do their best when parts of the basic skeleton below are missing. Don't omit them, though. It isn't idiomatic HTML.</p>
+<p><strong>HTML Document Skeleton</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt; &lt;!--DOCTYPE is special--&gt;
+&lt;html lang="en"&gt; &lt;!--open html tag: the html element is the entire doc.--&gt;
+
+&lt;head&gt; &lt;!--open head tag: content in the head element is never shown
+           in the browser's view. It contains metadata that tells the browser how
+           to display elements in the body element.--&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;An HTML Skeleton Document&lt;/title&gt; &lt;!--A nested title element--&gt;
+&lt;/head&gt; &lt;!--close head tag--&gt;
+
+&lt;body&gt; &lt;!--open body tag: the body element contains elements displayed
+           in the browser's view.--&gt;
+
+&lt;!--
+  All of our viewable HTML goes here!!!
+  =====================================
+--&gt;
+
+&lt;/body&gt; &lt;!--close body tag--&gt;
+
+&lt;/html&gt; &lt;!--close html tag--&gt;
+</code></pre>
+<figure>
+            <img src="assets/html-skeleton.png" alt="An HTML document skeleton." class="figure">
+            <figcaption>
+                An HTML document skeleton.
+            </figcaption>
+        </figure>
+
+<p><strong>VS Code</strong></p>
+<p>Create an HTML document named <code>index.html</code> in VS Code. Paste the HTML Document Skeleton into the document. Alternatively, create a blank <code>index.html</code> document, type the exclamation character (<code>!</code>), then press tab. VS Code supports <a href="https://docs.emmet.io/cheat-sheet/">Emmet commands/shortcuts</a>.</p>
+<p>Let's zoom into details.</p>
+<h3 id="html-comments">HTML Comments</h3>
+<p>An HTML comment is a less than symbol, an exclamation symbol, two dashes, comment content, two dashes, and a greater than symbol. HTML comments can span multiple lines.</p>
+<pre><code class="language-html">&lt;!-- a single line comment --&gt;
+
+&lt;!-- this is 
+a multiline 
+comment --&gt;
+</code></pre>
+<p>Comments are ignored by the browser. They are useful when we want to communicate our intent to another developer.</p>
+<p>Be sure to read the comments in the HTML Document Skeleton.</p>
+<h3 id="doctype">DOCTYPE</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Document_type_declaration">document type declaration</a>, or <strong>DOCTYPE</strong>, is a bit of markup that tells a browser how to interpret the HTML code that follows. </p>
+<p>Back in the bad old days, there were DOCTYPEs for different versions of HTML, DOCTYPEs for XML-formatted code versus HTML-formatted code, and even DOCTYPEs for how "strict" a browser should evaluate the code.</p>
+<p>Luckily those days are gone. We no longer need varying DOCTYPEs. <code>&lt;!DOCTYPE html&gt;</code> is all that's required.</p>
+<h3 id="the-html-element">The <code>html</code> Element</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html">html</a> element is the root element in our document. It is the parent of all other HTML elements. It can have one and only one <code>head</code> element and one and only one <code>body</code> element.</p>
+<p>The <code>html</code> element isn't strictly required. We can omit it. That's an incredibly bad idea, however, if for one reason: the <code>html</code> element includes a <code>lang</code> attribute, and that <code>lang</code> attribute is important for <a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/">web accessibility</a>. When we specify the language, screen readers are able to understand which language should be announced.</p>
+<pre><code class="language-html">&lt;!-- Here, the language is English. 
+     We can narrow down to any language, region, or dialect. --&gt;
+&lt;html lang="en"&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="the-head-element">The <code>head</code> Element</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head">head</a> element contains elements that are not rendered to the browser's view. All <code>head</code> elements are metadata. They tell the browser how to interpret and render elements in the <code>body</code>. They include the <code>title</code> element, stylesheets, scripts, and <code>meta</code> elements.</p>
+<p>The <code>head</code> element can range from simple to complex. See all of the possible options at <a href="https://htmlhead.dev/">https://htmlhead.dev/</a>.</p>
+<h3 id="the-title-element">The <code>title</code> Element</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">title</a> element can contain text only. All child HTML elements are ignored. The text content is displayed in a browser's tab or its title bar.</p>
+<img src="assets/html-title.png" alt="The title element is displayed on the browser's tab.">
+
+<p>The <code>title</code> is also important for web accessibility. Every site view or page should have a unique title. The title should declare the view's primary purpose, followed by the site's name.</p>
+<h3 id="the-body-element">The <code>body</code> Element</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body">body</a> element is the displayed document root. It's the document's rendered structure. It's possible to move things around with CSS, but for the most part we want to make our HTML structure match what's rendered. Again, this helps with web accessibility. A screen reader wants to work top to bottom. If we move the bottom to the top with CSS, the bottom will be read last.</p>
+<p>The <code>body</code> element has many attributes. Many are <strong>event handlers</strong>: a function that responds to changes to the state of the <code>body</code>. Others attributes define how the body is displayed. Don't use the body's display attributes! Use CSS instead.</p>
+<h2 id="flow-layout">Flow Layout</h2>
+<p>By default, the browser uses <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout">flow layout</a>. Flow layout renders top to bottom and has two different behaviors depending on the element. Elements come in two varieties:</p>
+<ol>
+<li>Block-level</li>
+<li>Inline</li>
+</ol>
+<p><strong>VS Code</strong></p>
+<p>In the samples below (all of them), paste the example HTML into the <code>&lt;body&gt;&lt;/body&gt;</code> element. Preview the document with your browser either using Live Server or opening the file directly. </p>
+<p>If needed, review the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server launch documentation</a>.</p>
+<h3 id="block-level-elements">Block-level Elements</h3>
+<p>In flow layout, a block-level element fills the width of its parent and has a height bounded by its content. If a block element follows another block or inline element, it breaks to a new line. Block elements stack on one another. </p>
+<p>Below, <code>h1</code>, <code>p</code>, <code>blockquote</code>, <code>section</code>, and <code>h2</code> are all block-level elements.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="WNyLZxq" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/WNyLZxq">
+  HTML - Block Elements</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote class=""><i class="callout fas fa-sticky-note"></i> 
+  In our example above, note that the browser has different default styles for block elements. Block elements have predefined margins. The blockquote's left margin is absolutely huge!
+</blockquote>
+
+<h3 id="common-block-elements">Common Block Elements</h3>
+<h4 id="h1-h6"><code>h1</code>-<code>h6</code></h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements">Heading elements</a> are block-level elements that divide our document into a logical structure with a hierarchy. Headings help users gauge the structure and organization of our document.</p>
+<p>Another way to think about headings is a textbook.</p>
+<ul>
+<li><code>h1</code> is the book's title.</li>
+<li><code>h2</code> are the chapter titles.</li>
+<li><code>h3</code> are topic sections in a chapter.</li>
+<li><code>h4</code> are subtopics in a section.</li>
+</ul>
+<p>Depending on our HTML document, we may never use <code>h5</code> or <code>h6</code>.</p>
+<p>Headings are important for accessibility. Users with cognitive disabilities are better able to navigate our document. Users with screen readers can listen to a list of headings, jump to a heading, and start reading from there. And all users will appreciate the ability to locate salient content quickly.</p>
+<p>Headings are semantic elements.</p>
+<h4 id="p"><code>p</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p">paragraph element</a> separate blocks of text like, uh, a paragraph. By default, browsers put a line break between paragraphs to give them vertical white space.</p>
+<p>Breaking the page into paragraphs helps with readability and accessibility. Screen readers can navigate through content easily. All users appreciate easy-to-digest text chunks.</p>
+<p>Never use empty paragraphs to add vertical spacing between content. Screen readers hate this. If we need extra white space, use the CSS <strong>margin property</strong>.</p>
+<p>Paragraph is a semantic element.</p>
+<h4 id="div"><code>div</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">content division element</a> is a generic block-level container. As a block-level element, it fills the width of its parent. Other than that, the browser applies no style unless modified by CSS. </p>
+<p>This may not sound useful, but the <code>div</code> element is popular for presentation and layout. We can add borders and background color to display messages, set up multiple column content (like a 3-column, newspaper-style layout), and show and hide content depending on the screen size.</p>
+<p>Content division is not a semantic element. Don't use a <code>div</code> when a more semantic element is appropriate. Content divisions are for presentation only.</p>
+<h4 id="pre"><code>pre</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre">preformatted text element</a> displays content exactly as it's written in the HTML file. It honors all whitespace. This makes it ideal for displaying things like source code where tabs and indentation matter.</p>
+<p>Preformatted text is not strictly a semantic element. It tells us how something is formatted (presentation) but not what's included (function). To include source code with <code>pre</code>, wrap it inside the <code>&lt;code&gt;</code> element.</p>
+<h4 id="blockquote"><code>blockquote</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote">block quotation element</a> separates quotes from the surrounding context. Use the <strong>cite</strong> attribute to provide a link to the source. Use the <code>cite</code> element to reference a specific work.</p>
+<pre><code class="language-html">&lt;figure&gt;
+  &lt;blockquote cite="https://www.goodreads.com/work/quotes/1094555-ghostwritten-a-novel-in-nine-parts"&gt;
+    &lt;p&gt;The human world is made of stories, not people. 
+    The people the stories use to tell themselves are not to be blamed.&lt;/p&gt;
+  &lt;/blockquote&gt;
+  &lt;figcaption&gt;― David Mitchell, &lt;cite&gt;Ghostwritten&lt;/cite&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>Block quotation is a semantic element.</p>
+<h4 id="ul-ol-and-li"><code>ul</code>, <code>ol</code>, and <code>li</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul">unordered list element</a> renders items in a list with bullets unless altered by CSS.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol">ordered list element</a> renders items in a list with sequential numbers or letters unless altered by CSS.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li">list item element</a> represents items in a list. List items may only be children of <code>ul</code>, <code>ol</code>, or <code>menu</code>.</p>
+<p class="codepen" data-height="475" data-default-tab="html,result" data-slug-hash="vYrqMQM" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/vYrqMQM">
+  HTML - Lists</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Lists are semantic elements. They represent both presentation and function. A screen reader will understand a list of items and if they're ordered (a series of steps) or unordered (a collection of things).</p>
+<h4 id="figure"><code>figure</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure">figure element</a> calls out an image, diagram, source code, quote, poem, etc., from the main document flow. It may optionally include a caption. The figure, caption, and its contents are understood to be a cohesive unit.</p>
+<pre><code class="language-html">&lt;figure&gt;
+  &lt;img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Darkling_beetle.jpg" 
+    alt="A Darkling Beetle"&gt;
+  &lt;figcaption&gt;A Darkling Beetle&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>The figure element is a semantic element.</p>
+<h4 id="content-sectioning">Content Sectioning</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning">Content sectioning elements</a> allow us to partition our document into larger logical chunks. It's a macro organizational method.</p>
+<figure>
+            <img src="./assets/content-sectioning.png" alt="Simple content sectioning." class="figure">
+            <figcaption>
+                Simple content sectioning.
+            </figcaption>
+        </figure>
+
+<style>
+    tbody td:nth-child(1) {
+        white-space: nowrap;
+    }
+</style>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Tag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;address&gt;</code></td>
+<td>Wraps contact information for an individual or organization.</td>
+</tr>
+<tr>
+<td><code>&lt;article&gt;</code></td>
+<td>Wraps stand-alone content like a document, news item, or blog post.</td>
+</tr>
+<tr>
+<td><code>&lt;aside&gt;</code></td>
+<td>Wraps content indirectly related to the document's main content. Often styled as a sidebar or call-out.</td>
+</tr>
+<tr>
+<td><code>&lt;footer&gt;</code></td>
+<td>Can be used in any content sectioning root, including the document itself. Wraps content that may include author information, publish dates, links to documents, etc.</td>
+</tr>
+<tr>
+<td><code>&lt;header&gt;</code></td>
+<td>Can be used in any content sectioning root, including the document itself. Wraps introductory content: a logo, author information, a search form, etc.</td>
+</tr>
+<tr>
+<td><code>&lt;main&gt;</code></td>
+<td>Wraps the document's primary content or an application's primary feature.</td>
+</tr>
+<tr>
+<td><code>&lt;nav&gt;</code></td>
+<td>Wraps a navigation menu or structured navigation links.</td>
+</tr>
+<tr>
+<td><code>&lt;section&gt;</code></td>
+<td>Wraps a generic logical chunk of content. Call out the purpose of a <code>section</code> with a <code>header</code>.</td>
+</tr>
+</tbody></table>
+<p>Content sectioning elements are semantic elements.</p>
+<h3 id="inline-elements">Inline Elements</h3>
+<p>In flow layout, an inline element renders from left to right, right to left, both, or vertically, depending on the language. We call this a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Writing_Modes">writing mode</a>. Inline elements with line breaks in HTML don't create a new line. In fact, HTML text content with newlines doesn't render a new line either. Text content and inline elements flow without breaks until they wrap.</p>
+<p>Below, <code>strong</code>, <code>a</code>, <code>em</code>, and <code>span</code> are inline elements.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="JjZwrby" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/JjZwrby">
+  HTML - Inline Elements</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote>
+<h4 class=""><i class=" fas fa-sticky-note"></i> CSS</h4>
+It's always possible to change block elements to inline and inline elements to block with CSS. It's also possible to remove an element from flow layout. We'll look at CSS soon. Know that we're not limited to stacking block elements. We can build sophisticated layouts with CSS.
+</blockquote>
+
+<h3 id="common-inline-elements">Common Inline Elements</h3>
+<h4 id="a"><code>a</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">anchor element</a> (otherwise known as a link) is a navigation workhorse. It can jump to a location within the current document, jump to a location defined by a relative URL, or jump to a location defined by an absolute URL. Links can open new tabs, open the default mail app, or dial a phone number on a mobile phone.</p>
+<p>A link is relatively useless without the <code>href</code> attribute. <code>href</code> is short for Hypertext reference. The <code>href</code> attribute's value can be a URL, an email address, a telephone number, a data URL, or a media fragment.</p>
+<pre><code class="language-html">&lt;!--Navigates to the programming subreddit, an external site.--&gt;
+&lt;a href="https://www.reddit.com/r/programming/"&gt;Programming Subreddit&lt;/a&gt;
+&lt;!--Navigates to a relative URL in the current domain.--&gt;
+&lt;a href="/admin/home"&gt;Admin UI&lt;/a&gt;
+&lt;!--Navigates to the Darkling Beetle h2 (scrolls down) in the current document.--&gt;
+&lt;a href="#darkling_beetles"&gt;Darking Beetles&lt;/a&gt;
+&lt;!--Opens our default mail application and creates a new email. --&gt;
+&lt;a href="mailto:support@example.com"&gt;Email Support&lt;/a&gt;
+&lt;!--Depends on the device: calls the number on a mobile phone.--&gt;
+&lt;a href="tel:+1.800.555.5555"&gt;Call Support&lt;/a&gt;
+
+&lt;!--snip--&gt;
+&lt;h2 id="darkling_beetles"&gt;Darking Beetles&lt;/h2&gt;
+&lt;p&gt;
+Darkling beetle is the common name for members of the beetle family Tenebrionidae. The number of species in the Tenebrionidae is estimated at more than 20,000 and the family is cosmopolitan in distribution.
+&lt;/p&gt;
+</code></pre>
+<p>The link's <code>target</code> attribute can be used gain control over navigation.</p>
+<pre><code class="language-html">&lt;!--Navigates within the current tab. --&gt;
+&lt;a href="https://example.com" target="_self"&gt;Go to example.com. (same tab)&lt;/a&gt;
+&lt;!--Navigates in a new tab or window. --&gt;
+&lt;a href="https://example.com" target="_blank"&gt;Go to example.com. (new tab/window)&lt;/a&gt;
+&lt;!--If we're nested in an iframe (relatively rare), 
+    navigates in the parent frame. If no parent, acts as "_self". --&gt;
+&lt;a href="https://example.com" target="_parent"&gt;Go to example.com. (parent frame)&lt;/a&gt;
+&lt;!--If we're nested in an iframe (relatively rare), 
+    navigates in the topmost frame. If no topmost, acts as "_self". --&gt;
+&lt;a href="https://example.com" target="_top"&gt;Go to example.com. (topmost frame)&lt;/a&gt;
+</code></pre>
+<p>Links may contain child elements, though don't go too crazy. We don't want half of our document to be a clickable link. A sensible use case is a clickable image or icon.</p>
+<pre><code class="language-html">&lt;a href="https://en.wikipedia.org/wiki/Darkling_beetle" target="_self"&gt;
+  &lt;img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Darkling_beetle.jpg"
+    alt="Go to the Darkling Beetle Wikipedia article."&gt;
+&lt;/a&gt;
+</code></pre>
+<p>Screen readers are able to list all links, but it won't do any good if we don't know what we're clicking on. A link's contents should make it clear where the link is going, even without context.</p>
+<pre><code class="language-html">&lt;!--Bad context--&gt;
+&lt;p&gt;
+  You can find many good resources and a few bad opinions on the programming subreddit 
+  &lt;a href="https://www.reddit.com/r/programming/"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;!--Good context--&gt;
+&lt;p&gt;
+  The &lt;a href="https://www.reddit.com/r/programming/"&gt;programming subreddit&lt;/a&gt; has many good resources
+  and a few bad opinions.
+&lt;/p&gt;
+</code></pre>
+<p>Use image/icon links sparingly since they also lack context. An image link should have <code>alt</code> text that describes its role as a link. It shouldn't describe the image.</p>
+<h4 id="strong-b-em-i"><code>strong</code>, <code>b</code>, <code>em</code>, <code>i</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong">strong element</a> conveys a sense of urgency and importance.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b">"bring to attention" element</a> draws attention to content with no special sense of urgency. This was originally a presentation-only "bold" element.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em">emphasis element</a> stresses words or phrases.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i">idiomatic text element</a> highlights text that includes technical phrases, alternative voice, and thoughts (among other things). This was originally a presentation-only "italicized" element.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="oNyKjvj" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/oNyKjvj">
+  HTML - strong, b, em, i</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>The <code>strong</code> versus <code>b</code> and <code>em</code> versus <code>i</code> distinction can be a little confusing. There are nuances. If you're confused, opt for <code>strong</code> instead of <code>b</code> and <code>em</code> instead of <code>i</code>.</p>
+<p>I'm suspicious of promoting <code>b</code> and <code>i</code> as semantic elements. Earlier versions of HTML bolded text with <code>b</code> and italicized text with <code>i</code>. They had no semantic value. It wasn't until later that <code>b</code> and <code>i</code> became "semantic". My guess is this was a retroactive fix since <code>b</code> and <code>i</code> aren't going anywhere. There's still a lot of old HTML on the web.</p>
+<p>There are additional text emphasis elements as well. Consider what might be appropriate.</p>
+<ul>
+<li><code>mark</code> highlights text for reference.</li>
+<li><code>dfn</code> defines a term in the context of a phrase.</li>
+<li><code>kbd</code> sets aside literal keys to press.</li>
+</ul>
+<h4 id="span"><code>span</code></h4>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span">content span element</a> is a generic inline element with no semantic value. It is presentation-only.</p>
+<p>The <code>span</code> can be made to be semantic by setting the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles">ARIA role</a> attribute. This is usually a bad idea. If our span has a role of img or button, then it should be converted to an img or button element.</p>
+<p>Content span should only be used for visual presentation, and if something is worth emphasizing visually, it should probably be emphasized with a more semantic element.</p>
+<h2 id="html-best-practices">HTML Best Practices</h2>
+<ol>
+<li><p>Indent Your Code</p>
+<p> While indents and line breaks don't change the browser's interpretation of our HTML, whitespace is important for readability and maintenance. Use a newline for block elements and indent child elements to clearly see the parent. Don't add newlines to inline elements which are meant to flow with the content.</p>
+</li>
+<li><p>Comment Your Code</p>
+<p> Use comments to make your HTML easy to understand, not just now, but in the future. When another developer (or you!) needs to dust off the HTML and make a change, a few well-placed comments can make all the difference.</p>
+</li>
+<li><p>Use Semantic Elements</p>
+<p> Semantics elements communicate intent. They add information about the content being presented that goes beyond the visual. This is essential for clarity and accessibility. It's also useful for search engines. Search engines scan our content for relevance and structure. Never choose an element for aesthetics over functionality. We can always change our style with CSS.</p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>It's impossible to remember all HTML elements in this lesson, and it's even more impossible to remember elements we haven't learned. That's why it's crucial to reference appropriate elements in <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">MDN's HTML element documentation</a>. Scan the documentation. If you think an HTML element exists for a particular problem, say, video, do a quick web search. (There is. It's the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video">video element</a>.)</p>
+<p>The elements in this lesson are a foundational start. Be curious. Find out what else is available.</p>
+<p>Try this.</p>
+<ul>
+<li>What are two non-semantic elements?</li>
+<li>Build a simple recipe page with <a href="https://codepen.io">https://codepen.io</a>. CodePen doesn't require the HTML document markup like <code>DOCTYPE</code>, <code>html</code>, <code>head</code>, and <code>body</code>.</li>
+<li>List three web accessibility tips related to specific HTML elements.</li>
+<li>Build a simple recipe page with VS Code. Start with the <strong>HTML Document Skeleton</strong>.</li>
+<li>Find and use an HTML element that's not included in this lesson.</li>
+<li>Draw a line down the middle of a sheet of paper. Label one half "block-level elements" and the other "inline elements". Categorize as many HTML elements as possible into block or inline.</li>
+</ul>
+
+    <script src="prism.js"></script>
+</body>
+</html>

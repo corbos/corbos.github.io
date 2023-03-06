@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lesson: HTML Media and Table Elements</title>
+    <meta name="markdown-src" content="/M08-front-end-dev/02-html-media-tables.md">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="base.css">
+    <base target="_blank">
+</head>
+<body>
+    <h1 id="lesson-html-media-and-table-elements">Lesson: HTML Media and Table Elements</h1>
+<h2 id="introduction">Introduction</h2>
+<p>We've sampled HTML text, navigation, and layout elements. They should be part of every HTML document. But as you know, HTML can do so much more. TikTok plays video. The Spotify web player plays audio. Web applications are full of icons and images. Some are functional and some express beautiful design.</p>
+<p>The earliest version of HTML didn't include images, video, or even tables! It was text and links only.</p>
+<style>
+    tbody td:nth-child(1) {
+        white-space: nowrap;
+    }
+</style>
+
+<table class="table table-striped">
+<caption>HTML Media Elements</caption>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>img</code></td>
+<td>Embeds an image in an HTML document.</td>
+</tr>
+<tr>
+<td><code>map</code> &amp; <code>area</code></td>
+<td>Partitions an image into clickable links.</td>
+</tr>
+<tr>
+<td><code>video</code></td>
+<td>Embeds video in an HTML document with optional controls.</td>
+</tr>
+<tr>
+<td><code>audio</code></td>
+<td>Embeds audio in an HTML document with optional controls.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <code>table</code> element renders tabular data in a sensible layout. It's common in business applications but relatively uncommon in other applications.</p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>When you've finished this lesson and its exercises, you should be able to:</p>
+<ul>
+<li>Use the <code>img</code> element and its attributes.</li>
+<li>Turn image regions into links with <code>map</code> and <code>area</code>.</li>
+<li>Play a video using the <code>video</code> element.</li>
+<li>Provide an audio fallback file in the <code>audio</code> element.</li>
+<li>Render tabular data with varying column and row widths.</li>
+</ul>
+<h2 id="media-elements">Media Elements</h2>
+<h3 id="img"><code>img</code></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">image embed element</a> is an inline element that embeds an image in an HTML document.</p>
+<p>The <code>src</code> attribute is required and may be one of three values:</p>
+<ol>
+<li>A <strong>relative URL</strong> that resolves to an image file.</li>
+<li>An <strong>absolute URL</strong> that resolve to an image file.</li>
+<li>A <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs">data URL</a>.</li>
+</ol>
+<p>In the first two options, the browser sends a secondary HTTP request.</p>
+<figure>
+            <img src="./assets/img-request.png" alt="First, the browser sends an HTTP request to fetch the HTML document. Then the browser sends an HTTP request to fetch the image." class="figure">
+            <figcaption>
+                First, the browser sends an HTTP request to fetch the HTML document. Then the browser sends an HTTP request to fetch the image.
+            </figcaption>
+        </figure>
+
+<p>(To see this in action, open your <a href="https://developer.chrome.com/docs/devtools/overview/">Chrome DevTools</a>, open the <a href="https://developer.chrome.com/docs/devtools/network/">DevTools Network tab</a>, and browse to a site that contains images.)</p>
+<p><strong>Relative URLs</strong> are resolved as follows.</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>HTML Document URL</th>
+<th><code>src</code> Relative URL</th>
+<th>Resolved URL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="http://example.com/index.html">http://example.com/index.html</a></td>
+<td>/image.gif</td>
+<td><a href="http://example.com/image.gif">http://example.com/image.gif</a></td>
+</tr>
+<tr>
+<td><a href="http://example.com/index.html">http://example.com/index.html</a></td>
+<td>image.gif</td>
+<td><a href="http://example.com/image.gif">http://example.com/image.gif</a></td>
+</tr>
+<tr>
+<td><a href="http://example.com/index.html">http://example.com/index.html</a></td>
+<td>./images/image.gif</td>
+<td><a href="http://example.com/images/image.gif">http://example.com/images/image.gif</a></td>
+</tr>
+<tr>
+<td><a href="http://example.com/app/index.html">http://example.com/app/index.html</a></td>
+<td>/image.gif</td>
+<td><a href="http://example.com/image.gif">http://example.com/image.gif</a></td>
+</tr>
+<tr>
+<td><a href="http://example.com/app/index.html">http://example.com/app/index.html</a></td>
+<td>image.gif</td>
+<td><a href="http://example.com/app/image.gif">http://example.com/app/image.gif</a></td>
+</tr>
+<tr>
+<td><a href="http://example.com/app/index.html">http://example.com/app/index.html</a></td>
+<td>./images/image.gif</td>
+<td><a href="http://example.com/app/images/image.gif">http://example.com/app/images/image.gif</a></td>
+</tr>
+<tr>
+<td><a href="http://example.com/app/index.html">http://example.com/app/index.html</a></td>
+<td>../images/image.gif</td>
+<td><a href="http://example.com/images/image.gif">http://example.com/images/image.gif</a></td>
+</tr>
+</tbody></table>
+<p>The <code>alt</code> attribute is not strictly required, but is essential for web accessibility. Not all browsers display images ( screen readers, text-only browsers). The <code>alt</code> attribute should be an accurate description of the image's contents and may be rendered in place of the image. Like link text, the <code>alt</code> value should clearly describe the image without the need for additional context.</p>
+<pre><code class="language-html">&lt;!--Bad alt value--&gt;
+&lt;h2&gt;Rainbow Scarab (Phanaeus vindex)&lt;/h2&gt;
+&lt;img src="/images/beetle.gif" alt="a beetle"&gt;
+
+&lt;!--Good alt value--&gt;
+&lt;h2&gt;Rainbow Scarab (Phanaeus vindex)&lt;/h2&gt;
+&lt;img src="/images/beetle.gif" alt="Common Name: Rainbow Scarab Beetle, Scientific Name: Phanaeus vindex"&gt;
+</code></pre>
+<p>Don't start <code>alt</code> text with "An image containing..." or "A picture of a...". Screen readers and text-only browsers call out images so the prefix isn't required.</p>
+<p>If the <code>alt</code> value is set to an empty string, screen readers ignore it. This is polite if we're using an image to complete a design: a one-pixel shim (increasingly rare), a non-logo ornamental background frame, or the like.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="gOjYmXB" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+    <span>See the Pen <a href="https://codepen.io/corbos/pen/gOjYmXB">
+    HTML - img</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+    on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="supported-image-formats">Supported Image Formats</h4>
+<p>The following image formats are supported by major browsers.</p>
+<ul>
+<li><code>.apng</code> (Animated Portable Network Graphics): animations with lossless compression</li>
+<li><code>.avif</code> (AV1 Image File Format): fast for images and animations (not supported on Safari)</li>
+<li><code>.gif</code> (Graphics Interchange Format): simple, basic images and animations, not for high-quality resolution</li>
+<li><code>.jpeg</code> or <code>.jpg</code> (Joint Photographic Expert Group): lossy compression, varies in quality, files can be large</li>
+<li><code>.png</code> (Portable Network Graphics): lossless compression, higher quality, files can be large</li>
+<li><code>.svg</code> (Scalable Vector Graphics): vector format, clear resolution at any size</li>
+<li><code>.webp</code> (Web Picture format): best, both images and animated images, eking out other formats</li>
+</ul>
+<h3 id="map-and-area"><code>map</code> and <code>area</code></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map">image map element</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area">image map area element</a> overlay clickable areas on an existing image. <code>map</code> corresponds one-to-one with an <code>img</code>. A <code>map</code> may contain one or more <code>area</code>s that outline a shape on the image.</p>
+<p>To set up an image map:</p>
+<ol>
+<li><p>Start with an existing image.</p>
+</li>
+<li><p>Create a <code>map</code> element with a <code>name</code> attribute.</p>
+</li>
+<li><p>Link the image to the map with the image's <code>usemap</code> attribute and the map's <code>name</code>.</p>
+</li>
+<li><p>Create one or more areas.</p>
+<p> An area navigates like a link with an <code>href</code> and <code>target</code> attribute.</p>
+<p> The area <code>shape</code> and <code>coords</code> attributes are required. <code>shape</code> has three options with corresponding <code>coords</code> requirements.</p>
+<ul>
+<li><strong>rect</strong> - A rectangle with coordinates: x1,y1,x2,y2. (x1,y1) is the top left point. (x2,y2) is the bottom right point.</li>
+<li><strong>circle</strong> - A circle with coordinates: x,y,r. (x,y) is the center of the circle. r is the circle's radius in pixels.</li>
+<li><strong>poly</strong> - A polygon with coordinates: x1,y1,x2,y2...xn,yn. Each (xn,yn) pair is a point on a polygon. If the last pair doesn't match the first, the browser automatically closes the polygon.</li>
+</ul>
+<p> Areas must not overlap.</p>
+<p> Areas must have an <code>alt</code> attribute. This is important for screen readers and text-only browsers. Area rules are the same as link text: An area's <code>alt</code> value should make it clear where the area is going, even without context.</p>
+<p> By default, images don't provide a visual cue with area shapes aside from changing the mouse to an active state. Add a <code>title</code> attribute value to prompt the user.</p>
+</li>
+</ol>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="ExpYmPQ" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/ExpYmPQ">
+  HTML - map, area</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Image maps aren't common and they shouldn't be over-used. Using an image map for menu navigation is a terrible idea. But in the right context (charts, graphs, actual maps, infographics), they can be exactly what's needed.</p>
+<h3 id="video"><code>video</code></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video">video embed element</a> embeds a video file in an HTML document. Like an image, the video file is fetched with a secondary HTTP request (actually many HTTP requests as it streams).</p>
+<p>We can specify the video file's URL with the <code>src</code> attribute, but it's not recommended. It's more robust to use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source">media or image source element</a> (<code>source</code>). This approach allows us to specify more than one file source for a video. Not all browsers support all <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Video_codecs#common_codecs">video codecs</a>. We can list file sources in priority order. The first codec the browser supports will match and play.</p>
+<p>If a browser doesn't support the <code>video</code> element, content inside the <code>video</code> element is rendered (aside from the <code>source</code>).</p>
+<pre><code class="language-html">&lt;!--Just okay--&gt;
+&lt;video src="http://example.com/video.mp4"&gt;
+&lt;/video&gt;
+
+&lt;!--Better--&gt;
+&lt;video&gt;
+    &lt;source src="http://example.com/video.ogv" type="video/ogg"&gt;
+    &lt;source src="http://example.com/video.avi" type="video/avi"&gt;
+    &lt;source src="http://example.com/video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!--Best--&gt;
+&lt;video&gt;
+    &lt;source src="http://example.com/video.ogv" type="video/ogg"&gt;
+    &lt;source src="http://example.com/video.avi" type="video/avi"&gt;
+    &lt;source src="http://example.com/video.mp4" type="video/mp4"&gt;
+    &lt;p&gt;
+        Your browser doesn't support the video element. 
+        Try &lt;a href="http://example.com/video.mp4" download&gt;downloading the video file&lt;/a&gt;.
+    &lt;/p&gt;
+&lt;/video&gt;
+</code></pre>
+<p>The <code>video</code> element doesn't play anything by default. We must configure it with one or more attributes.</p>
+<ul>
+<li><code>controls</code>: Adds play, pause, and volume controls to the video element.</li>
+<li><code>autoplay</code>: Plays the video automatically. Browsers will not allow auto-play if the element does not also contain the <code>muted</code> attribute. Think very hard about whether you want to auto-play a video. It can be obnoxious.</li>
+<li><code>muted</code>: Starts the video with no volume.</li>
+<li><code>loop</code>: Replays the video in a loop.</li>
+</ul>
+<pre><code class="language-html">&lt;!--Adds play/pause controls to the element.--&gt;
+&lt;video controls&gt;
+    &lt;source src="http://example.com/video.ogv" type="video/ogg"&gt;
+    &lt;source src="http://example.com/video.avi" type="video/avi"&gt;
+    &lt;source src="http://example.com/video.mp4" type="video/mp4"&gt;
+    &lt;p&gt;
+        Your browser doesn't support the video element. 
+        Try &lt;a href="http://example.com/video.mp4" download&gt;downloading the video file&lt;/a&gt;.
+    &lt;/p&gt;
+&lt;/video&gt;
+
+&lt;!--Start the video automatically, muted, in a loop.--&gt;
+&lt;video autoplay muted loop&gt;
+    &lt;source src="http://example.com/video.ogv" type="video/ogg"&gt;
+    &lt;source src="http://example.com/video.avi" type="video/avi"&gt;
+    &lt;source src="http://example.com/video.mp4" type="video/mp4"&gt;
+    &lt;p&gt;
+        Your browser doesn't support the video element. 
+        Try &lt;a href="http://example.com/video.mp4" download&gt;downloading the video file&lt;/a&gt;.
+    &lt;/p&gt;
+&lt;/video&gt;
+</code></pre>
+<p>The <code>poster</code> attribute accepts an image URL that serves as an image placeholder while the video file downloads.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="qByBxJJ" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/qByBxJJ">
+  HTML - video</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="track-and-accessibility"><code>track</code> and Accessibility</h3>
+<p>Video must include captions and a transcript that accurately reflect its content. For this, use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track#attributes">embed track element</a> (<code>track</code>). The <code>track</code> element uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API">WebVTT format</a>. WebVTT is a text file with time ranges and text prompts.</p>
+<p>The <code>track</code> element goes beyond captions and transcripts. It can also handle subtitles, "chapters" (allows for quick navigation), and metadata (not available to the user, used for programmatic decisions).</p>
+<p><code>track</code> attributes:</p>
+<ul>
+<li><code>kind</code>: five values - <code>captions</code>, <code>descriptions</code> (transcript), <code>subtitles</code>, <code>chapters</code>, <code>metadata</code></li>
+<li><code>src</code>: the WebVTT source document</li>
+<li><code>srclang</code>: the spoken language used</li>
+<li><code>label</code>: announced by a screen reader, describes which tracks are available</li>
+</ul>
+<pre><code class="language-html">&lt;video controls&gt;
+    &lt;source src="http://example.com/video.ogv" type="video/ogg"&gt;
+    &lt;source src="http://example.com/video.avi" type="video/avi"&gt;
+    &lt;source src="http://example.com/video.mp4" type="video/mp4"&gt;
+    &lt;!--2 or more tracks, captions and transcript is required.--&gt;
+    &lt;track kind="captions" src="/webvtt/captions_en.vtt" srclang="en" label="English video captions"&gt;
+    &lt;track kind="descriptions" src="/webvtt/transcript_en.vtt" srclang="en" label="English video transcript"&gt;
+    &lt;track kind="subtitles" src="/webvtt/subtitles_es.vtt" srclang="es" label="Español subtitles"&gt;
+    &lt;p&gt;
+        Your browser doesn't support the video element. 
+        Try &lt;a href="http://example.com/video.mp4" download&gt;downloading the video file&lt;/a&gt;.
+    &lt;/p&gt;
+&lt;/video&gt;
+</code></pre>
+<p>For more details, see <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video">Adding captions and subtitles to HTML video</a>.</p>
+<h3 id="audio"><code>audio</code></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio">audio embed element</a> is similar to <code>video</code> but without the visual component.</p>
+<ul>
+<li><code>controls</code> enables audio player controls.</li>
+<li><code>autoplay</code> plays the file automatically.</li>
+<li><code>muted</code> plays the file without sound.</li>
+<li><code>loop</code> repeats the audio.</li>
+<li><code>source</code> elements are listed in priority order. The browser tries the first format. If it doesn't work, it moves on to the next.</li>
+<li><code>track</code> elements are required for transcription.</li>
+</ul>
+<pre><code class="language-html">&lt;audio controls&gt;
+
+    &lt;source src="http://example.com/audio.opus" type="audio/ogg; codecs=opus"&gt;
+    &lt;source src="http://example.com/audio.ogg" type="audio/ogg; codecs=vorbis"&gt;
+    &lt;source src="http://example.com/audio.mp3" type="audio/mpeg"&gt;
+
+    &lt;track kind="descriptions" src="/webvtt/transcript_en.vtt" srclang="en" label="English audio transcript"&gt;
+    
+    &lt;p&gt;
+        Your browser doesn't support the audio element. 
+        Try &lt;a href="http://example.com/audio.mp3" download&gt;downloading the mp3&lt;/a&gt;.
+    &lt;/p&gt;
+&lt;/audio&gt;
+</code></pre>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="600" data-default-tab="html,result" data-slug-hash="KKBwVRY" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/KKBwVRY">
+  HTML - audio</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="tables">Tables</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">table element</a> presents data in a row and column format, like an Excel spreadsheet, a gradebook, or the <a href="https://www.bls.gov/eag/eag.us.htm">U.S. Bureau of Labor Statistics's Economy at a Glance report</a>.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="poZvbKL" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/poZvbKL">
+  HTML - table</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>A table may be divided into three regions:</p>
+<ol>
+<li>The header, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead">thead</a>: optional, explains the data that's about to be delivered, usually with column headers.</li>
+<li>The body, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody">tbody</a>: (mostly) required, all raw data should be in the body.</li>
+<li>The footer, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot">tfoot</a>: optional, wraps up and summarizes the data.</li>
+</ol>
+<p>Inside those regions, we create rows represented by the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr">table row element</a>, <code>tr</code>. Then we subdivide those rows into cells using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td">table data cell element</a>, <code>td</code>, or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th">table header element</a>, <code>th</code>.</p>
+<p>The figure below outlines the relationship between parent and child elements and roughs out a two-dimensional layout.</p>
+<figure>
+            <img src="./assets/table.png" alt="Table element relationships and layout" class="figure">
+            <figcaption>
+                Table element relationships and layout
+            </figcaption>
+        </figure>
+
+<p>Strictly speaking, the <code>tbody</code> element is not required. We can dump zero or more table rows directly inside the <code>table</code>. That's not polite, though. We want our tables to be consistent. A consistent <code>tbody</code> creates a target for CSS.</p>
+<p>Both <code>td</code> and <code>tr</code> have a <code>colspan</code> and <code>rowspan</code> attribute. Their values must be a positive integer. The default is 1. When set, a cell stretches across multiple columns (<code>colspan</code>) or multiple rows (<code>rowspan</code>).</p>
+<p><strong>Example</strong></p>
+<p>This example is styled with CSS to make the <code>colspan</code> and <code>rowspan</code> clear. Borders and background colors are not included by default.</p>
+<p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="zYLxMMy" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/zYLxMMy">
+  HTML - colspan, rowspan</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Be careful with <code>colspan</code> and <code>rowspan</code>. It causes issues with screen readers. A screen reader does its best to announce the data and its orientation. If we make our <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#complicated_tables">tables too complicated</a>, the screen reader will have trouble announcing. If possible, break complicated tables into simpler, related tables.</p>
+<h3 id="more-accessibility">More Accessibility</h3>
+<p>Use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption">table caption element</a>, <code>caption</code>, to explain a table's high-level purpose. By default it is centered above the table. Placement and style can be modified with CSS.</p>
+<p>Use the <code>th</code>'s <code>scope</code> attribute to associate a table header to a column, row, column span, or row span. Valid <code>scope</code> values are: <code>col</code>, <code>row</code>, <code>colspan</code>, or <code>rowspan</code>.</p>
+<pre><code class="language-html">&lt;table&gt;
+    &lt;caption&gt;Tallest Buildings&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;th scope="col"&gt;Burj Khalifa&lt;/th&gt;
+            &lt;th scope="col"&gt;Merdeka 118&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Meters&lt;/th&gt;
+            &lt;td&gt;828&lt;/td&gt;
+            &lt;td&gt;678.9&lt;/td&gt;
+        &lt;/tr&gt;
+         &lt;tr&gt;
+            &lt;th scope="row"&gt;Floors&lt;/th&gt;
+            &lt;td&gt;163&lt;/td&gt;
+            &lt;td&gt;118&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<figure>
+            <img src="./assets/th-scope.png" alt="An HTML table of the tallest buildings in the world. Building headers are associated to columns. Attribute headers are associated to rows." class="figure">
+            <figcaption>
+                An HTML table of the tallest buildings in the world. Building headers are associated to columns. Attribute headers are associated to rows.
+            </figcaption>
+        </figure>
+
+<p>An alternative to <code>th scope</code> is adding ids to our headers and associating individual data cells to the header using the <code>headers</code> attribute.</p>
+<pre><code class="language-html">&lt;table&gt;
+    &lt;caption&gt;Tallest Buildings&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;th id="burjkhalifa"&gt;Burj Khalifa&lt;/th&gt;
+            &lt;th id="merdeka118"&gt;Merdeka 118&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th id="meters"&gt;Meters&lt;/th&gt;
+            &lt;td headers="burjkhalifa meters"&gt;828&lt;/td&gt;
+            &lt;td headers="merdeka118 meters"&gt;678.9&lt;/td&gt;
+        &lt;/tr&gt;
+         &lt;tr&gt;
+            &lt;th id="floors"&gt;Floors&lt;/th&gt;
+            &lt;td headers="burjkhalifa floors"&gt;163&lt;/td&gt;
+            &lt;td headers="merdeka118 floors"&gt;118&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<p>This approach uses a lot more HTML and it's error prone. <code>th scope</code> is usually sufficient.</p>
+<h3 id="column-groups">Column Groups</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup">table column group element</a>, <code>colgroup</code>, creates a logic group of columns that can be styled with CSS. It is often accompanied with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col">table column element</a>, <code>col</code>, which further subdivides columns into style-able units.</p>
+<p>It's a pain to style columns without <code>colgroup</code>. If column styling is a requirement, <code>colgroup</code> and <code>col</code> are a must.</p>
+<p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="PoBwmRv" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/PoBwmRv">
+  HTML - colgroup</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="final-note">Final Note</h3>
+<p>Never use an HTML table to design a layout. That was a common practice in the late 90s (late 90s!), but we have increasingly amazing tools like CSS Flexbox and Grid to create elaborate layouts. Some CSS can even go beyond basic two dimensional rectangles. It can overlay curves and even jump into a third dimension.</p>
+<p>HTML tables are for row/column data only.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Media elements like images, video, and audio make our HTML documents rich and beautiful. They communicate in a way that goes beyond text.</p>
+<p>HTML tables are great for data that's formatted in rows and columns. They're common in business applications that display financial data. Tables aren't always necessary, but when they are, they're the perfect tool.</p>
+<p>Try this.</p>
+<ul>
+<li>What is displayed if an image's <code>src</code> file can't be found?</li>
+<li>What's the difference between a relative URL and an absolute URL? How does a relative URL resolve?</li>
+<li>Which attribute and value adds play/pause controls to a video element?</li>
+<li>What is the difference between a video's <code>src</code> attribute and the <code>source</code> element?</li>
+<li>What is the purpose of the <code>track</code> element in <code>video</code> and <code>audio</code>?</li>
+<li>How do we ensure screen readers properly announce an HTML table's data?</li>
+</ul>
+<p>Create a table with this data. Be sure to scope headers appropriately.</p>
+<table class="table table-striped">
+    <caption>Burger-Burger Receipt</caption>
+    <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+            <td></td>
+            <th scope="col">Price</th>
+            <td></td>
+            <th scope="col">Item Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Cheeseburger</td>
+            <td>3</td>
+            <td>*</td>
+            <td>9.95</td>
+            <td>=</td>
+            <td>29.85</td>
+        </tr>
+        <tr>
+            <td>Large Fry</td>
+            <td>2</td>
+            <td>*</td>
+            <td>3.95</td>
+            <td>=</td>
+            <td>7.90</td>
+        </tr>
+        <tr>
+            <td>Soda</td>
+            <td>2</td>
+            <td>*</td>
+            <td>2.95</td>
+            <td>=</td>
+            <td>5.90</td>
+        </tr>
+         <tr>
+            <td>Chocolate Malt</td>
+            <td>1</td>
+            <td>*</td>
+            <td>5.95</td>
+            <td>=</td>
+            <td>5.95</td>
+        </tr>
+        <tr>
+            <td colspan="5">Subtotal</td>
+            <td>49.70</td>
+        </tr>
+        <tr>
+            <td colspan="5">Tax</td>
+            <td>4.98</td>
+        </tr>
+        <tr>
+            <td colspan="5">Total</td>
+            <td>54.68</td>
+        </tr>
+    </tbody>
+</table>
+    <script src="prism.js"></script>
+</body>
+</html>

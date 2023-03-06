@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lesson: HTML Forms</title>
+    <meta name="markdown-src" content="/M08-front-end-dev/03-html-forms.md">
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="base.css">
+    <base target="_blank">
+</head>
+<body>
+    <h1 id="lesson-html-forms">Lesson: HTML Forms</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Much of HTML is intended for displaying data. HTML forms and form controls allow users to enter data. Once we can enter data, we can build proper web applications. Without forms, the web would be a collection of read-only brochures. With forms, we can send data to an HTTP server where it's processed, stored, and used to calculate a result. Even without sending data, forms are valuable. Selecting from a list of choices might display a focused UI. Checking or unchecking a checkbox shows and hides details. Forms drive interaction.</p>
+<p>Without forms, Google Search wouldn't be possible. Wikipedia, Pinterest, and Twitch wouldn't exist. Even largely read-only sites like the Wall Street Journal and Youtube (stream-only) wouldn't exist without the ability to log in with a username input, password input, and a submit button.</p>
+<h2 id="learning-outcomes">Learning Outcomes</h2>
+<p>When you've finished this lesson and its exercises, you should be able to:</p>
+<ul>
+<li>Describe the problem forms solve.</li>
+<li>Name 5 common form controls and describe how a user interacts with them.</li>
+</ul>
+<h2 id="form-structure">Form Structure</h2>
+<p>An HTML form is a block element. It's not useful without children because the children are what allow user interaction. Children include HTML elements like <code>label</code>, <code>input</code>, <code>select</code>, <code>textarea</code>, and <code>button</code>. These elements are called <strong>form controls</strong>. A <strong>control</strong> is a built-in UI component that supports one of several standard user interactions: clicking a button, selecting from a dropdown, entering text, etc. Children may also include HTML layout and text elements.</p>
+<pre><code class="language-html">&lt;form action="/relative/url" method="post"&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="username" class="form-label"&gt;Username&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" class="form-control" autocomplete="off"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="password" class="form-label"&gt;Password&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" class="form-control"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;button class="btn btn-primary" type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+<h2 id="form-submission">Form Submission</h2>
+<p>Without JavaScript, a form submits its data via an HTTP request to a server. The <code>action</code> attribute specifies the request URL. If it's omitted, the action is the URL in the browser's address bar. The <code>method</code> attribute specifies the request method: <code>GET</code> or <code>POST</code>. No other methods are valid in a non-JavaScript form.</p>
+<p>Form submission is triggered by:</p>
+<ol>
+<li>Clicking a <code>button type="submit"</code> that's inside the form or has its <code>form</code> attribute set.</li>
+<li>Clicking an <code>input type="submit"</code> that's inside the form.</li>
+<li>Pressing the access key sequence for a submit input's <code>accesskey</code> value. (Uncommon)</li>
+<li>Pressing Enter while focused on a form control inside a form and a submit element exists. This behavior helps power users enter data very quickly. They tab through form controls, entering data as they go, and hit Enter when they're done. There's no need to use the mouse.</li>
+</ol>
+<h2 id="common-form-controls">Common Form Controls</h2>
+<p>Create a new HTML document with the following content.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Forms&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Add snippets here. --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Copy and paste snippets into the body. Open the document in the browser and review each snippet.</p>
+<h3 id="label"><code>label</code></h3>
+<p>(Some might argue that the <code>label</code> element isn't a form control. It doesn't accept data.)</p>
+<p>A label associates text to a form control. A label is linked to a control by assigning the control's <code>id</code> value to the label's <code>for</code>. Clicking the label puts focus on its input and can even check or uncheck checkboxes.</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;label for="petName"&gt;Name&lt;/label&gt;
+    &lt;input type="text" id="petName" name="petName"&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;label for="likesKibble"&gt;Likes Kibble&lt;/label&gt;
+    &lt;input type="checkbox" id="likesKibble" name="likesKibble"&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Copy the snippet. View in the browser. Click on the labels.</p>
+<h3 id="input"><code>input</code></h3>
+<p><code>input</code> is the workhorse form control. It solves different UI concerns depending on its <code>type</code> attribute. If the <code>type</code> isn't specified, the default is <code>text</code>. The types below are just a sample. There are many more.</p>
+<h4 id="typetext"><code>type="text"</code></h4>
+<p>The text input allows the user to enter text on a single line.</p>
+<p>The <code>id</code> attribute unique identifies a control.</p>
+<p>The <code>name</code> attribute is the key used to send a control's data via an HTTP POST or GET. It's not strictly required if form submission is disabled but can still be useful.</p>
+<p>If the <code>value</code> attribute is set, the control is pre-filled with its value.</p>
+<p>If the <code>placeholder</code> attribute is set, the control starts with its value as a text prompt. As soon as the use enters their own text, the placeholder disappears. Placeholder text isn't part of the actual value.</p>
+<p>Add a <code>title</code> to display a message when the user hovers over the control.</p>
+<pre><code class="language-html">&lt;input type="text" id="txtOne" name="txtOne"&gt;
+&lt;!-- default's to type="text" --&gt;
+&lt;input id="txtTwo" name="txtTwo"&gt;
+&lt;!-- has an initial value --&gt;
+&lt;input type="text" id="txtThree" name="txtThree" value="This is the starting value."&gt;
+&lt;!-- placeholder prompts the user --&gt;
+&lt;input type="text" id="txtFour" name="txtFour" placeholder="[Enter some text here.]"&gt;
+&lt;!-- title shows a message when the user hovers --&gt;
+&lt;input type="text" id="txtFive" name="txtFive" title="I am for entering text."&gt;
+</code></pre>
+<h4 id="typepassword"><code>type="password"</code></h4>
+<p>The password type accepts text input, but the input is masked so that casual observers can't read it. The text is not protected in any way from JavaScript or form submission. The text is still plain text.</p>
+<pre><code class="language-html">&lt;label for="password"&gt;Password&lt;/label&gt;
+&lt;input type="password" id="password" name="password"&gt;
+&lt;label for="passwordConfirm"&gt;Confirm Password&lt;/label&gt;
+&lt;input type="password" id="passwordConfirm" name="passwordConfirm"&gt;
+</code></pre>
+<h4 id="typecheckbox"><code>type="checkbox"</code></h4>
+<p>The checkbox input allows the user to check or uncheck a single checkbox.</p>
+<p>If the <code>value</code> attribute is set, it's the value sent via HTTP POST or GET if the checkbox is checked. If the checkbox isn't checked, no value is sent. The default value is <code>"on"</code>.</p>
+<p>Use the stand-alone <code>checked</code> attribute to pre-check a checkbox.</p>
+<p>Checkboxes have no text content. It's a single, lonely checkbox. Be sure the user knows what a checkbox is for with a label or other text indicator. The <code>title</code> attribute probably isn't sufficient.</p>
+<pre><code class="language-html">&lt;input type="checkbox" id="chkOne" name="chkOne"&gt;
+&lt;input type="checkbox" id="chkTwo" name="chkTwo" value="isHopeful"&gt;
+&lt;input type="checkbox" id="chkThree" name="chkThree" checked&gt;
+&lt;label for="chkFour"&gt;I Am Check Four&lt;/label&gt;
+&lt;input type="checkbox" id="chkFour" name="chkFour" title="Check me to win a prize." checked&gt;
+</code></pre>
+<h4 id="typeradio"><code>type="radio"</code></h4>
+<p>The radio input allows the user to press (or select) a single button out of a group. Old car radios had physical buttons for presetting FM/AM frequencies. Only one button could be pressed down at a time. New radios operate the same way -- there's no way to tune the radio to two frequencies -- but we don't get the physical feedback of a mashed down radio button.</p>
+<p>The <code>name</code> attribute links a set of radio buttons so that only one with the same name can be selected at a time. When another is selected, any selected radio button with the same name is unselected.</p>
+<p>If the <code>value</code> attribute is set, it's the value sent via HTTP POST or GET when the radio is selected. If the radio isn't selected, no value is sent.</p>
+<p>Use the <code>checked</code> attribute to pre-select a radio button.</p>
+<p>Radio buttons have no text content so it's important to let a user know how to use them.</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;h2&gt;Choose a primary color.&lt;/h2&gt;
+    &lt;input type="radio" name="color" id="rdRed" value="Red"&gt;
+    &lt;input type="radio" name="color" id="rdBlue" value="Blue"&gt;
+    &lt;input type="radio" name="color" id="rdYellow" value="Yellow"&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;h2&gt;How do you commute?&lt;/h2&gt;
+    &lt;label for="rdWalk"&gt;Walk&lt;/label&gt;
+    &lt;input type="radio" name="commute" id="rdWalk" value="Walk"&gt;
+    &lt;label for="rdBike"&gt;Bike&lt;/label&gt;
+    &lt;input type="radio" name="commute" id="rdBike" value="Bike"&gt;
+    &lt;label for="rdCar"&gt;Car&lt;/label&gt;
+    &lt;input type="radio" name="commute" id="rdCar" value="Car"&gt;
+    &lt;label for="rdBus"&gt;Bus&lt;/label&gt;
+    &lt;input type="radio" name="commute" id="rdBus" value="Bus"&gt;
+    &lt;label for="rdTrain"&gt;Train&lt;/label&gt;
+    &lt;input type="radio" name="commute" id="rdTrain" value="Train"&gt;
+    &lt;label for="rdHome"&gt;Work from home&lt;/label&gt;
+    &lt;input type="radio" name="commute" id="rdHome" value="Work From Home" checked&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="typenumber"><code>type="number"</code></h4>
+<p>The number input restricts text content to a number. Its <code>value</code> attribute is still a string. When we read its value via JavaScript: <code>document.getElementById("id").value</code>, we still get a string and must convert to number if desired.</p>
+<p>The <code>min</code> attribute sets the lowest number allowed.</p>
+<p>The <code>max</code> attribute sets the highest number allowed.</p>
+<p>The number input includes up and down arrow buttons to increase or decrease the number without typing. The <code>step</code> attribute set the arrow increment value. The default is <code>1</code>.</p>
+<p><code>min</code>, <code>max</code>, and <code>step</code> don't prevent the user from typing other numbers. Validation is still required.</p>
+<pre><code class="language-html">&lt;input type="number" id="anyNumber" name="anyNumber"&gt;
+&lt;input type="number" id="between1and10" name="between1and10" value="1" min="1" max="10" step="0.1"&gt;
+</code></pre>
+<h3 id="select"><code>select</code></h3>
+<p>The <code>select</code> element allows a user to select one or more options from a fixed set. In this way, it's not unlike a radio button. Its layout is more compact and, unlike radio buttons, it can be configured to select multiple options.</p>
+<p>Select represents data options with <code>&lt;option&gt;</code> child elements. Each option renders the text inside it and can optionally use the <code>value</code> attribute as the actual value selected. When <code>value</code> is set, text is a prompt and <code>value</code> is the selected value.</p>
+<p>Use the <code>selected</code> attribute to pre-select an option.</p>
+<pre><code class="language-html">&lt;!-- no values, text is the value --&gt;
+&lt;select name="color" id="color"&gt;
+    &lt;option&gt;Red&lt;/option&gt;
+    &lt;option selected&gt;Blue&lt;/option&gt;
+    &lt;option&gt;Yellow&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- explicit values --&gt;
+&lt;select name="commute" id="commute"&gt;
+    &lt;option value="walk"&gt;Walk&lt;/option&gt;
+    &lt;option value="bike"&gt;Bicycle&lt;/option&gt;
+    &lt;option value="car"&gt;Drive&lt;/option&gt;
+    &lt;option value="bus"&gt;Bus&lt;/option&gt;
+    &lt;option value="train"&gt;Train&lt;/option&gt;
+    &lt;option value="home" selected&gt;Work from Home&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<p>Select can also be configured to select multiple items from a list by adding the <code>multiple</code> attribute.</p>
+<pre><code class="language-html">&lt;h2&gt;Which commuting methods would you consider?&lt;/h2&gt;
+&lt;select name="commute" id="commute" multiple&gt;
+    &lt;option value="walk"&gt;Walk&lt;/option&gt;
+    &lt;option value="bike"&gt;Bicycle&lt;/option&gt;
+    &lt;option value="car"&gt;Drive&lt;/option&gt;
+    &lt;option value="bus"&gt;Bus&lt;/option&gt;
+    &lt;option value="train"&gt;Train&lt;/option&gt;
+    &lt;option value="home"&gt;Work from Home&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<h3 id="textarea"><code>textarea</code></h3>
+<p>The <code>textarea</code> element allows users to enter multi-line text in a multi-line input format.</p>
+<p>Unlike other controls, textarea doesn't preset its content with the <code>value</code> attribute. It embeds the text inside the tag.</p>
+<p>The <code>cols</code> attributes sets the width of a textarea in average characters. The <code>rows</code> attribute sets the height in lines of text. The element can also be styled with CSS.</p>
+<pre><code class="language-html">&lt;textarea id="comment" name="comment"&gt;&lt;/textarea&gt;
+&lt;textarea id="profile" name="profile" cols="35" rows="10"&gt;My favorite color is light tan.
+I like puppies.&lt;/textarea&gt;
+</code></pre>
+<h3 id="button"><code>button</code></h3>
+<p>The button element has the simplest user interaction. It allows a user to click it in the hope that something will happen.</p>
+<p>A button is a container element. It can include any valid HTML inside of it. It has three types.</p>
+<h4 id="typesubmit"><code>type="submit"</code></h4>
+<p>The submit button submits a form. It must be included inside the form or set the <code>form</code> attribute to trigger form submission.</p>
+<pre><code class="language-html">&lt;!-- submit button inside the form --&gt;
+&lt;form onsubmit="alert('first form submitted');return false;"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- submit button with the `form` attribute --&gt;
+&lt;form id="frmTwo" onsubmit="alert('second form submitted');return false;"&gt;
+&lt;/form&gt;
+&lt;button type="submit" form="frmTwo"&gt;Submit&lt;/button&gt;
+</code></pre>
+<h4 id="typebutton"><code>type="button"</code></h4>
+<p>The button type triggers an action, but it's up to JavaScript to handle it. On its own, the <code>button</code> type doesn't do anything.</p>
+<h4 id="typereset"><code>type="reset"</code></h4>
+<p>A reset button resets a form's controls. It blanks them out. Understandably, most people hate this. When they click the reset button, it's usually a mistake. Best to avoid the reset button unless there's a really good reason to use it.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Forms and form controls are what power true web <em>applications</em>. Forms let people create things (and check their account balance).</p>
+
+    <script src="prism.js"></script>
+</body>
+</html>

@@ -3,13 +3,13 @@
 <head>
     <title>Lesson: HTML and Web Accessibility</title>
     <meta name="markdown-src" content="/M08-front-end-dev/01-html-accessibility-intro.md">
-    <link rel="stylesheet" href="prism.css">
-    <link rel="stylesheet" href="fontawesome-pro/css/all.css">
-    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="../base.css">
     <base target="_blank">
 </head>
 <body>
-    <h1 id="lesson-html-and-web-accessibility">Lesson: HTML and Web Accessibility</h1>
+    
 <h2 id="introduction">Introduction</h2>
 <p><strong>Hypertext Markup Language</strong> (<strong>HTML</strong>) is the language used by web browsers to display content, include external resources, and embed metadata. HTML is code. The browser interprets this code to present media, format text, and position content. HTML is a structured language. It has hierarchy. For example, a small image can be included inside a link, which can be included inside a navigation dropdown, which can be included inside a navigation bar.</p>
 <p>HTML represents <strong>elements</strong>. Elements may be nested. Elements are structured with <strong>tags</strong>. A tag is a bit of code with a name. Elements that support nesting have an opening tag and a closing tag. Elements that don't support nesting have a single opening tag. Tags may include <strong>attributes</strong>.</p>
@@ -35,13 +35,12 @@
 </ul>
 <h2 id="web-accessibility">Web Accessibility</h2>
 <p>Web accessibility is the practice of making the web usable for all people. In the Convention on the Rights of Persons with Disabilities (CRPD), the United Nations <a href="https://www.un.org/development/desa/disabilities/convention-on-the-rights-of-persons-with-disabilities/article-9-accessibility.html">ratified web accessibility as a fundamental human right</a>. Many countries have web accessibility laws, especially related to content used for education, health care, and government. Since the web is increasingly used for essential services, everyone has the right to access those services.</p>
-<p>Web accessibility creates ease-of-use for people with disabilities that include:</p>
+<p>Web accessibility creates ease-of-use for people with differing levels of:</p>
 <ul>
 <li>vision</li>
 <li>hearing</li>
 <li>cognition</li>
-<li>physical</li>
-<li>neurological</li>
+<li>mobility</li>
 <li>speech</li>
 </ul>
 <p>But web accessibility is important for everyone. </p>
@@ -81,10 +80,10 @@ It was a dark and stormy night.
 <pre><code class="language-html">&lt;h1&gt;Chapter 1&lt;/h1&gt;
 &lt;p&gt;It was a dark and stormy night.&lt;/p&gt;
 </code></pre>
-<p>The chapter line is marked up with an <code>&lt;h1&gt;</code>, which creates a level 1 header element, and the remaining content is marked up with a <code>&lt;p&gt;</code>, which creates a paragraph element.</p>
+<p>The chapter line is marked up with an <code>&lt;h1&gt;</code>. This creates a level 1 header element. The remaining content is marked up with a <code>&lt;p&gt;</code>, which creates a paragraph element.</p>
 <h3 id="elements">Elements</h3>
 <p>HTML represents elements. Elements are defined with named tags. </p>
-<p>Elements that can contain content are defined with an <strong>open tag</strong> and a <strong>close tag</strong>. The open tag is a less than symbol (<code>&lt;</code>), the element name, and the greater than symbol (<code>&gt;</code>). The close tag is the less than symbol, a forward slash (<code>/</code>), the element name, and the greater than symbol.</p>
+<p>Elements that may contain content are defined with an <strong>open tag</strong> and a <strong>close tag</strong>. The open tag is a less than symbol (<code>&lt;</code>), the element name, and the greater than symbol (<code>&gt;</code>). The close tag is the less than symbol, a forward slash (<code>/</code>), the element name, and the greater than symbol.</p>
 <p>Generically: <code>&lt;tag&gt;Content&lt;/tag&gt;</code>.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-html">&lt;p&gt;Rapini is also called broccoli rabe.&lt;/p&gt;
@@ -105,7 +104,7 @@ It was a dark and stormy night.
 &lt;br&gt;
 </code></pre>
 <h3 id="attributes">Attributes</h3>
-<p>HTML elements may contain zero to many attributes. Some elements are useless without them. Attributes are defined before the greater than symbol in the open tag (<code>&lt;tag *attributes-go-here*&gt;Content&lt;/tag&gt;</code>). An attribute has a name and a value. Its syntax is: name, the equals symbol (<code>=</code>), a quote (single or double), a value, and another quote (must match the previous single or double).</p>
+<p>HTML elements may contain zero to many attributes. Some elements are useless without them. Attributes are defined before the greater than symbol in the open tag (<code>&lt;tag attributes="go here"&gt;Content&lt;/tag&gt;</code>). An attribute has a name and a value. Its syntax is: name, the equals symbol (<code>=</code>), a quote (single or double), a value, and another quote (must match the previous single or double).</p>
 <p>Generically: <code>&lt;tag attr="value" pi="3.14"&gt;Content&lt;/tag&gt;</code>.</p>
 <p><strong>Example</strong></p>
 <pre><code class="language-html">&lt;a href="https://xkcd.com/" title="xkcd"&gt;xkcd&lt;/a&gt;
@@ -145,7 +144,7 @@ It was a dark and stormy night.
 &lt;button type="submit" disabled&gt;Save&lt;/button&gt;
 </code></pre>
 <h3 id="nested-elements">Nested Elements</h3>
-<p>If an element can contain content, it may include zero to many child elements. If a child element can contain content, it may also include zero to many child elements. In this way, we build up complex user interfaces represented as a hierarchy or tree.</p>
+<p>If an element may contain content, it can include zero to many child elements. If a child element may contain content, it can also include zero to many child elements. In this way, we build up complex user interfaces represented as a hierarchy or tree.</p>
 <p><strong>Simple Example</strong></p>
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="QWxzgBq" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/corbos/pen/QWxzgBq">
@@ -210,7 +209,11 @@ It was a dark and stormy night.
         </figure>
 
 <p><strong>VS Code</strong></p>
-<p>Create an HTML document named <code>index.html</code> in VS Code. Paste the HTML Document Skeleton into the document. Alternatively, create a blank <code>index.html</code> document, type the exclamation character (<code>!</code>), then press tab. VS Code supports <a href="https://docs.emmet.io/cheat-sheet/">Emmet commands/shortcuts</a>.</p>
+<p>Create an HTML document named <code>index.html</code> in VS Code. Paste the HTML Document Skeleton into the document. Alternatively, create a blank <code>index.html</code> document, type the exclamation character (<code>!</code>), then press tab. VS Code supports Emmet commands.</p>
+<blockquote class=""><i class="callout fas fa-sticky-note"></i> 
+<strong>Emmet</strong> is an editor plugin that improves our HTML and CSS workflow. It allows us to type short commands that generate verbose HTML. <a href="https://docs.emmet.io/cheat-sheet/">Emmet has a cheat sheet</a> with common commands.
+</blockquote>
+
 <p>Let's zoom into details.</p>
 <h3 id="html-comments">HTML Comments</h3>
 <p>An HTML comment is a less than symbol, an exclamation symbol, two dashes, comment content, two dashes, and a greater than symbol. HTML comments can span multiple lines.</p>
@@ -241,7 +244,7 @@ comment --&gt;
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">title</a> element can contain text only. All child HTML elements are ignored. The text content is displayed in a browser's tab or its title bar.</p>
 <img src="assets/html-title.png" alt="The title element is displayed on the browser's tab.">
 
-<p>The <code>title</code> is also important for web accessibility. Every site view or page should have a unique title. The title should declare the view's primary purpose, followed by the site's name.</p>
+<p>The <code>title</code> is also important for web accessibility. Every view or page should have a unique title. The title should declare the view's primary purpose, followed by the site's name.</p>
 <h3 id="the-body-element">The <code>body</code> Element</h3>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body">body</a> element is the displayed document root. It's the document's rendered structure. It's possible to move things around with CSS, but for the most part we want to make our HTML structure match what's rendered. Again, this helps with web accessibility. A screen reader wants to work top to bottom. If we move the bottom to the top with CSS, the bottom will be read last.</p>
 <p>The <code>body</code> element has many attributes. Many are <strong>event handlers</strong>: a function that responds to changes to the state of the <code>body</code>. Others attributes define how the body is displayed. Don't use the body's display attributes! Use CSS instead.</p>
@@ -295,7 +298,7 @@ comment --&gt;
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre">preformatted text element</a> displays content exactly as it's written in the HTML file. It honors all whitespace. This makes it ideal for displaying things like source code where tabs and indentation matter.</p>
 <p>Preformatted text is not strictly a semantic element. It tells us how something is formatted (presentation) but not what's included (function). To include source code with <code>pre</code>, wrap it inside the <code>&lt;code&gt;</code> element.</p>
 <h4 id="blockquote"><code>blockquote</code></h4>
-<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote">block quotation element</a> separates quotes from the surrounding context. Use the <strong>cite</strong> attribute to provide a link to the source. Use the <code>cite</code> element to reference a specific work.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote">block quotation element</a> separates quotes from the surrounding context. Use the <strong>cite</strong> <em>attribute</em> to provide a link to the source. Use the <code>cite</code> <em>element</em> to reference a specific work.</p>
 <pre><code class="language-html">&lt;figure&gt;
   &lt;blockquote cite="https://www.goodreads.com/work/quotes/1094555-ghostwritten-a-novel-in-nine-parts"&gt;
     &lt;p&gt;The human world is made of stories, not people. 
@@ -500,6 +503,6 @@ Darkling beetle is the common name for members of the beetle family Tenebrionida
 <li>Draw a line down the middle of a sheet of paper. Label one half "block-level elements" and the other "inline elements". Categorize as many HTML elements as possible into block or inline.</li>
 </ul>
 
-    <script src="prism.js"></script>
+    <script src="../prism.js"></script>
 </body>
 </html>

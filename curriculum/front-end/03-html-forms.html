@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lesson: HTML Forms</title>
+    <meta name="markdown-src" content="/M08-front-end-dev/03-html-forms.md">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="../base.css">
+    <base target="_blank">
+</head>
+<body>
+    
+<h2 id="introduction">Introduction</h2>
+<p>Much of HTML is intended for displaying data. HTML forms and form controls allow users to enter data. Once we can enter data, we can build proper web applications. Without forms, the web would be a collection of read-only brochures. With forms, we can send data to an HTTP server where it's processed, stored, and used to calculate a result. Even without sending data, forms are valuable. Selecting from a list of choices might display a focused UI. Checking or unchecking a checkbox shows and hides details. Forms drive interaction.</p>
+<p>Without forms, Google Search wouldn't be possible. Wikipedia, Pinterest, and Twitch wouldn't exist. Even largely read-only sites like the Wall Street Journal and Youtube (stream-only) wouldn't exist without the ability to log in with a username input, password input, and a submit button.</p>
+<h2 id="learning-outcomes">Learning Outcomes</h2>
+<p>When you've finished this lesson and its exercises, you should be able to:</p>
+<ul>
+<li>Describe the problem forms solve.</li>
+<li>Name 5 common form controls and describe how a user interacts with them.</li>
+<li>Add form controls to an HTML document.</li>
+<li>Explain the browser's default form submission.</li>
+<li>Stay alert about web accessibility in HTML forms.</li>
+</ul>
+<h2 id="form-structure">Form Structure</h2>
+<p>An HTML form is a block element. It's not useful without children because the children are what allow user interaction. Children include HTML elements like <code>label</code>, <code>input</code>, <code>select</code>, <code>textarea</code>, and <code>button</code>. These elements are called <strong>form controls</strong>. A <strong>control</strong> is a built-in UI component that supports one of several standard user interactions: clicking a button, selecting from a dropdown, entering text, etc. Children may also include HTML layout and text elements.</p>
+<p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="wvYJpdJ" data-editable="true" data-user="corbos" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/wvYJpdJ">
+  Form - overview</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="form-submission">Form Submission</h2>
+<p>By default, a form submits its data via an HTTP request to a server. The <code>action</code> attribute specifies the request URL. If it's omitted, the action is the URL in the browser's address bar. The <code>method</code> attribute specifies the HTTP request method: <code>GET</code> or <code>POST</code>. No other methods are valid.</p>
+<p>Form submission is triggered by:</p>
+<ol>
+<li>Clicking a <code>button type="submit"</code> that's inside the form or has its <code>form</code> attribute set.</li>
+<li>Clicking an <code>input type="submit"</code> that's inside the form.</li>
+<li>Pressing the access key sequence for a submit input's <code>accesskey</code> value. (Uncommon)</li>
+<li>Pressing <kbd>Enter</kbd> while focused on a control inside a form and a submit element exists. This behavior helps power-users enter data quickly. They tab through controls, entering data as they go, and hit <kbd>Enter</kbd> when they're done. There's no need to use the mouse.</li>
+</ol>
+<blockquote class=""><i class="callout fas fa-exclamation-circle"></i> 
+<p>
+    It's increasingly rare to use default form submission. Instead, we use the JavaScript programming language to prevent default form submission, validate data, and use HTTP methods beyond <code>GET</code> and <code>POST</code>, like <code>PUT</code> and <code>DELETE</code>.
+</p>
+<p>
+    Our Java APIs (or any API) won't be able to handle the browser's default form submission.
+</p>
+</blockquote>
+
+<h2 id="common-form-controls">Common Form Controls</h2>
+<h3 id="label"><code>label</code></h3>
+<p>A label associates text to a form control. A label is linked to a control by assigning the control's <code>id</code> value to the label's <code>for</code> attribute. Clicking the label puts focus on its input and can even check or uncheck checkboxes.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="poxeazQ" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/poxeazQ">
+  Form - label</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="input"><code>input</code></h3>
+<p><code>input</code> is the workhorse form control. It solves different UI concerns depending on its <code>type</code> attribute. If the <code>type</code> isn't specified, the default is <code>text</code>. The types below are just a sample. There are many more.</p>
+<h4 id="typetext"><code>type="text"</code></h4>
+<p>The text input allows the user to enter text on a single line.</p>
+<p>The <code>id</code> attribute uniquely identifies the control.</p>
+<p>The <code>name</code> attribute is the key used to send a control's data via an HTTP POST or GET. It's not strictly required if form submission is disabled, but can still be useful.</p>
+<p>If the <code>value</code> attribute is set, the control is pre-filled with its value.</p>
+<p>If the <code>placeholder</code> attribute is set, the control starts with its value as a text prompt. As soon as the use enters their own text, the placeholder disappears. Placeholder text isn't part of the actual value.</p>
+<p>Add a <code>title</code> to display a message when the user hovers over the control.</p>
+<p>Read the comments below.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="YzJZaXv" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/YzJZaXv">
+  Form - input type="text"</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="typepassword"><code>type="password"</code></h4>
+<p>The password type accepts text input, but the input is masked so that casual observers can't read it. The text is not protected in any way from JavaScript or form submission. The text is still plain text.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="poxeXyJ" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/poxeXyJ">
+  Form - type="password"</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="typecheckbox"><code>type="checkbox"</code></h4>
+<p>The checkbox input allows the user to check or uncheck a single checkbox.</p>
+<p>If the <code>value</code> attribute is set, it's the value sent via HTTP POST or GET if the checkbox is checked. If the checkbox isn't checked, no value is sent. The default value is <code>"on"</code>.</p>
+<p>Use the <code>checked</code> attribute to pre-check a checkbox.</p>
+<p>Checkboxes have no text content. It's a single, lonely checkbox. Be sure the user knows what a checkbox is for with a label or other text indicator. The <code>title</code> attribute probably isn't sufficient.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="bGmqPJE" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/bGmqPJE">
+  Form - type="checkbox"</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<blockquote>
+<h5 class=""><i class=" fas fa-sticky-note"></i> Accessibility</h5>
+<p>
+    Web accessibility is just as important for HTML forms as it is for any other content. In fact, it may be more important. If a user can't use our form, they'll be left frustrated. If that form is part of an essential service (government services, education, health care), an inaccessible form is illegal.
+</p>
+<p>
+    The W3C Web Accessibility Initiative <a href="https://www.w3.org/WAI/tutorials/forms/labels/">recommends always labeling form controls</a>. If the label element isn't practical or would get in the way of aesthetics, there are four other approaches to labeling.
+</p>
+<ol>
+    <li>Add the label element but keep it "practically" hidden. Just like visual web browsers, screen readers hide content from a user if the element is <code>display: none</code> or <code>visibility: hidden</code>. <a href="https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements">Use this CSS trick</a> to hide a label visually but keep it accessible in a screen reader.</li>
+    <li>If a label element isn't adequate, decide which element labels the control by using the <code>aria-label</code> attribute.</li>
+    <li>Alternatively, use the <code>aria-labelledby</code> attribute if we know the labelling element's id.</li>
+    <li>The fourth approach is to use the <code>title</code> attribute. For this to work, we need to be very clear about what is expected. Titles are not as effective as labels.</li>
+</ol>
+</blockquote>
+
+<h4 id="typeradio"><code>type="radio"</code></h4>
+<p>The radio input allows the user to press (or select) a single button out of a group. Old car radios had physical buttons for presetting FM/AM frequencies. Only one button could be pressed down at a time. New radios operate the same way -- there's no way to tune the radio to two frequencies -- but we don't get the physical feedback of a mashed down radio button.</p>
+<p>The <code>name</code> attribute links a set of radio buttons so that only one with the same name can be selected at a time. When another is selected, any selected radio button with the same name is unselected.</p>
+<p>If the <code>value</code> attribute is set, it's the value sent via HTTP POST or GET when the radio is selected. If the radio isn't selected, no value is sent.</p>
+<p>Use the <code>checked</code> attribute to pre-select a radio button.</p>
+<p>Radio buttons have no text content so it's important to let a user know how to use them.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="PoymYPK" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/PoymYPK">
+  Form - type="radio"</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="typenumber"><code>type="number"</code></h4>
+<p>The number input restricts text content to a number. Its <code>value</code> attribute is still a string. When we read its value via JavaScript: <code>document.getElementById("id").value</code>, we still get a string and must convert to number if desired.</p>
+<p>The <code>min</code> attribute sets the lowest number allowed.</p>
+<p>The <code>max</code> attribute sets the highest number allowed.</p>
+<p>The number input includes up and down arrow buttons to increase or decrease the number without typing. The <code>step</code> attribute set the arrow increment value. The default is <code>1</code>.</p>
+<p><code>min</code>, <code>max</code>, and <code>step</code> don't prevent the user from typing other numbers. Validation is still required.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="rNqmBeg" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/rNqmBeg">
+  Form - type="number"</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="select"><code>select</code></h3>
+<p>The <code>select</code> element allows a user to select one or more options from a fixed set. In this way, it's not unlike a radio button. Its layout is more compact and, unlike radio buttons, it can be configured to select multiple options.</p>
+<p>Select represents data options with <code>&lt;option&gt;</code> child elements. Each option renders the text inside it and can optionally use the <code>value</code> attribute as the actual value selected. When <code>value</code> is set, text inside <code>option</code> is a prompt and <code>value</code> is the selected value.</p>
+<p>Use the <code>selected</code> attribute to pre-select an option.</p>
+<p class="codepen" data-height="500" data-default-tab="html,result" data-slug-hash="gOBWYWX" data-editable="true" data-user="corbos" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/gOBWYWX">
+  Form - select</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Select can also be configured to select multiple items from a list by adding the <code>multiple</code> attribute.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="abRWoLv" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/abRWoLv">
+  Form - select multiple</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="textarea"><code>textarea</code></h3>
+<p>The <code>textarea</code> element allows users to enter multi-line text in a multi-line input format.</p>
+<p>Unlike other controls, textarea doesn't preset its content with the <code>value</code> attribute. It embeds the text inside the tag.</p>
+<p>The <code>cols</code> attributes sets the width of a textarea in average characters. The <code>rows</code> attribute sets the height in lines of text. The element can also be styled with CSS.</p>
+<p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="QWZvLZo" data-editable="true" data-user="corbos" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/QWZvLZo">
+  Form - textarea</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="button"><code>button</code></h3>
+<p>The button element has the simplest user interaction. It allows a user to click it in the hope that something will happen.</p>
+<p>A button is a container element. It can include any valid HTML inside of it. It has three types.</p>
+<h4 id="typesubmit"><code>type="submit"</code></h4>
+<p>The submit button submits a form. It must be included inside the form or set the <code>form</code> attribute to trigger form submission.</p>
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="XWxRrvK" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/XWxRrvK">
+  Form - button[type=submit]</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="typebutton"><code>type="button"</code></h4>
+<p>The button type triggers an action, but it's up to JavaScript to handle it. On its own, the <code>button</code> type doesn't do anything.</p>
+<h4 id="typereset"><code>type="reset"</code></h4>
+<p>A reset button resets a form's controls. It blanks them out. Understandably, most people hate this. When they click the reset button, it's usually a mistake. Best to avoid the reset button unless there's a really good reason to use it.</p>
+<h2 id="more-accessibility">More Accessibility</h2>
+<p>Form accessibility doesn't stop with labelling controls. The W3C WAI has <a href="https://www.w3.org/WAI/tutorials/forms/">rich suggestions for improving accessibility</a>. A few of the biggies are:</p>
+<ol>
+<li><p><strong>Give good feedback.</strong>: If a form is invalid, say a user entered a phone number in the wrong format, make it clear that they need to fix it. It's not enough to highlight the phone number control in a warning color. A screen reader won't pick that up and colors should never be the sole error indicator. Instead, give clear text instructions <em>near</em> the control. If the feedback is too far away, we lose context.</p>
+</li>
+<li><p><strong>Give instructions.</strong>: If it's not clear how to fill out a form, and it usually isn't, provide instructions and hints for completion. Don't make assumptions. Just because we've logged in to applications hundreds if not thousands of times, don't assume that the login experience is ubiquitous. Even with a login form, provide clear instructions and hints.</p>
+</li>
+<li><p><strong>Make logical groups.</strong>: Use the <code>fieldset</code> and <code>legend</code> elements to make logical groups of controls. An example might be a billing address group and shipping address group. If <code>fieldset</code> isn't practical, use a grouping container element. In the container, assign the <code>role</code> attribute a value of "group". Then assign a label with the <code>aria-labelledby</code> attribute.</p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Forms and form controls are what power true web <em>applications</em>. Forms let people create, update, and delete things. Forms authenticate and authorize people. Forms are what power Instagram, Gmail, and TurboTax.</p>
+<p>Create this form in VS Code.</p>
+<p><img src="assets/forms-signup.png" alt="A sign up form"></p>
+<p>Create a radio button group with the header "Preferred Hours". Add three radio buttons with labels:</p>
+<ul>
+<li>08am-04pm</li>
+<li>04pm-12am</li>
+<li>12am-08am</li>
+</ul>
+<p>Add a <code>textarea</code> for the person's biography. Be sure to label it.</p>
+
+    <script src="../prism.js"></script>
+</body>
+</html>

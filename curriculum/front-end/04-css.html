@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lesson: CSS</title>
+    <meta name="markdown-src" content="/M08-front-end-dev/04-css.md">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="../base.css">
+    <base target="_blank">
+</head>
+<body>
+    
+<h2 id="introduction">Introduction</h2>
+<p><strong>Cascading Style Sheets</strong> (<strong>CSS</strong>) is an open standards language used to transform our HTML into colorful, multi-font designs with rich layouts. All modern browsers support CSS. The language is <a href="https://www.w3.org/Style/CSS/">specified by the W3C</a>.</p>
+<p>CSS is composed of <strong>rulesets</strong>. All rulesets include a <strong>selector</strong> that targets HTML elements. Selectors can be very broad (all elements in a document) or very narrow (a single element). Rulesets define <strong>property</strong> groups. Depending on the property, only certain values and <strong>units</strong> are valid. Properties can do anything from adding space around an element to complex animations.</p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>When you've finished this lesson and its exercises, you should be able to:</p>
+<ul>
+<li>Identify the parts of a CSS ruleset.</li>
+<li>Apply styles to an HTML element using an element selector, a class selector, and an id selector.</li>
+<li>Apply styles to an HTML element using child or descendent selectors.</li>
+<li>Sketch the CSS box model.</li>
+<li>Use CSS properties, values, and units.</li>
+</ul>
+<h2 id="css">CSS</h2>
+<p>CSS is not a programming language like Java, Python, or JavaScript, and it's not a markup language like HTML. CSS is a <em>stylesheet</em> language.</p>
+<p>A stylesheet language defines rulesets that include a selector and a property set surrounded by curly braces. A ruleset may contain one to many properties.</p>
+<p>CSS comments use the <code>/* comment */</code> syntax.</p>
+<pre><code class="language-css">/* ruleset */
+html {
+  font-family: Arial, sans-serif;
+}
+
+/* ruleset */
+h2 {
+  letter-spacing: 0.1rem;
+  color: #0000aa;
+  border-bottom: 1px solid #0000aa;
+}
+
+/* ruleset */
+ul &gt; li {
+  list-style-type: "\1F47D";
+}
+</code></pre>
+<p><strong>Generically</strong></p>
+<figure>
+            <img src="./assets/css-ruleset.png" alt="A CSS ruleset with a selector, properties, and values." class="figure">
+            <figcaption>
+                A CSS ruleset with a selector, properties, and values.
+            </figcaption>
+        </figure>
+
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="css,result" data-slug-hash="qBybvOm" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/qBybvOm">
+  CSS - intro</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="set-up">Set Up</h2>
+<p>There are four ways to connect our CSS to HTML.</p>
+<h3 id="1-embed-directly-in-an-elements-style-attribute">1. Embed directly in an element's <code>style</code> attribute.</h3>
+<pre><code class="language-html">&lt;h1 style="border-bottom: 1px solid red;"&gt;Chapter 1&lt;/h1&gt;
+&lt;p style="font-family: Arial, Helvetica, sans-serif; font-size: 1.2em;"&gt;
+  It was a dark and stormy night.
+&lt;/p&gt;
+</code></pre>
+<p>In the strictest sense, this really isn't CSS. There are no selectors. It's one or more style properties connected directly to an element.</p>
+<p>Never use this approach. It's an absolute nightmare to maintain. It's not DRY within the document and certainly not DRY in multiple documents.</p>
+<h3 id="2-embed-directly-in-a-documents-style-tag">2. Embed directly in a document's <code>&lt;style&gt;</code> tag.</h3>
+<p>CSS can be embedded directly in an HTML document using the <code>&lt;style&gt;</code> tag.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Inline CSS&lt;/title&gt;
+  &lt;style&gt;
+    html {
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      letter-spacing: 0.1rem;
+      color: #0000aa;
+      border-bottom: 1px solid #0000aa;
+    }
+
+    ul&gt;li {
+      list-style-type: "\1F47D";
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Creamy Scrambled Eggs&lt;/h1&gt;
+    &lt;h2&gt;Ingredients&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;2 eggs&lt;/li&gt;
+      &lt;li&gt;1/4 cup heavy cream&lt;/li&gt;
+      &lt;li&gt;1 Tbsp butter&lt;/li&gt;
+      &lt;li&gt;Salt and pepper&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;h2&gt;Directions&lt;/h2&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Add eggs and cream to a small mixing bowl. Season to taste. Whisk briskly.&lt;/li&gt;
+      &lt;li&gt;Heat a small sauté pan over medium heat.&lt;/li&gt;
+      &lt;li&gt;Add butter to the pan. Swirl until it's melted, but don't let it brown.&lt;/li&gt;
+      &lt;li&gt;Add egg mixture to the pan. Turn gently. Cook to desired consistency. Don't over-mix. 
+        This will cause the eggs to stick to the pan.&lt;/li&gt;
+      &lt;li&gt;Scoop cooked eggs on a plate alongside warm buttered toast.&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p>This approach isn't recommended. It violates the DRY principle. If we have many HTML documents, we would have to repeat our CSS in every document.</p>
+<h3 id="3-link-css-externally-via-a-relative-url">3. Link CSS externally via a relative URL.</h3>
+<p>A better approach is to link our CSS externally with a relative URL.</p>
+<p>1. Create a directory and open it with VS Code.</p>
+<p>2. Create a file named <code>theme.css</code> in VS Code and add the following content.</p>
+<pre><code class="language-css">html {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    letter-spacing: 0.1rem;
+    color: #0000aa;
+    border-bottom: 1px solid #0000aa;
+}
+
+ul&gt;li {
+    list-style-type: "\1F47D";
+}
+</code></pre>
+<p>3. Create a file named <code>index.html</code> and add the following content.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;External CSS&lt;/title&gt;
+  &lt;!-- Add a relative path to your stylesheet. --&gt;
+  &lt;link rel="stylesheet" href="theme.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Creamy Scrambled Eggs&lt;/h1&gt;
+    &lt;h2&gt;Ingredients&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;2 eggs&lt;/li&gt;
+      &lt;li&gt;1/4 cup heavy cream&lt;/li&gt;
+      &lt;li&gt;1 Tbsp butter&lt;/li&gt;
+      &lt;li&gt;Salt and pepper&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;h2&gt;Directions&lt;/h2&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Add eggs and cream to a small mixing bowl. Season to taste. Whisk briskly.&lt;/li&gt;
+      &lt;li&gt;Heat a small sauté pan over medium heat.&lt;/li&gt;
+      &lt;li&gt;Add butter to the pan. Swirl until it's melted, but don't let it brown.&lt;/li&gt;
+      &lt;li&gt;Add egg mixture to the pan. Turn gently. Cook to desired consistency. Don't over-mix. This will cause the eggs
+        to stick to the pan.&lt;/li&gt;
+      &lt;li&gt;Scoop cooked eggs on a plate alongside warm buttered toast.&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p>4. Launch <code>index.html</code> via Live Server or directly from the file system.</p>
+<h3 id="4-link-css-externally-via-an-absolute-url">4. Link CSS externally via an absolute URL.</h3>
+<p>This approach is common with CSS frameworks that use a <strong>CDN</strong> (Content Delivery Network). </p>
+<blockquote class=""><i class="callout fas fa-sticky-note"></i> 
+Stylesheets, images, videos, audios, and JavaScript files may be hosted on any server!
+</blockquote>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;External CSS&lt;/title&gt;
+  &lt;!-- Add a URL to your stylesheet. --&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;!-- Content here... --&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<h2 id="box-model">Box Model</h2>
+<p>Before we dive into CSS rulesets, we must understand the <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model#what_is_the_css_box_model">CSS Box Model</a>. All HTML elements are bounded by a box. This means that a small image inside a link inside a navigation dropdown inside a navigation bar inside a <code>body</code> is a box in a box in a box in a box in a box. We need to understand these nested boxes to create sophisticated layouts.</p>
+<p>Elements don't just have one box. They have four.</p>
+<ol>
+<li>Content box: HTML and text content.</li>
+<li>Padding box: a buffer between content and the element's border.</li>
+<li>Border box: the element's border. The edge of the border is the element's official boundary. We measure the width and height from the border.</li>
+<li>Margin box: a margin provides space <em>outside</em> of the element. The margin doesn't count against the element's width and height, but it does affect how elements are layed out.</li>
+</ol>
+<figure>
+            <img src="./assets/css-box-model.png" alt="The CSS box model with content, padding, border, and margin." class="figure">
+            <figcaption>
+                The CSS box model with content, padding, border, and margin.
+            </figcaption>
+        </figure>
+
+<p>Each HTML element has its own default padding, border, and margin (and font family, font size, etc). Those defaults usually aren't what we want. We can change the defaults with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">the padding property</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">the border property</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">the margin property</a>.</p>
+<p>Both block-level and inline elements have boxes. Inline elements cannot be given a fixed width and height. They expand to fit their content. Inline elements also ignore vertical padding, borders, and margins. The padding, borders, and margin are there, but they don't change the vertical flow of an inline element.</p>
+<p>Not to worry. We can always change a block-level element to inline and an inline element to block with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">the display property</a>.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="350" data-default-tab="css,result" data-slug-hash="qBybwwe" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/qBybwwe">
+  CSS</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="selectors">Selectors</h2>
+<p>A <strong>selector</strong> is a bit of syntax that starts a ruleset before its curly braces. A selector targets one or more HTML elements. It "selects" the elements from a crowd of many elements. Selectors can range from very simple to very complex.</p>
+<pre><code class="language-css">/* generically:
+some-selector {
+  property: value;
+}
+*/
+</code></pre>
+<h3 id="element-selector">Element Selector</h3>
+<p>An <strong>element selector</strong> names the element's tag. Once named, the ruleset applies to all elements of that name. This isn't great for customizing a single element, but it's very helpful for setting a default style across an application.</p>
+<pre><code class="language-css">/* generically:
+element-name {
+  property: value;
+}
+*/
+
+p {
+  padding: 5% 10%;
+  margin: 12px;
+}
+</code></pre>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="450" data-default-tab="css,result" data-slug-hash="MWBQRNj" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/MWBQRNj">
+  CSS - element selector</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="class-selector">Class Selector</h3>
+<p>If we want more control over our elements, say we don't want to select absolutely every element of a given type, we can use the <strong>class selector</strong>. A class selector begins with a dot (<code>.</code>) and ends with a class name.</p>
+<pre><code class="language-css">/* generically:
+.class {
+  property: value;
+}
+*/
+
+.medium-serif {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 700;
+}
+</code></pre>
+<p>Each style-able HTML element may include an optional <code>class</code> attribute. A <strong>class</strong> is a name that's associated to a style. The <code>class</code> attribute may contain multiple names. The <code>.medium-serif</code> selector targets any element whose class contains the name "medium-serif".</p>
+<pre><code class="language-html">&lt;h2 class="medium-serif"&gt;Quote&lt;/h2&gt;
+&lt;p class="medium-serif emphasis"&gt;
+  "It's better to ask for forgiveness than for permission."
+&lt;/p&gt;
+</code></pre>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="wvxmeZy" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/wvxmeZy">
+  CSS - class selector</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="id-selector">Id Selector</h3>
+<p>If we want even more control, we can use an <strong>id selector</strong>. An id selector targets a single element by its <code>id</code> value. It starts with a hash (<code>#</code>) and ends with the id of an element.</p>
+<pre><code class="language-css">/* generically:
+#some-id {
+  property: value;
+}
+*/
+
+#call-to-action {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: #087990;
+  background-color: #cff4fc;
+  border-left: 0.25rem solid #9eeaf9;
+}
+</code></pre>
+<p>The selector <code>#call-to-action</code> targets the element with <code>id="call-to-action"</code>. If there is no matching id, there's nothing to target.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="vYaRJzR" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/vYaRJzR">
+  CSS - id selector</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<p>Be careful with id selectors. When we target single elements, especially too many of them, it feels a bit like inline styles. Another selector may be more appropriate. For example, if there's only one <code>h1</code> per page, use the <code>h1</code> element selector. If there's any possibility of a second element on the page, use the class selector.</p>
+<blockquote class=""><i class="callout fas fa-sticky-note"></i> 
+  <h4>A Note On Naming</h4>
+  <p>Use a functional and specific name for classes and ids.</p>
+  <p>
+  Names cannot contains spaces. Use camel case (<code>myClassName</code>), dashes (<code>my-class-name</code>) or underscores (<code>my_class_name</code>) to separate words. Pick one and be consistent. (Though your client will probably already have a naming convention.)
+  </p>
+  <p>
+  Classes and ids are case sensitive. If we use a capital in a name, we must match the name in CSS.
+  </p>
+</blockquote>
+
+<h2 id="combinators-combination-selectors">Combinators (Combination Selectors)</h2>
+<p>Sometimes we don't want to give a class or id to every element to be styled. That's fussy and error-prone. Consider a set of links inside a navigation element. They should be styled the same, but different from other links on the page. It would be annoying (and, again, error-prone) to add a class to each navigation link.</p>
+<p>Luckily, CSS provides combinators that define relationships between elements. Relationships include parent/child, grandparent/child, great-grandparent/child, (etc), and siblings.</p>
+<h3 id="descendent-combinator">Descendent Combinator</h3>
+<p>A <strong>descendent combinator</strong> creates a relationship between nested elements at any depth, not just parent/child. It starts with a selector for an ancestor element, followed by a space, and then a selector for descendent elements. The ruleset targets descendants.</p>
+<pre><code class="language-css">/* generically:
+ancestor descendent {
+  property: value;
+}
+*/
+
+nav a {
+  color: green;
+  text-decoration: underline;
+}
+
+.callout em {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #cccccc;
+}
+</code></pre>
+<figure>
+            <img src="./assets/descendent-selector.png" alt="A descendent selector selects an ancestor's descendent at all levels." class="figure">
+            <figcaption>
+                A descendent selector selects an ancestor's descendent at all levels.
+            </figcaption>
+        </figure>
+
+<h3 id="child-combinator">Child Combinator</h3>
+<p>The <strong>child combinator</strong> selects first-level children of the parent element. It starts with a selector for a parent element, followed by a greater than symbol, <code>&gt;</code>, and then a child element selector. The ruleset targets children.</p>
+<pre><code class="language-css">/* generically:
+parent &gt; child {
+  property: value;
+}
+*/
+
+nav &gt; a {
+  color: green;
+  text-decoration: underline;
+}
+
+.callout &gt; em {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #cccccc;
+}
+</code></pre>
+<figure>
+            <img src="./assets/child-selector.png" alt="A child selector selects a parent's direct children." class="figure">
+            <figcaption>
+                A child selector selects a parent's direct children.
+            </figcaption>
+        </figure>
+
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="MWBVGNy" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/MWBVGNy">
+  CSS - descendent selector</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="sibling-combinators">Sibling Combinators</h3>
+<p>The <strong>adjacent sibling combinator</strong> selects a sibling that immediately follows an initial sibling. It starts with a selector for the initial sibling, followed by the plus symbol, <code>+</code>, and then a selector for the trailing sibling. The ruleset targets the trailing sibling.</p>
+<pre><code class="language-css">/* generically:
+initial-sibling + trailing-sibling {
+  property: value;
+}
+*/
+
+.aside + p {
+  background-color: khaki;
+}
+</code></pre>
+<p>The <strong>general sibling combinator</strong> selects all siblings that follow an initial sibling. It starts with a selector for the initial sibling, followed by the tilde symbol, <code>~</code>, and then a selector for all trailing siblings. The ruleset targets the trailing siblings.</p>
+<pre><code class="language-css">/* generically:
+initial-sibling ~ trailing-sibling {
+  property: value;
+}
+*/
+
+.aside ~ p {
+  border: 1px solid #444444;
+}
+</code></pre>
+<figure>
+            <img src="./assets/sibling-combinators.png" alt="The adjacent sibling combinator selects the first sibling after an initial. The general sibling combinator selects all siblings after an initial." class="figure">
+            <figcaption>
+                The adjacent sibling combinator selects the first sibling after an initial. The general sibling combinator selects all siblings after an initial.
+            </figcaption>
+        </figure>
+
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="400" data-default-tab="css,result" data-slug-hash="zYLWaaR" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/zYLWaaR">
+  Untitled</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="selector-list">Selector List</h3>
+<p>If more than one selector has the same property set, we can group them in a single ruleset by separating selectors with commas.</p>
+<p>Below, the first two rulesets are equivalent to the third ruleset.</p>
+<pre><code class="language-css">/* These rulesets are equivalent...*/
+label {
+  font-weight: bold;
+}
+
+.disclaimer {
+  font-weight: bold;
+}
+
+/* ...to this ruleset.*/
+label, 
+.disclaimer {
+  font-weight: bold;
+}
+</code></pre>
+<h2 id="properties">Properties</h2>
+<p>We've previewed a few properties in our selector and combinator content. Now let's take some time to really focus on properties. First, the number of CSS properties is absolutely huge. There is no way to cover them all. It would leave us bored and hopeless. </p>
+<p>There are CSS properties for:</p>
+<ul>
+<li>the box model</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions">transitions from one state to another</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">animations</a></li>
+<li>positioning elements in three dimensions</li>
+<li>complex layouts (flex and grid)</li>
+<li>font manipulation</li>
+</ul>
+<p>To preview the entire list, visit the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index">MDN CSS property index</a>.</p>
+<p>For now, we'll focus on property foundations.</p>
+<h3 id="values-and-units">Values and Units</h3>
+<p>Each CSS property has a finite range of values and units it can accept. Intuitively, this makes sense. The <code>font-size</code> property shouldn't accept a color and the <code>background-color</code> property shouldn't accept a number.</p>
+<p>CSS values have a value type (analogous to data type). They can be colors (<code>red</code>, <code>#c55da1</code>, <code>rgb(197, 93, 161)</code>), numbers (<code>0.9</code>, <code>12</code>, <code>-1.2</code>), numbers with a unit (<code>2.2rem</code>, <code>10%</code>, <code>70vh</code>), URLs, an enumeration (<code>solid</code>, <code>dashed</code>, <code>dotted</code>), or more complicated value types. </p>
+<p>Not all values have units. A <strong>unit</strong> is an absolute or relative measure of size.</p>
+<h4 id="colors">Colors</h4>
+<p>Color values can be defined in six formats. We'll focus on three.</p>
+<ul>
+<li><p><strong>Name</strong>: a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/named-color">CSS named color</a> -- "red", "aliceblue", "rebeccapurple".</p>
+</li>
+<li><p><strong>Hex</strong>: a three-part hexadecimal value for the red/green/blue color components-- "#ff0000" red, "#f0f8ff" aliceblue, "#663399" rebeccapurple. </p>
+<p>This value: "#f0f8ff", breaks down to <code>#</code> (signifies a hex code) <code>f0</code> (red saturation) <code>f8</code> (green saturation) <code>ff</code> (blue saturation).</p>
+</li>
+<li><p><strong>RGB</strong>: an explicit red/green/blue value ranging from 0-255 or a percent saturation -- "rgb(255,0,0)" red, "rgb(240, 248, 255)" aliceblue, "rgb(102, 51, 153)" rebeccapurple.</p>
+</li>
+</ul>
+<p>Here are common CSS properties that use color values.</p>
+<pre><code class="language-css">.selector {
+  color: thistle;
+  background-color: #d8bfd8;
+  border-color: rgb(216, 191, 216);
+  box-shadow: 10px 5px 5px tomato;
+  outline-color: #ff6347;
+  text-shadow: rgb(255, 99, 71) 2px 5px;
+  /*
+  To make borders and outline visible, 
+  we also need to add:
+  border: 1px solid;
+  outline: 1px solid;
+  */
+}
+</code></pre>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="eYjrvZa" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/eYjrvZa">
+  CSS - color</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h5 id="color-accessibility">Color Accessibility</h5>
+<p>It's been a while since we mentioned accessibility. Web accessibility is just as important in CSS as it is in HTML.</p>
+<p>Here are a few tips for strengthening accessibility with colors.</p>
+<ul>
+<li>Black text on a white background is tiring to read. Soften the contrast.</li>
+<li>Use the <a href="https://webaim.org/resources/contrastchecker/">WebAIM contrast checker</a> to confirm colors have enough contrast to be legible.</li>
+<li>A significant number of people have trouble distinguishing color. Don't use color alone to indicate an error, warning, or notice.</li>
+</ul>
+<blockquote>
+<h4><i style="color: rebeccapurple" class="fas fa-heart"></i>
+The Story of "<span style="color: rebeccapurple">rebeccapurple</span>"</h4>
+<code>rebeccapurple</code> was added to the CSS 4 specification to honor Eric Meyer and his daughter. Be warned. It's not an easy story to read: <a href="https://codepen.io/trezy/post/honoring-a-great-man">Honoring a Great Man</a>.
+</blockquote>
+
+<h4 id="lengths">Lengths</h4>
+<p>Many CSS properties accept lengths as value types. Examples include <code>font-size</code>, <code>width</code>, <code>height</code>, <code>margin</code>, and <code>padding</code>.</p>
+<p>There are two types of lengths: absolute and relative. An <strong>absolute unit</strong> has a fixed size on the screen and when printed. A <strong>relative unit</strong> uses a font size, the viewport, or a container element to scale lengths up or down.</p>
+<table class="table table-striped">
+<caption style="caption-side: top;">Absolute Units</caption>
+<thead>
+  <tr>
+  <th>Unit</th>
+  <th>Example</th>
+  <th>Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><code>px</code></td>
+    <td><code>24px</code></td>
+    <td>A pixel. Depending on the screen, a pixel may or may not be an actual pixel. On large screens, a pixel is 1/96 of an inch.</td>
+  </tr>
+  <tr>
+    <td><code>in</code></td>
+    <td><code>2.5in</code></td>
+    <td>An inch.</td>
+  </tr>
+   <tr>
+    <td><code>cm</code></td>
+    <td><code>2.5in</code></td>
+    <td>A centimeter. 1cm == 0.394in</td>
+  </tr> 
+  <tr>
+    <td><code>pt</code></td>
+    <td><code>12pt</code></td>
+    <td>1/72 of an inch.</td>
+  </tr>
+</tbody>
+</table>
+
+<p>The <a href="https://www.w3.org/Style/Examples/007/units.en.html">W3C discourages using in, cm, and pt for lengths</a>. If we need an absolute unit, the pixel is preferred.</p>
+<p>If at all possible, do not use pixel units for <code>font-size</code>. This is an accessibility problem. A relative unit allows users to adjust their font size.</p>
+<table class="table table-striped">
+<caption style="caption-side: top;">Relative Units</caption>
+<thead>
+  <tr>
+  <th>Unit</th>
+  <th>Example</th>
+  <th>Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><code>em</code></td>
+    <td><code>1.2em</code></td>
+    <td>
+    <p><strong>Ems</strong> are based on the font size of a parent element (historically, the width of capital "M"). They can be used for any length, not just font size. The numeric value is a multiplier. 0.5 is half of the parent's font width. 2.2 is two point two times the parent's font width.
+    </p>
+    <p>When we have many nested parents, <code>em</code> can cause trouble. If we add a multiplier to each parent, the values compound. It's hard to keep track of reducing and widening multipliers.
+    </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>rem</code></td>
+    <td><code>2.3rem</code></td>
+    <td><strong>Root Ems</strong> is the solution to compounding ems. It is based on the root element's font size. Again, the numeric value is a multiplier, but it's based on the root element, not all nested elements.</td>
+  </tr>
+   <tr>
+    <td><code>vh</code></td>
+    <td><code>25vh</code></td>
+    <td>View height. The numeric value is a percent multiplier. 25 is a quarter of the view height. 10 is a tenth.</td>
+  </tr>
+  <tr>
+    <td><code>vw</code></td>
+    <td><code>30vw</code></td>
+    <td>View width. The numeric value is a multiplier. 25 is a quarter of the view width. 10 is a tenth.</td>
+  </tr>  
+</tbody>
+</table>
+
+<p>There are many other relative units. We can review them in the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length">MDN length documentation</a>. For now, we'll focus on pixels and relative ems.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="css,result" data-slug-hash="wvxEgbK" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/wvxEgbK">
+  CSS - lengths</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="percentages">Percentages</h4>
+<p>Percentages can be used in many of the same properties as lengths. Percentages define a percent of the parent element or font size. They're very useful for creating layouts.</p>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="css,result" data-slug-hash="VwBGpJa" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/VwBGpJa">
+  CSS - percentages</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+<h3 id="background-image-properties">Background Image Properties</h3>
+<p>We can set a background image in almost any HTML element. </p>
+<p>CSS Properties that embed and manipulate background images include:</p>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-image">background-image</a>, accepts an image URL. May also include linear gradient definitions.</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat">background-repeat</a>, valid values include:</p>
+<ul>
+<li><code>repeat</code> (tiles in all directions without gaps, may clip the image)</li>
+<li><code>repeat-x</code> (tiles horizontally without gaps, may clip the image)</li>
+<li><code>repeat-y</code> (tiles vertically without gaps, may clip the image)</li>
+<li><code>no-repeat</code> (doesn't tile, if the image is small, leaves gaps)</li>
+<li><code>space</code> (tiles in all directions, but if part of the image would be clipped, chooses not to clip and adds space around the tiles)</li>
+<li><code>round</code>(tiles in all directions, but if part of the image would be clipped, stretches to fill in the gaps)</li>
+</ul>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position">background-position</a>, valid values include:</p>
+<ul>
+<li><code>top</code> (aligns to the center top of the element unless modified)</li>
+<li><code>left</code> (aligns to the center left of the element unless modified)</li>
+<li><code>right</code> (aligns to the center right of the element unless modified)</li>
+<li><code>bottom</code> (aligns to the center bottom of the element unless modified)</li>
+<li><code>center</code> (aligns to the left/right, top/bottom center of the element unless modified)</li>
+<li>The <code>background-position</code> property can also accept lengths and percentages.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="css,result" data-slug-hash="QWBVqaz" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/QWBVqaz">
+  CSS - background images</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="font-properties">Font Properties</h3>
+<p>Text content is arguably the most important content. Even with rich graphic design, text points us in the right direction and leaves breadcrumbs. Text is especially important for inclusive design. Screen readers rely on text to explore and navigate.</p>
+<p>We can make our text beautiful and readable with CSS font properties.</p>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>, accepts a comma-delimited list of font names. Multi-word font names, names with numbers, or names with punctuation must be surrounded with quotes. If a font isn't found, the next font in the list is used. Not all machines have all fonts so it's best to plan for a fallback. We can also explicitly include open web fonts with providers like <a href="https://fonts.google.com/">Google Fonts</a>.</p>
+<p>Always include a generic font family at the end of the list in case no matching font can be found. Generic families include:</p>
+<ul>
+<li><code>serif</code>: has characters (glyphs) that finish with a flare or taper.</li>
+<li><code>sans-serif</code>: has characters that finish with no flare or taper.</li>
+<li><code>monospace</code>: has characters with the same width.</li>
+<li><code>cursive</code>: has characters that look like cursive handwriting.</li>
+</ul>
+<p>There are other generic families, but the most common are <code>serif</code>, <code>sans-serif</code>, and maybe <code>monospace</code>.</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>, accepts explicit sizes from <code>xx-small</code> to <code>xxx-large</code>, lengths (px, rem, etc), percentages (of the parent font size), and relative sizes (<code>smaller</code>, <code>larger</code>).</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight">font-weight</a> adds thickness to characters. Accepts <code>normal</code> and <code>bold</code>, <code>lighter</code> and <code>bolder</code> (relative to the parent), and numeric values <code>100</code>, <code>200</code>,... <code>900</code>. Not all fonts support the shaded nuances of 100-900.</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing">letter-spacing</a> changes the whitespace between characters. Accepts <code>normal</code> and any length (px, rem, etc).</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a> adjusts the space between lines. Accepts <code>normal</code>, any length, percentages, and unit-less numbers that act as a multiplier for the element's font size.</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="result" data-slug-hash="PoBdQVB" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/PoBdQVB">
+  CSS - fonts</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h4 id="font-accessibility">Font Accessibility</h4>
+<p>Never embed text in an image. Screen readers can't read an image. Use text instead.</p>
+<p>Avoid small font sizes.</p>
+<p>Use a serif font when writing large bodies of text. The little feet guide the user's eye and make the site easier to read.</p>
+<h3 id="box-model-properties">Box Model Properties</h3>
+<p>We mentioned the box model earlier. Let's dive into the details of CSS properties that support the box model.</p>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a> creates space between an element's content box and border box. Padding makes space on the <em>inside</em> of the element. It accepts lengths and percentages. </p>
+<p>There are four forms:</p>
+<ol>
+<li><code>padding: value;</code> -- applies to all four sides.</li>
+<li><code>padding: vertical horizontal;</code> -- vertical adds space to the top and bottom, horizontal adds space to the left and right.</li>
+<li><code>padding: top horizontal bottom;</code></li>
+<li><code>padding: top right bottom left;</code></li>
+</ol>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">margin</a> creates space <em>outside</em> the element's border box. It accepts lengths and percentages. </p>
+<p>There are four forms:</p>
+<ol>
+<li><code>margin: value;</code> -- applies to all four sides.</li>
+<li><code>margin: vertical horizontal;</code> -- vertical adds space to the top and bottom, horizontal adds space to the left and right.</li>
+<li><code>margin: top horizontal bottom;</code></li>
+<li><code>margin: top right bottom left;</code></li>
+</ol>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">border</a> creates a border around an element. <code>border</code> is a shorthand property for three different properties: <code>border-width</code>, <code>border-style</code>, and <code>border-color</code>. Borders can be further broken down into specific sides with <code>border-left</code>, <code>border-left-style</code>, <code>border-left-width</code>, etc.</p>
+<ul>
+<li><code>border-width</code> (part of <code>border</code>) accepts either <code>thin</code>, <code>medium</code>, <code>thick</code> or a length.</li>
+<li><code>border-style</code> accepts <code>none</code>, <code>hidden</code>, <code>dotted</code>, <code>dashed</code>, <code>solid</code>, <code>double</code>, <code>groove</code>, <code>ridge</code>, <code>inset</code>, and <code>outset</code>.</li>
+<li><code>border-color</code> accepts a color.</li>
+</ul>
+<p><code>border</code> has four forms:</p>
+<ol>
+<li><code>border: style;</code></li>
+<li><code>border: width style;</code></li>
+<li><code>border: style color;</code></li>
+<li><code>border: width style color;</code></li>
+</ol>
+<p>To gain more control of borders, be sure to review all border properties.</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">display</a> changes the flow of an element in its layout and the flow of its child elements. If by default an element is block or inline, we can change it to inline or block.</p>
+<p>Common display values:</p>
+<ul>
+<li><code>block</code>: Change an inline element to a block element.</li>
+<li><code>inline</code>: Change a block element to an inline element.</li>
+<li><code>inline-block</code>: Change to an inline element but allow a bit of "block" behavior. We can apply an explicit width and height to inline block elements.</li>
+<li><code>flex</code>: Activates a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">flexbox layout</a>. This is an advanced use case. We won't cover it in this lesson.</li>
+<li><code>grid</code>: Activates a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout">grid layout</a>. This is an advanced use case. We won't cover it in this lesson.</li>
+<li><code>table</code>: Mimics an HTML table. This value isn't used often because we can use a grid layout.</li>
+<li><code>none</code>: Don't display the element. Removes it from the flow.</li>
+</ul>
+<p>There are many other display values (<code>inline-flex</code>, <code>inline-grid</code>, <code>table-cell</code>, etc). We won't cover them in this lesson.</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<p class="codepen" data-height="500" data-default-tab="css,result" data-slug-hash="PoByQyE" data-editable="true" data-user="corbos" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/corbos/pen/PoByQyE">
+  CSS - box model</a> by Corbin March (<a href="https://codepen.io/corbos">@corbos</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Phew. That was a lot of CSS.</p>
+<p>Don't worry too much about the details. The intention of this lesson is to get familiar with the ruleset syntax and decide how to attach CSS to our HTML.</p>
+<p>Moving ahead, we'll be given specific CSS challenges. We'll need to decide on the appropriate selectors and CSS properties to solve a problem. For that, we'll inevitably need to consult the MDN CSS documentation.</p>
+<p>Try this.</p>
+<ul>
+<li><p>Label the parts of this ruleset:</p>
+<pre><code class="language-css">p {
+  margin: 1rem;
+  padding: 2rem;
+  color: black; /* content color */
+  background-color: #faebd7;
+  text-shadow: darkred 5px 5px 6px;
+  border: 5px solid;
+  border-color: tomato;
+  outline: 5px solid;
+  outline-color: rgb(47, 79, 79);
+  box-shadow: 15px 15px 5px teal;
+}
+</code></pre>
+</li>
+<li><p>What is a selector? What kinds of selectors are available?</p>
+</li>
+<li><p>What is a combinator? What kinds of combinators are available?</p>
+</li>
+<li><p>How can we define color values? Which CSS properties accept color values?</p>
+</li>
+<li><p>How do we change a font? How do we change its size?</p>
+</li>
+<li><p>Draw the CSS box model.</p>
+</li>
+</ul>
+
+    <script src="../prism.js"></script>
+</body>
+</html>

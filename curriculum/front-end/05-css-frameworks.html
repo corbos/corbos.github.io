@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lesson: CSS Frameworks</title>
+    <meta name="markdown-src" content="/M08-front-end-dev/05-css-frameworks.md">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="../base.css">
+    <base target="_blank">
+</head>
+<body>
+    
+<h2 id="introduction">Introduction</h2>
+<p>A <strong>CSS framework</strong> is a bundle of CSS that creates a consistent theme across an HTML UI. A CSS framework can optionally include JavaScript. Some CSS frameworks are opt-in. They require adding a class to trigger a style. Others are not opt-in. When we link to the CSS bundle, our HTML is automatically styled via element selectors. Most CSS frameworks are a bit of both. Typography is not opt-in, creating a navigation bar is, etc.</p>
+<p>CSS frameworks also support <strong>responsive design</strong>. Responsive design is a goal to make HTML render well on all screen sizes. Responsive design also aims for strong usability across devices. A user should be able to touch on a phone or click their mouse on a laptop and have roughly the same experience.</p>
+<p>As a concrete example, we will demonstrate Twitter's Bootstrap framework.</p>
+<p><a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/">https://getbootstrap.com/docs/5.2/getting-started/introduction/</a></p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>When you've finished this lesson and its exercises, you should be able to:</p>
+<ul>
+<li>Explain the problems CSS frameworks solve.</li>
+<li>Map pros and cons of CSS frameworks.</li>
+<li>Add Bootstrap to an HTML document.</li>
+<li>Style an HTML table with Bootstrap.</li>
+<li>Style an HTML form with Bootstrap.</li>
+</ul>
+<h2 id="set-up">Set Up</h2>
+<ol>
+<li><p>Browse to your Dev10 Git classwork repository on your local machine.</p>
+</li>
+<li><p>Find <code>[your-dev10-classwork-directory]/week-08/lessons/css-frameworks</code>.</p>
+</li>
+<li><p><code>css-frameworks</code> is a directory of HTML documents, each styled with Bootstrap. Open each document in VS Code and a browser when directed.</p>
+</li>
+</ol>
+<h2 id="css-framework-pros-and-cons">CSS Framework Pros and Cons</h2>
+<p>CSS frameworks provides benefits to developers.</p>
+<dl>
+
+<dt>Rapid Development</dt>
+<dd>Framework developers already resolved incompatibilities across major browsers. This speeds up design time and reduces testing and troubleshooting.</dd>
+
+<dt>Components</dt>
+<dd>
+<p>Components are isolated interface elements and behaviors that go beyond basic HTML.</p>
+<p>Examples include animating a series of images to make an image carousel, composing multiple HTML elements into a navigation bar, or displaying a fancy tooltip on hover.</p>
+</dd>
+
+<dt>Community Add-Ons</dt>
+<dd>When a framework is popular, community developers extend it. This can include additional components or theme variations.</dd>
+
+</dl>
+
+<p>CSS frameworks also have drawbacks.</p>
+<dl>
+
+<dt>"The Bootstrap (or other framework) Look"</dt>
+<dd>Using a framework's defaults can make your UI look the same as many others. Depending on your use case, that can be very bad.</dd>
+
+<dt>Customization</dt>
+<dd>It an be difficult to customize styles because frameworks have big opinions. If we override a framework's class, the results can impact elements that we didn't intend to change. If we create new classes, it is difficult to enforce styles because of CSS specificity.</dd>
+
+</dl>
+
+<h2 id="add-bootstrap">Add Bootstrap</h2>
+<p>Bootstrap has several installation options: <a href="https://getbootstrap.com/docs/5.2/getting-started/download/">https://getbootstrap.com/docs/5.2/getting-started/download/</a>. We can download Bootstrap's CSS and JavaScript files or install with a package manager like <code>npm</code>.</p>
+<p>We'll skip these steps and link Bootstrap's CSS and JavaScript via <strong>CDN</strong> (Content Delivery Network). A CDN is a secure server (or servers) that hosts shared resources. Open source web libraries and frameworks are almost always available via CDN. CDNs also save on bandwidth since we're not hosting the resources ourselves.</p>
+<p>Open the <code>bootstrap-minimum.html</code> file from the <code>css-frameworks</code> directory in VS Code (see <strong>Set Up</strong>). </p>
+<p>The Bootstrap CSS link goes inside the <code>&lt;head&gt;</code> element. The JavaScript <code>&lt;script&gt;</code> goes immediately before the closing <code>&lt;/body&gt;</code> tag.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+  &lt;!-- CSS --&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"&gt;
+
+  &lt;title&gt;Bootstrap Minimum Template&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;!-- JavaScript Bundle with Popper --&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<h3 id="add-bootstrap-components">Add Bootstrap Components</h3>
+<p>Open the <code>bootstrap-starter-template.html</code> file in VS Code. Note the standard placement of the CSS <code>link</code> and JavaScript <code>script</code>.</p>
+<p>Open the file in a browser. We should see a banner, Navbar, and the default Bootstrap styling.</p>
+<p><img src="assets/bootstrap5-1.png" alt="HTML with Bootstrap styles"></p>
+<p>The starter template uses utility classes to style the banner.</p>
+<pre><code class="language-html">&lt;div class="p-5 mb-4 bg-light rounded-3"&gt;
+  &lt;div class="container-fluid py-5 text-center"&gt;
+    &lt;h1 class="display-5 fw-bold"&gt;Bootstrap 5 Starter Template&lt;/h1&gt;
+    &lt;p class="col fs-4"&gt;This is a page with a navbar and some content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Samples:</p>
+<ul>
+<li><code>p-5</code>: padding inside the box, the value "5" is the largest value in the range 1-5.</li>
+<li><code>mb-4</code>: add margin to the bottom, the value "4" is the second largest value.</li>
+<li><code>text-center</code>: centers all text in this div.</li>
+<li><code>fw-bold</code>: font weight bold.</li>
+</ul>
+<p>The Navbar component is a responsive navigation bar that collapses to a "hamburger" menu on small screens.</p>
+<pre><code class="language-html">&lt;nav class="navbar navbar-expand-sm bg-dark navbar-dark"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="collapsibleNavbar"&gt;
+      &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre>
+<p>Navbar is one of the components that requires JavaScript. JavaScript opens and closes the hamburger menu. We don't write the JavaScript explicitly, it's activated with the <code>data-bs-toggle</code> and <code>data-bs-target</code> attributes.</p>
+<p>Shrink your view to activate the hamburger menu.</p>
+<p><img src="assets/bootstrap5-2.png" alt="Responsive Bootstrap"></p>
+<h2 id="breakpoints">Breakpoints</h2>
+<p>Bootstrap defines six <strong>responsive breakpoints</strong>. based on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">CSS media queries</a>. Breakpoints are view widths where Bootstrap makes a decision </p>
+<p>It uses container classes to surround content and limit a max width. It has a variety of container classes which can be attached to block elements (usually <code>&lt;div&gt;</code> elements). The two primary container classes you will use are <strong>container</strong> which sets a max-width at each responsive breakpoint and <strong>container-fluid</strong> which stretches to 100% width at all responsive breakpoints.</p>
+<p>Bootstrap has a variety of <strong>responsive breakpoints</strong> that are defined in its CSS by <strong>media queries</strong>. In CSS a media query is used when you want to modify your application's appearance based on things like screen resolution.</p>
+<p>We do not cover media queries in this course because it is more of a concern for designers, not developers. What you need to know is that Bootstrap CSS classes sometimes append codes like <strong>sm</strong>, <strong>md</strong>, <strong>lg</strong>, , <strong>xl</strong>, and <strong>fluid</strong> which refer to how an element should behave given screen size. Size breakpoints are as follows:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Class</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+<th>Extra Large</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>&gt;=576px</td>
+<td>&gt;=768px</td>
+<td>&gt;=992px</td>
+<td>&gt;=1200px</td>
+</tr>
+<tr>
+<td>sm</td>
+<td>540px</td>
+<td>720px</td>
+<td>960px</td>
+<td>1140px</td>
+</tr>
+<tr>
+<td>md</td>
+<td>100%</td>
+<td>720px</td>
+<td>960px</td>
+<td>1140px</td>
+</tr>
+<tr>
+<td>lg</td>
+<td>100%</td>
+<td>100%</td>
+<td>960px</td>
+<td>1140px</td>
+</tr>
+<tr>
+<td>xl</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+<td>1140px</td>
+</tr>
+<tr>
+<td>fluid</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+</tbody></table>
+<p>Given the table and sizes above, this means if you have a <code>&lt;div&gt;</code> element with a class of <code>container-md</code>, it will be 100% width if the screen size (or browser window size) is shorter than 768px wide. It will maintain a width of 720px from 768px to 991px wide, grow to 960px from 992px to 1199px wide and grow to 1140px wide for any resolutions that are 1200px or more. This is why the content in our example above was centered.</p>
+<blockquote>
+<p>The basic container class behaves like the <code>container-sm</code> class as far as sizing is concerned.</p>
+</blockquote>
+<p>For quick reference, see the <code>responsive-containers.html</code> example.</p>
+<h3 id="grid-system">Grid System</h3>
+<p>Bootstrap is built around the <strong>flexbox</strong> layout. </p>
+<p>One of the major selling points of Bootstrap is the ease of building layouts using their grid system. The recommended way to lay out your content in Bootstrap is to think about "mobile-first" and design content that scales up nicely to larger screens.</p>
+<p>To use the grid system, you must wrap your content in one of the <code>container</code> classes we discussed above, and then you can add rows and columns using the <code>row</code> and <code>col</code> classes. See the <code>columns.html</code> example file.</p>
+<p>The simplest example is when you want equal-sized columns across all screen widths. For that, you can simply use the <code>col</code> class directly. For example, let's say we wanted two equal-width columns across all screen sizes:</p>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;
+      This content is in the left column and will take up 50% width at all screen resolutions.
+    &lt;/div&gt;
+    &lt;div class="col"&gt;
+      This content is in the right column and will take up 50% width at all screen resolutions.
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>It's as simple as that! If you wanted a 3 column layout, simply add a third <code>&lt;div&gt;</code>. Each additional <code>col</code> class will add another equally sized column to the row.</p>
+<p>You can also specify relative sizes of columns by appending a number to the <code>col</code> class. In Bootstrap, <strong>the grid system is based on 12 columns</strong>. So, let's say we wanted to have 3 columns, with the middle column being half the width of the screen and the two side columns dividing the rest equally:</p>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;column 1&lt;/div&gt;
+    &lt;div class="col-6"&gt;column 2&lt;/div&gt;
+    &lt;div class="col"&gt;column 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Column 2 has a class of <code>col-6</code>, since 6 is half of 12 (yes there is math in this course), then it will be 50% width of the screen. The other two columns have no numeric specifier, so it will divide the remaining width (50%) in half, giving them both equal widths of 25%.</p>
+<p>One of the neat tricks you can do with the grid system is appending a size designation to a <code>col</code> class along with the number. This allows the columns to "collapse" into full width at certain screen size breakpoints. For example, let's say we wanted 3 columns on a large screen, 2 on a medium screen, and for the columns to stack vertically on smaller screens. We can do something like this:</p>
+<pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;Row 1, always 100% width&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm-12 col-md-6 col-lg-4"&gt;100% sm, 50% md, 33% lg&lt;/div&gt;
+    &lt;div class="col-sm-12 col-md-6 col-lg-4"&gt;100% sm, 50% md, 33% lg&lt;/div&gt;
+    &lt;div class="col-sm-12 col-md-6 col-lg-4"&gt;100% sm, 50% md, 33% lg&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>If you resize the example file in the browser you will see that when large, it will be three columns as expected, but if you shrink it to medium it will be 2 columns, with the third dropping down a line and when small-sized all 3 columns will stack at 100% width. This is a great way to structure your content to display nicely on all sizes of devices!</p>
+<p>This is just scratching the surface of what the grid classes are capable of. Once you understand the responsive breakpoints and keep in mind the 12 column structure, with a little planning you will be capable of creating most of the layouts that are common in application development. You can learn more about the grid system in the Bootstrap documentation here: <a href="https://getbootstrap.com/docs/5.2/layout/grid/">Bootstrap Grid Layout Documentation</a>.</p>
+<h2 id="tables">Tables</h2>
+<p>You can find the tables documentation here: <a href="https://getbootstrap.com/docs/5.2/content/tables/">Bootstrap Tables Documentation</a></p>
+<p>Bootstrap tables are quick to develop. Bootstrap doesn't change a table unless we apply a Bootstrap class. We can flexibly provide different looks and feels to the tables in our applications.</p>
+<p>In the <code>tables.html</code> example file, we demonstrate how quickly we can apply a similar look and feel to a table using the Bootstrap <code>table</code>, <code>table-dark</code>, and <code>table-striped</code> classes:</p>
+<p><img src="assets/bootstrap5-3.png" alt="HTML table styled using Bootstrap"></p>
+<p>Notice where we apply the <code>table-dark</code> class. It can be applied at the table level, the <code>thead</code>/<code>tbody</code> level, row level, or <code>th</code>/<code>td</code> level. In our example, we apply <code>table-dark</code> to the <code>thead</code> and then again in the footer's <code>th</code>. To right align our footer header, we use the <code>text-end</code> utility class.</p>
+<p>Again, it's the speed of development that Bootstrap brings. We could write our own styles as we did in the previous lesson, but with Bootstrap, we can get a nice looking table styled in 30 seconds.</p>
+<h2 id="forms">Forms</h2>
+<p>You can find forms documentation here: <a href="https://getbootstrap.com/docs/5.2/forms/overview/">Bootstrap Forms Documentation</a></p>
+<p>Forms, in particular, have a lot of different styles and extra features. Getting started with the basics is simply a matter of giving our <code>&lt;div&gt;</code> elements some room to breathe with the <code>mb-3</code> class (margin-bottom) and decorating each control with the <code>form-control</code> class.</p>
+<p>For our button, there are a variety of styles found here: <a href="https://getbootstrap.com/docs/5.2/components/buttons/">Bootstrap Buttons Documentation</a>. We went with the primary, large button. The result is a nice, responsive, mobile-friendly form:</p>
+<p><img src="assets/bootstrap5-4.png" alt="HTML form styled using Bootstrap"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We have only scratched the surface of what Bootstrap brings to the table. Take some time to review the documentation, especially the components since Bootstrap is the most common CSS framework in use today. You are likely to encounter it frequently.</p>
+<p>The JavaScript files that are linked to Bootstrap are utilized for some very interesting effects like toasts and carousel controls that can help give your application a more polished look and feel.</p>
+<p>Beyond Bootstrap, have a look at some other popular CSS Frameworks such as <a href="https://foundation.zurb.com/">Foundation</a>, which is used by Facebook, eBay, Mozilla, Adobe, and Disney. some other popular frameworks are <a href="https://purecss.io/">Pure</a> and <a href="https://bulma.io/">Bulma</a>. As you can see, there are many choices for CSS Frameworks and they all have their strengths and weaknesses. It generally makes sense to specialize in one, but at least be aware of one or two others.</p>
+
+    <script src="../prism.js"></script>
+</body>
+</html>

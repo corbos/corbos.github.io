@@ -3,13 +3,13 @@
 <head>
     <title>Lesson: HTML Media and Table Elements</title>
     <meta name="markdown-src" content="/M08-front-end-dev/02-html-media-tables.md">
-    <link rel="stylesheet" href="prism.css">
-    <link rel="stylesheet" href="fontawesome-pro/css/all.css">
-    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="../prism.css">
+    <link rel="stylesheet" href="../fontawesome-pro/css/all.css">
+    <link rel="stylesheet" href="../base.css">
     <base target="_blank">
 </head>
 <body>
-    <h1 id="lesson-html-media-and-table-elements">Lesson: HTML Media and Table Elements</h1>
+    
 <h2 id="introduction">Introduction</h2>
 <p>We've sampled HTML text, navigation, and layout elements. They should be part of every HTML document. But as you know, HTML can do so much more. TikTok plays video. The Spotify web player plays audio. Web applications are full of icons and images. Some are functional and some express beautiful design.</p>
 <p>The earliest version of HTML didn't include images, video, or even tables! It was text and links only.</p>
@@ -339,7 +339,7 @@
 </p>
 <script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-<p>Be careful with <code>colspan</code> and <code>rowspan</code>. It causes issues with screen readers. A screen reader does its best to announce the data and its orientation. If we make our <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#complicated_tables">tables too complicated</a>, the screen reader will have trouble announcing. If possible, break complicated tables into simpler, related tables.</p>
+<p>Be careful with <code>colspan</code> and <code>rowspan</code>. It causes issues with screen readers. A screen reader does its best to announce the data and its orientation. If we make our tables too complicated, the screen reader will have trouble announcing. If possible, break complicated tables into simpler, related tables.</p>
 <h3 id="more-accessibility">More Accessibility</h3>
 <p>Use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption">table caption element</a>, <code>caption</code>, to explain a table's high-level purpose. By default it is centered above the table. Placement and style can be modified with CSS.</p>
 <p>Use the <code>th</code>'s <code>scope</code> attribute to associate a table header to a column, row, column span, or row span. Valid <code>scope</code> values are: <code>col</code>, <code>row</code>, <code>colspan</code>, or <code>rowspan</code>.</p>
@@ -483,6 +483,6 @@
         </tr>
     </tbody>
 </table>
-    <script src="prism.js"></script>
+    <script src="../prism.js"></script>
 </body>
 </html>

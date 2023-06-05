@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon - Mobile Development</title>
+    <style>
+        body {
+            margin: 20px auto;
+            margin-bottom: 150px;
+            max-width: 900px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #C7CDD1;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        dt {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Pokémon - Mobile Development</h1>
+
+    <h2>Goal</h2>
+    <p>
+        Build a mobile app that uses a Pokémon API as its data source and tracks favorite Pokémon as global state.
+        The application should "navigate" between views.
+    </p>
+
+    <h2>Screens</h2>
+    <figure>
+        <img src="./screens.png" alt="React Native app screens: home, detail, and favorite.">
+        <figcaption>Home View, Detail View, and Favorite View</figcaption>
+    </figure>
+
+    <dl>
+        <dt>Home View</dt>
+        <dd>
+            <p>
+                Lists Pokémon with the ability to page through them in sets of 20. (Start with an initial set of
+                20 with no paging.) Use the PokéAPI to fetch Pokémon
+                (<a href="https://pokeapi.co/docs/v2#pokemon">https://pokeapi.co/docs/v2#pokemon</a>.)
+                See examples from <a href="https://pokeapi.co/">https://pokeapi.co/</a> to limit results to
+                specific pages with <code>limit</code> and <code>offset</code>.
+            </p>
+            <p>
+                The Home View should navigate to the Detail View.
+            </p>
+            <p>
+                The Home View can also navigate to the Favorite View.
+            </p>
+        </dd>
+        <dt>Detail View</dt>
+        <dd>
+            <p>
+                Displays a single Pokémon with details including type and images.
+                (Go as crazy with details as you like: movement, abilities, forms, evolutions...)
+                Use <a href="https://pokeapi.co/docs/v2#pokemon">https://pokeapi.co/docs/v2#pokemon</a> with an id (Dex
+                number) to fetch the full details of a Pokémon.
+            </p>
+            <p>
+                The Detail View should allow a user to mark the Pokémon as a "favorite"
+                or remove the Pokémon as a favorite. (Toggle favorite.)
+            </p>
+        </dd>
+        <dt>Favorite View</dt>
+        <dd>
+            <p>
+                Displays favorite Pokémon in a quick summary format along with an image. Favorites are tracked
+                with global state.
+            </p>
+            <p>
+                The Favorite View should navigate to the Detail View.
+            </p>
+            <p>
+                Optionally, the Favorite View should have a way to remove a favorite.
+            </p>
+        </dd>
+    </dl>
+
+    <h2>Steps</h2>
+    <ol>
+        <li>Create a project for your given platform: Android, iOS, Flutter, React Native, etc.<br>
+            (There's a lot to this step. 😄 Consult your learning path.)
+        </li>
+        <li>Start with the Home View. Don't worry about paging for now.</li>
+        <li>Keep it simple. Don't go crazy with styles.</li>
+        <li>Add the Detail View and navigate from the Home View, passing the Dex number as an argument. Keep the
+            Detail View relatively simple.</li>
+        <li>Add paging to the Home Screen.</li>
+        <li>Implement the favorite toggle by tracking global state.</li>
+        <li>Create a Favorite View.</li>
+        <li>Navigate from the Home View to the Favorite View.</li>
+        <li>Add more details: enrich the Details View, remove a favorite from the Favorite View, etc.</li>
+        <li>Add more styling.</li>
+    </ol>
+
+    <h2>Stretch Goals</h2>
+    <ul>
+        <li>Add additional views that include abilities, moves, locations, berries, etc,
+            based on the <a href="https://pokeapi.co/docs/v2">PokéAPI</a>.</li>
+        <li>Persist favorites permanently with a solution like Sqlite or some other local data store.</li>
+        <li>Persist favorites permanently using an API!</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Von Bruenchenhein</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style>
+        #canvas {
+            border: 1px solid #000;
+        }
+
+        #controls>div {
+            margin-bottom: 0.1rem;
+        }
+
+        .txtLittle {
+            width: 75px;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .two-panels {
+            display: flex;
+        }
+
+        .two-panels>div:first-child {
+            margin-right: 10px;
+        }
+
+        body {
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+        }
+
+        canvas {
+            cursor: pointer;
+        }
+
+        button {
+            border: 0.1rem solid #2c2c2c;
+            border-radius: .4rem;
+            cursor: pointer;
+            display: inline-block;
+            letter-spacing: .1rem;
+            line-height: 1.5rem;
+            padding: 0 1rem;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+    </style>
+
+<body>
+    <div class="two-panels">
+
+        <div>
+            <canvas id="canvas" width="800" height="600"></canvas>
+            <div>
+                <a id="download" download="result.jpg" class="noselect">Download</a>
+            </div>
+        </div>
+
+        <div id="controls">
+            <h2>Painting</h2>
+            <div>
+                <label for="txtLineWidth">Line Width</label>
+                <input type="number" min="1" class="txtLittle" data-vb-property="lineWidth" />
+            </div>
+            <div>
+                <label for="txtStrokeStyle">Stroke Style</label>
+                <input type="text" class="txtLittle" data-colorpicker data-vb-property="strokeStyle" />
+            </div>
+            <div>
+                <label for="ddlLineJoin">Line Join</label>
+                <select data-vb-property="lineJoin">
+                    <option value="bevel">bevel</option>
+                    <option value="round">round</option>
+                    <option value="miter">miter</option>
+                </select>
+            </div>
+            <div>
+                <label for="ddlLineCap">Line Cap</label>
+                <select data-vb-property="lineCap">
+                    <option value="butt">butt</option>
+                    <option value="round">round</option>
+                    <option value="square">square</option>
+                </select>
+            </div>
+            <div>
+                <label for="txtShadowBlur">Shadow Blur</label>
+                <input type="number" min="0" class="txtLittle" data-vb-property="shadowBlur" />
+            </div>
+            <div>
+                <label for="txtShadowColor">Shadow Color</label>
+                <input type="text" class="txtLittle" data-colorpicker data-vb-property="shadowColor" />
+            </div>
+            <div>
+                <h4>Shadow Offset</h4>
+                <label for="txtShadowOffsetX">X</label>
+                <input type="number" class="txtLittle" data-vb-property="shadowOffsetX" />
+                <label for="textShadowOffsetY">Y</label>
+                <input type="number" class="txtLittle" data-vb-property="shadowOffsetY" />
+            </div>
+            <div>
+                <button data-vb-operation="undo">undo</button>
+                <button data-vb-operation="clear">clear</button>
+            </div>
+            <h2>Photography</h2>
+            <div>
+                <input type="file" id="theFile" accept="image/x-png, image/gif, image/jpeg" />
+            </div>
+            <div>
+                <button data-vb-operation="redder">redder</button>
+                <button data-vb-operation="greener">greener</button>
+                <button data-vb-operation="bluer">bluer</button>
+            </div>
+            <div>
+                <button data-vb-operation="lighter">lighter</button>
+                <button data-vb-operation="darker">darker</button>
+                <button data-vb-operation="invert">invert</button>
+            </div>
+            <div>
+                <button data-vb-operation="grayscale">grayscale</button>
+                <button data-vb-operation="blackAndWhite">blackAndWhite</button>
+            </div>
+            <div>
+                <button data-vb-operation="sharpen">sharpen</button>
+                <button data-vb-operation="blur">blur</button>
+
+            </div>
+            <div>
+                <button data-vb-operation="emboss">emboss</button>
+                <button data-vb-operation="outline">outline</button>
+                <button data-vb-operation="edge">edge</button>
+
+            </div>
+            <div>
+                <button data-vb-operation="sobelBottom">sobelBottom</button>
+                <button data-vb-operation="gradientHorizontal">gradientHorizontal</button>
+            </div>
+            <div>
+                <button data-vb-operation="enlarge">enlarge</button>
+                <button data-vb-operation="shrink">shrink</button>
+            </div>
+            <div>
+                <button data-vb-operation="restoreImage">restore last image</button>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="src/whatNext.js"></script>
+    <script type="text/javascript" src="src/von-bruenchenhein.js"></script>
+    <script type="text/javascript" src="src/von-bruenchenhein.photography.js"></script>
+    <script type="text/javascript" src="src/corbos.colorpicker.js"></script>
+    <script type="text/javascript" src="src/index.js"></script>
+</body>
+
+</html>

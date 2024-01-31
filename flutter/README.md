@@ -14,7 +14,7 @@ Use VS Code to install. (The Dart runtime is included.)
 
 https://docs.flutter.dev/get-started/install
 
-### Install Android or iOS emulator.
+### Prep Install for Android or iOS Emulator
 
 Windows/Mac - Android Studio
 

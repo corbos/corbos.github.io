@@ -158,8 +158,19 @@ Obviously, you can use any questions and answers as you see fit. Get creative.
 
 ## Module 3: Flutter Basics
 
-Get as much of this course done as you can in four days. It can be a bit mind-numbing. Take breaks. Refresh. Try to be as productive as you can. Huntington is counting on us.
+Get as much of this course done as you can in five days. It can be a bit mind-numbing. Take breaks. Refresh. Try to be as productive as you can. Huntington is counting on us.
 
 https://dev10.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/
+
+### Assessment
+
+Pokémon - Mobile Development
+
+https://corbos.github.io/pokemon-mobile/
+
+#### Technical Requirements
+
+- Use https://docs.flutter.dev/ui/navigation.
+- Isolate state apart from any widget. Possibly a Provider (if you get to section 9)?
 
 ## Module 4: BLOC, Testing, Clean Architecture

@@ -112,7 +112,11 @@ Correct answer is A.
 **Free text**
 
 ```
-Kondiaronk, a notable Wendat (Huron) chief and orator, played a pivotal role in the late 17th century in North America. He is best known for his skepticism of European religions and his influential role in which significant historical event that reshaped the balance of power in the Great Lakes region?
+Kondiaronk, a notable Wendat (Huron) chief and orator, 
+played a pivotal role in the late 17th century in North America. 
+He is best known for his skepticism of European religions 
+and his influential role in which significant historical event 
+that reshaped the balance of power in the Great Lakes region?
 
 Dori: The Great Peace of Montreal
 

@@ -1,71 +1,4 @@
-# Flutter Training
-
-## Module 1: Install
-
-iOS cannot be run on Windows and is completely optional on Mac.
-
-### Install Git.
-
-https://github.com/git-guides/install-git
-
-### Install Flutter for your platform. 
-
-Use VS Code to install. (The Dart runtime is included.)
-
-https://docs.flutter.dev/get-started/install
-
-### Prep Install for Android or iOS Emulator
-
-Windows/Mac - Android Studio
-
-https://developer.android.com/studio
-
-Mac - iOS, XCode (use App Store)
-
-https://apps.apple.com/us/app/xcode/id497799835 
-
-### Install Emulator
-
-Android
-
-https://developer.android.com/studio/run/emulator
-
-iOS
-
-https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes
-
-### Install Flutter/Dart VS Code Extension
-
-> "It depends on (and will automatically install) the Dart extension for support for the Dart programming language."
-
-https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
-
-## Module 2: Dart
-
-**Working Back-to-Front**
-
-Start with the assessment.
-
-### Introduction to Dart
-
-https://dart.dev/language
-
-### Create a Dart Project
-
-https://dart.dev/tools/dart-create
-
-### Run a Dart Project
-
-https://dart.dev/tools/dart-run
-
-### Fix a Dart Project
-
-The VS Code extension can do this for us.
-
-https://dart.dev/tools/dart-fix
-
-
-### Assessment
+### CLI Flash Card
 
 Build a CLI flash card application. 
 
@@ -152,7 +85,6 @@ Play again? [y/n]: y
 
 - Use sensible classes and methods.
 - Store questions in memory (class and `List<T>`).
-- Write command-line apps: https://dart.dev/tutorials/server/cmdline
 
 #### Flexibility
 
@@ -164,22 +96,3 @@ Obviously, you can use any questions and answers as you see fit. Get creative.
 - Or ask the user to select the number.
 - Create question "categories": pop culture, sitcoms, aerospace, music, horror movies... The user selects a category and follows through with questions.
 - Ask the user to play again.
-
-## Module 3: Flutter Basics
-
-Get as much of this course done as you can in five days. It can be a bit mind-numbing. Take breaks. Refresh. Try to be as productive as you can. Huntington is counting on us.
-
-https://dev10.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/
-
-### Assessment
-
-Pokémon - Mobile Development
-
-https://corbos.github.io/pokemon-mobile/
-
-#### Technical Requirements
-
-- Use https://docs.flutter.dev/ui/navigation.
-- Isolate state apart from any widget. Possibly a Provider (if you get to section 9)?
-
-## Module 4: BLOC, Testing, Clean Architecture

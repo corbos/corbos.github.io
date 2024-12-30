@@ -1,0 +1,19 @@
+{
+    "product": [
+        {
+            "id": 1,
+            "name": "Yodeling Pickle",
+            "price": 9.99
+        },
+        {
+            "id": 2,
+            "name": "25lb Kettlebell",
+            "price": 31.92
+        },
+        {
+            "id": 3,
+            "name": "Squishmallow, 5in",
+            "price": 12.98
+        }
+    ]
+}

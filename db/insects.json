@@ -3,36 +3,34 @@
         "order": "Coleoptera",
         "common_name": "Beetles",
         "insects": [
-            [
-                {
-                    "latin_name": "Coccinella septempunctata",
-                    "common_name": "Seven-Spotted Ladybug"
-                },
-                {
-                    "latin_name": "Harmonia axyridis",
-                    "common_name": "Harlequin Ladybird"
-                },
-                {
-                    "latin_name": "Tenebrio molitor",
-                    "common_name": "Mealworm Beetle"
-                },
-                {
-                    "latin_name": "Carabus auratus",
-                    "common_name": "Golden Ground Beetle"
-                },
-                {
-                    "latin_name": "Lucanus cervus",
-                    "common_name": "European Stag Beetle"
-                },
-                {
-                    "latin_name": "Melolontha melolontha",
-                    "common_name": "Maybeetle"
-                },
-                {
-                    "latin_name": "Goliathus goliatus",
-                    "common_name": "Goliath Beetle"
-                }
-            ]
+            {
+                "latin_name": "Coccinella septempunctata",
+                "common_name": "Seven-Spotted Ladybug"
+            },
+            {
+                "latin_name": "Harmonia axyridis",
+                "common_name": "Harlequin Ladybird"
+            },
+            {
+                "latin_name": "Tenebrio molitor",
+                "common_name": "Mealworm Beetle"
+            },
+            {
+                "latin_name": "Carabus auratus",
+                "common_name": "Golden Ground Beetle"
+            },
+            {
+                "latin_name": "Lucanus cervus",
+                "common_name": "European Stag Beetle"
+            },
+            {
+                "latin_name": "Melolontha melolontha",
+                "common_name": "Maybeetle"
+            },
+            {
+                "latin_name": "Goliathus goliatus",
+                "common_name": "Goliath Beetle"
+            }
         ]
     },
     {

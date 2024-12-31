@@ -1,0 +1,102 @@
+[
+    {
+        "order": "Coleoptera",
+        "common_name": "Beetles",
+        "insects": [
+            [
+                {
+                    "latin_name": "Coccinella septempunctata",
+                    "common_name": "Seven-Spotted Ladybug"
+                },
+                {
+                    "latin_name": "Harmonia axyridis",
+                    "common_name": "Harlequin Ladybird"
+                },
+                {
+                    "latin_name": "Tenebrio molitor",
+                    "common_name": "Mealworm Beetle"
+                },
+                {
+                    "latin_name": "Carabus auratus",
+                    "common_name": "Golden Ground Beetle"
+                },
+                {
+                    "latin_name": "Lucanus cervus",
+                    "common_name": "European Stag Beetle"
+                },
+                {
+                    "latin_name": "Melolontha melolontha",
+                    "common_name": "Maybeetle"
+                },
+                {
+                    "latin_name": "Goliathus goliatus",
+                    "common_name": "Goliath Beetle"
+                }
+            ]
+        ]
+    },
+    {
+        "order": "Hymenoptera",
+        "common_name": "Ants, Bees, Wasps",
+        "insects": [
+            {
+                "latin_name": "Apis mellifera",
+                "common_name": "Western Honeybee"
+            },
+            {
+                "latin_name": "Formica rufa",
+                "common_name": "Red Wood Ant"
+            },
+            {
+                "latin_name": "Vespula vulgaris",
+                "common_name": "Common Wasp"
+            }
+        ]
+    },
+    {
+        "order": "Diptera",
+        "common_name": "Flies",
+        "insects": [
+            {
+                "latin_name": "Drosophila melanogaster",
+                "common_name": "Common Fruit Fly"
+            },
+            {
+                "latin_name": "Anopheles gambiae",
+                "common_name": "African Malaria Mosquito"
+            },
+            {
+                "latin_name": "Culex pipiens",
+                "common_name": "Common House Mosquito"
+            },
+            {
+                "latin_name": "Musca domestica",
+                "common_name": "Housefly"
+            },
+            {
+                "latin_name": "Aedes aegypti",
+                "common_name": "Yellow Fever Mosquito"
+            },
+            {
+                "latin_name": "Glossina morsitans",
+                "common_name": "Tsetse Fly"
+            },
+            {
+                "latin_name": "Phlebotomus papatasi",
+                "common_name": "Sand Fly"
+            },
+            {
+                "latin_name": "Chironomus plumosus",
+                "common_name": "Non-Biting Midge"
+            },
+            {
+                "latin_name": "Calliphora vomitoria",
+                "common_name": "Blue Bottle Fly"
+            },
+            {
+                "latin_name": "Tabanus bovinus",
+                "common_name": "Horsefly"
+            }
+        ]
+    }
+]

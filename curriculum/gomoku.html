@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomoku</title>
+    <style>
+        body {
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+            padding: 0 10px
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #C7CDD1;
+            border-radius: 5px;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gomoku</h1>
+    <p>
+        <a href="https://en.wikipedia.org/wiki/Gomoku">Gomoku</a>, or <em>Five in a Row</em>, is a game traditionally
+        played on a Go board. Players take turns placing stones on the board to form a connected sequence of exactly 5
+        stones horizontally, vertically, or diagonally. A standard board is 15 X 15. Players must balance their
+        offensive strategy (creating a 5 stone sequence) with their defensive strategy (preventing their opponent from
+        creating a 5 stone sequence). The first player to place five stones in a row wins.
+    </p>
+
+    <h2>Rules</h2>
+    <ul>
+        <li>Stones are black and white.</li>
+        <li>Black stone plays first.</li>
+        <li>Players alternate turns.</li>
+        <li>Players can play anywhere on the board.</li>
+        <li>The first player to get exactly 5 stones in a row wins. 6 or more stones in a row, called an
+            <strong>overline</strong>, is not a win.
+        </li>
+        <li>Draws are possible.</li>
+    </ul>
+
+
+    <h2>Your Code</h2>
+
+    <p>Your code should control game-play, display the state of the game, and accept user input for human players.</p>
+
+
+    <p>Add as many modules, classes, functions, and methods as you see fit to build a fun and easy-to-use console
+        interface.</p>
+
+
+    <h2>Sample UI</h2>
+
+    <h3>Set Up</h3>
+
+    <pre>
+Welcome to Gomoku
+=================
+
+Player 1 is:
+1. Human
+2. Random Player
+Select [1-2]: 1
+
+Player 1, enter your name: Dori
+
+Player 2 is:
+1. Human
+2. Random Player
+Select [1-2]: 1
+
+Player 2, enter your name: Nemo
+
+(Randomizing)
+
+Dori goes first.
+</pre>
+
+    <h3>Game Play</h3>
+
+    <pre>
+Dori's Turn
+Enter a row: 8
+Enter a column: 8
+
+   01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+01  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+02  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+03  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+04  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+05  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+06  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+07  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+08  _  _  _  _  _  _  _  X  _  _  _  _  _  _  _
+09  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+10  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+11  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+12  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+13  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+14  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+15  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+
+Nemo's Turn
+Enter a row: 9
+Enter a column: 8
+
+   01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+01  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+02  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+03  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+04  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+05  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+06  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+07  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+08  _  _  _  _  _  _  _  X  _  _  _  _  _  _  _
+09  _  _  _  _  _  _  _  O  _  _  _  _  _  _  _
+10  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+11  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+12  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+13  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+14  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+15  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+
+Dori's Turn
+Enter a row: 8
+Enter a column: 9
+
+   01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+01  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+02  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+03  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+04  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+05  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+06  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+07  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+08  _  _  _  _  _  _  _  X  X  _  _  _  _  _  _
+09  _  _  _  _  _  _  _  O  _  _  _  _  _  _  _
+10  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+11  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+12  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+13  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+14  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+15  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+
+Nemo's Turn
+Enter a row: 8
+Enter a column: 9
+
+[Err]: Duplicate move.
+
+Enter a row: 8
+Enter a column: 25
+
+[Err]: Off the board.
+
+Enter a row: 8
+Enter a column: 10
+
+   01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+01  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+02  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+03  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+04  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+05  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+06  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+07  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+08  _  _  _  _  _  _  _  X  X  O  _  _  _  _  _
+09  _  _  _  _  _  _  _  O  _  _  _  _  _  _  _
+10  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+11  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+12  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+13  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+14  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+15  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+</pre>
+
+    <h3>End Game</h3>
+
+    <pre>
+   01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+01  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+02  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+03  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+04  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+05  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+06  _  _  _  _  _  _  _  X  _  _  _  _  _  _  _
+07  _  _  _  _  _  _  X  _  O  _  _  _  O  _  _
+08  _  _  _  _  _  _  _  X  X  O  _  O  _  _  _
+09  _  _  _  _  _  _  _  O  X  _  O  _  _  _  _
+10  _  _  _  _  _  _  _  _  X  O  _  O  _  _  _
+11  _  _  _  _  _  _  _  _  X  _  _  _  X  _  _
+12  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+13  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+14  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+15  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+
+
+Dori's Turn
+Enter a row: 12
+Enter a column: 9
+
+   01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+01  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+02  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+03  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+04  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+05  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+06  _  _  _  _  _  _  _  X  _  _  _  _  _  _  _
+07  _  _  _  _  _  _  X  _  O  _  _  _  O  _  _
+08  _  _  _  _  _  _  _  X  X  O  _  O  _  _  _
+09  _  _  _  _  _  _  _  O  X  _  O  _  _  _  _
+10  _  _  _  _  _  _  _  _  X  O  _  O  _  _  _
+11  _  _  _  _  _  _  _  _  X  _  _  _  X  _  _
+12  _  _  _  _  _  _  _  _  X  _  _  _  _  _  _
+13  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+14  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+15  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _
+
+Dori Wins!
+
+Play Again? [y/n]: y
+
+Welcome to Gomoku
+=================
+
+Player 1 is:
+1. Human
+2. Random Player
+Select [1-2]:
+</pre>
+
+    <h2>Requirements</h2>
+
+    <ul>
+        <li>Set up two players.</li>
+        <li>For a human player, collect their name. (A random player's name is randomly generated.)</li>
+        <li>For each stone placement, use the player's name to prompt for row and column.</li>
+        <li>Since the random player doesn't require input, the UI should display stone placement and the results of
+            placement. (Random player placement may fail since they don't know what they're doing.)</li>
+        <li>Re-prompt on failed placement. The game must not proceed until a player has made a valid move.</li>
+        <li>Display the final result of the game.</li>
+        <li>Give the option to play again.</li>
+    </ul>
+
+    <h2>Technical Requirements</h2>
+
+    <ul>
+        <li>All rules are modeled inside the <code>gomoku.py</code> module.</li>
+        <li>Be sure to use sensible module, class, function, and method names.</li>
+        <li>Stones use 0-based rows and columns.</li>
+    </ul>
+
+
+    <h2>Approach</h2>
+
+    <p>Plan before you write code.</p>
+
+    <p>It may be helpful to break the game into two phases: set up and game-play.</p>
+
+    <p>Write one function/method that accepts the game state and draws the board. Never draw the board in more than one
+        place.
+    </p>
+
+    <h2>Stretch Goals</h2>
+
+    <ul>
+        <li>Create a third implementation and add it to your list of player options. Can you build a player that
+            makes good choices?</li>
+        <li>Black has an advantage as the starting player. Competitive Gomoku uses <a
+                href="https://www.renju.net/rule/11/">various opening rules</a> to improve fairness. Implement one of
+            those rules. In the starting screen, give
+            the option to choose an opening rule.</li>
+    </ul>
+</body>
+
+</html>

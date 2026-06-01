@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monaco Editor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/editor/editor.main.min.css">
+    <style>
+        .pulse {
+            font-size: 1.5rem;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0.1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <select id="language-select">
+            <option value="python">Python</option>
+            <option value="sql">PostgreSQL</option>
+            <option value="sql">MySQL</option>
+        </select>
+    </p>
+    <div id="container" style="height:500px;"></div>
+    <p>
+        <button id="btnRun">Run</button>
+    </p>
+    <div id="content"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/loader.js"></script>
+    <script src="code.js"></script>
+
+
+</body>
+
+</html>

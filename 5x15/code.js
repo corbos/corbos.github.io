@@ -95,3 +95,10 @@ $('theme').addEventListener('change',e=>{document.documentElement.dataset.theme=
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){selected=null;hinted=null;render();}});
 try { const theme=localStorage.getItem('five-fifteen-theme');if(['light','dark','solarized','dracula'].includes(theme)){document.documentElement.dataset.theme=theme;$('theme').value=theme;} const saved=JSON.parse(localStorage.getItem(key));if(saved && [1,2,3].includes(saved.level) && saved.rows?.length===5 && saved.rows.every(row=>row.length===16) && Array.isArray(saved.history) && Array.isArray(saved.seen))state=saved; } catch {}
 if(state)render();else deal();
+
+$('board-size').addEventListener('click', () => {
+  const enlarged = $('board-size').getAttribute('aria-pressed') !== 'true';
+  $('board-size').setAttribute('aria-pressed', String(enlarged));
+  $('board-size').textContent = enlarged ? 'Fit all tiles' : 'Enlarge tiles';
+  $('board').classList.toggle('enlarged', enlarged);
+});

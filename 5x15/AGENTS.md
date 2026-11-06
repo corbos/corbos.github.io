@@ -58,13 +58,13 @@ www.2f-spiele.de
 
 1. Use modern HTML.
 2. Create or update `index.html`.
-3. Use a mobile app.
+3. Use a browser-based mobile app.
 
 ## JavaScript
 
 1. Use modern JavaScript.
 2. Create or update `code.js`.
-3. Use a mobile app.
+3. Use a browser-based mobile app.
 
 ## CSS
 
@@ -75,4 +75,4 @@ www.2f-spiele.de
     - dark
     - solarized
     - dracula
-4. Use a mobile app.
+4. Use a browser-based mobile app.

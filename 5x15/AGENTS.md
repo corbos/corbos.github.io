@@ -59,6 +59,7 @@ www.2f-spiele.de
 1. Use modern HTML.
 2. Create or update `index.html`.
 3. Use a browser-based mobile app.
+4. Use "texture" on the tiles.
 
 ## JavaScript
 
@@ -76,3 +77,4 @@ www.2f-spiele.de
     - solarized
     - dracula
 4. Use a browser-based mobile app.
+5. Use "texture" on the tiles.

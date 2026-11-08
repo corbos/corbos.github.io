@@ -47,3 +47,34 @@ button,select{touch-action:manipulation}
   dialog{max-height:85dvh;overflow:auto;padding:24px}dialog button{min-height:44px}dialog .close{min-width:44px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Color-specific patterns stay consistent across themes and tile sizes. */
+.tile:not(.gap){
+  background-color:var(--tile);
+  background-image:var(--tile-pattern,none);
+  background-size:var(--pattern-size,auto);
+  box-shadow:inset 1px 2px 0 #ffffff50,inset -1px -3px 0 #00000030;
+  text-shadow:0 1px 2px #00000080;
+}
+/* Red: horizontal lines. */
+.tile[data-color="0"]{
+  --tile-pattern:repeating-linear-gradient(0deg,transparent 0 5px,#49120d55 5px 7px);
+}
+/* Yellow: seamless horizontal waves. */
+.tile[data-color="1"]{
+  --tile-pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M-12 5Q-6-1 0 5T12 5T24 5T36 5' fill='none' stroke='%23704b16' stroke-opacity='.5' stroke-width='2'/%3E%3C/svg%3E");
+  --pattern-size:24px 10px;
+  text-shadow:0 1px 2px #ffffffb0;
+}
+/* Green: vertical lines. */
+.tile[data-color="2"]{
+  --tile-pattern:repeating-linear-gradient(90deg,transparent 0 5px,#183b1855 5px 7px);
+}
+/* Blue: a plain, unpatterned surface. */
+.tile[data-color="3"]{
+  --tile-pattern:none;
+}
+/* Purple: diagonal lines. */
+.tile[data-color="4"]{
+  --tile-pattern:repeating-linear-gradient(135deg,transparent 0 5px,#421d5055 5px 7px);
+}
